@@ -81,10 +81,32 @@ const certificates = [
     issuer: "Vellore Institute of Technology, Vellore",
     dateIssued: "December 2024",
     credentialUrl: "#",
-    imageUrl: "/image/vshuttle-certificate.png",
+    imageUrl: "/image/vshuttle-thumb.png",
     modalImageUrl: "/image/vshuttle-certificate.png",
     dataAiHint: "project certificate vshuttle",
-  }
+  },
+  {
+    id: "flutter-ui-bootcamp",
+    title: "Flutter UI Bootcamp | Build Beautiful Apps using Flutter",
+    issuer: "Udemy - Hussain Mustafa",
+    dateIssued: "March 10, 2025",
+    credentialUrl: "https://ude.my/UC-282eefb5-681d-4b9b-9a4c-4c9dc8344cfd",
+    imageUrl: "/image/flutter-ui.png",
+    modalImageUrl: "/image/flutter-ui-certificate.png",
+    dataAiHint: "flutter ui bootcamp",
+  },
+  {
+    id: "flutter-firebase-chat",
+    title: "Flutter & Firebase Chat App: Master Flutter and Firebase",
+    issuer: "Udemy - Hussain Mustafa",
+    dateIssued: "March 5, 2025",
+    credentialUrl: "https://ude.my/UC-8454a278-21b9-4bb1-965f-54e5f037c4bf",
+    imageUrl: "/image/flutter-chat-thumb.png",
+    modalImageUrl: "/image/flutter-chat-cert.png",
+    dataAiHint: "flutter firebase chat app",
+  },    
+  
+
 ];
 
 interface CertificateCardProps {
