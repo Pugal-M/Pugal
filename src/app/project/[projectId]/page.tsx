@@ -5,7 +5,7 @@ import { ProjectImageSlider } from '@/components/project-image-slider'; // Impor
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Download } from 'lucide-react'; // Added Download icon
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
@@ -103,6 +103,14 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Github className="w-5 h-5" />
                       View on GitHub
+                    </a>
+                  </Button>
+                )}
+                {project.id === "v-shuttle-tracker" && (
+                  <Button asChild className="bg-green-600 text-white hover:bg-green-700 transition-colors">
+                    <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Download className="w-5 h-5" />
+                      Download App
                     </a>
                   </Button>
                 )}
