@@ -9,7 +9,7 @@ export const projects = [
     id: "v-shuttle-tracker",
     title: "VShuttle : Real-Time Shuttle Tracking App",
     description: "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
-    imageUrl: "/image/vshuttle-thumb.png",
+    imageUrl: "/image/vshuttle/vshuttle-thumb.png",
     sliderImages: [
       "/image/vshuttle/1.png",
       "/image/vshuttle/2.png",
@@ -20,7 +20,7 @@ export const projects = [
       "/image/vshuttle/7.png",
     ],
     liveUrl: "#", // Placeholder
-    githubUrl: "#", // Placeholder
+    githubUrl: "https://github.com/Pugal-M/VShuttle", // Placeholder
     longDescription: "The V-Shuttle project is a mobile application developed to enable students and faculty to track the live location of campus shuttle buses. Public transportation users often struggle with uncertain arrival times, leading to delays and inefficiencies. Traditional systems may lack real-time updates and user-friendly interfaces, making trip planning difficult. The V-Shuttle app solves this by offering real-time shuttle tracking, estimated arrival times, and clear route visualization. Designed with a simple and accessible interface, it enhances user experience by reducing wait times, improving commute planning, and boosting satisfaction with on-campus transportation services.",
     technologies: ["Flutter","Dart", "Firebase", "Google Maps API"],
     dataAiHint: "shuttle tracking",
