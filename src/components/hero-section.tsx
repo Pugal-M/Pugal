@@ -109,7 +109,7 @@ export function HeroSection() {
             </div>
 
             <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
-            Hard work lays the foundation, smart work builds the future, I strive to do both
+            Hard work lays the foundation, smart work builds the future, I strive to do both.
             </p>
 
             <div className="flex justify-center md:justify-start space-x-4 pt-4">
