@@ -6,6 +6,21 @@ import { Hammer } from 'lucide-react'; // Added Hammer icon import
 // Consider featuring 4-6 key projects
 export const projects = [
   {
+    id: "v-shuttle-tracker",
+    title: "V-Shuttle – Real-Time Shuttle Tracking App",
+    description: "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
+    imageUrl: "/image/v-shuttle-main.png",
+    sliderImages: [
+      "/image/v-shuttle-main.png",
+      "/image/v-shuttle-problem.png",
+    ],
+    liveUrl: "#", // Placeholder
+    githubUrl: "#", // Placeholder
+    longDescription: "The V-Shuttle project is a mobile application developed to enable students and faculty to track the live location of campus shuttle buses. Public transportation users often struggle with uncertain arrival times, leading to delays and inefficiencies. Traditional systems may lack real-time updates and user-friendly interfaces, making trip planning difficult. The V-Shuttle app solves this by offering real-time shuttle tracking, estimated arrival times, and clear route visualization. Designed with a simple and accessible interface, it enhances user experience by reducing wait times, improving commute planning, and boosting satisfaction with on-campus transportation services.",
+    technologies: ["Flutter", "Firebase", "Google Maps API"],
+    dataAiHint: "shuttle tracking",
+  },
+  {
     id: "e-commerce-platform",
     title: "E-commerce Platform",
     description: "A full-featured online store with product catalog, shopping cart, and checkout process.",
@@ -129,3 +144,4 @@ export function ProjectsSection() {
     </section>
   );
 }
+
