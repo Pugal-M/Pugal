@@ -7,7 +7,7 @@ import { Hammer } from 'lucide-react'; // Added Hammer icon import
 export const projects = [
   {
     id: "v-shuttle-tracker",
-    title: "V-Shuttle – Real-Time Shuttle Tracking App",
+    title: "VShuttle : Real-Time Shuttle Tracking App",
     description: "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
     imageUrl: "/image/vshuttle-thumb.png",
     sliderImages: [
