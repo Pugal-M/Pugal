@@ -108,7 +108,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 )}
                 {project.id === "v-shuttle-tracker" && (
                   <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                    <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <a href="https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Download className="w-5 h-5" />
                       Download App
                     </a>
