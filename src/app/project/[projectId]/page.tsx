@@ -107,7 +107,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   </Button>
                 )}
                 {project.id === "v-shuttle-tracker" && (
-                  <Button asChild className="bg-green-600 text-white hover:bg-green-700 transition-colors">
+                  <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
                     <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Download className="w-5 h-5" />
                       Download App
