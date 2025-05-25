@@ -91,13 +91,6 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-4">
-                {project.liveUrl && project.liveUrl !== "#" && (
-                   <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 ">
-                      <ExternalLink className="w-5 h-5" />
-                      View Live Demo
-                    </a>
-                  </Button>              )}
                 {project.githubUrl && project.githubUrl !== "#" && (
                   <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -109,6 +102,14 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 {project.id === "v-shuttle-tracker" && (
                   <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
                     <a href="https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Download className="w-5 h-5" />
+                      Download App
+                    </a>
+                  </Button>
+                )}
+                {project.id === "vvshop-app" && (
+                  <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
+                    <a href="https://drive.google.com/file/d/1H-PfwoxkU0tOeHuRjKdVFdWhfD9WeQus/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Download className="w-5 h-5" />
                       Download App
                     </a>
