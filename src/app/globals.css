@@ -1,63 +1,74 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 240 10% 3.9%; /* Dark Gray/Black for light theme text */
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 180 90% 40%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
+    --primary: 180 100% 25%; /* Teal for primary elements */
+    --primary-foreground: 0 0% 98%; /* Light color for text on primary bg */
+    --secondary: 0 0% 96.1%; /* Light gray for secondary backgrounds */
     --secondary-foreground: 240 5.9% 10%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 240 3.8% 46.1%;
-    --accent: 180 90% 40%;
+    --accent: 180 80% 35%; /* Slightly desaturated Teal for accents */
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 89.8%;
     --input: 0 0% 89.8%;
-    --ring: 180 90% 40%;
+    --ring: 180 100% 25%; /* Teal for focus rings */
     --radius: 0.5rem;
+
     --chart-1: 180 70% 50%;
     --chart-2: 180 60% 45%;
     --chart-3: 180 80% 55%;
     --chart-4: 180 65% 60%;
     --chart-5: 180 75% 55%;
+
+    /* Gradient Blur Opacities - Light Theme */
+    --gb-opacity-start: 0.4;
+    --gb-opacity-mid: 0.5;
+    --gb-opacity-end: 0.35;
   }
 
   .dark {
-    --background: 0 0% 9%;
-    --foreground: 240 5% 95%;
-    --card: 0 0% 12%;
-    --card-foreground: 240 5% 95%;
-    --popover: 0 0% 9%;
-    --popover-foreground: 240 5% 95%;
-    --primary: 180 100% 25%;
+    --background: 240 10% 3.9%; /* Dark Gray/Black for dark theme background */
+    --foreground: 0 0% 95%; /* Light gray/White for dark theme text */
+    --card: 240 4% 9%; /* Slightly lighter dark for cards */
+    --card-foreground: 0 0% 95%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 180 90% 40%; /* Brighter Teal for dark theme primary */
     --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 15%;
+    --secondary: 240 4% 12%; /* Darker gray for secondary in dark */
     --secondary-foreground: 0 0% 80%;
-    --muted: 0 0% 15%;
+    --muted: 240 4% 12%;
     --muted-foreground: 0 0% 60%;
-    --accent: 180 100% 25%;
+    --accent: 180 90% 40%; /* Brighter Teal for dark theme accents */
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 72% 51%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 180 100% 25%;
+    --border: 0 0% 20%; /* Darker border for dark theme */
+    --input: 0 0% 14.9%; /* Darker input for dark theme */
+    --ring: 180 90% 40%; /* Brighter Teal for dark theme focus rings */
+
     --chart-1: 180 70% 50%;
     --chart-2: 180 60% 45%;
     --chart-3: 180 80% 55%;
     --chart-4: 180 65% 60%;
     --chart-5: 180 75% 55%;
+
+    /* Gradient Blur Opacities - Dark Theme */
+    --gb-opacity-start: 0.45;
+    --gb-opacity-mid: 0.55;
+    --gb-opacity-end: 0.4;
   }
 
   * {
@@ -65,13 +76,27 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* bg-background text-foreground set on main content div */
+    /* opacity: 0; */ /* Removed for direct main content z-index control */
+    /* animation: fadeIn 0.5s ease-in-out forwards; */ /* Removed for direct main content z-index control */
+    /* overflow: hidden; */ /* Can cause issues if not managed carefully with particles */
+  }
+
+  /* Main content area to sit above background effects */
+  .main-content-area {
+    position: relative;
+    z-index: 10;
+    /* background-color: hsl(var(--background)); */ /* Removed to allow full transparency */
+    color: hsl(var(--foreground)); /* Apply body foreground here */
+    min-height: 100vh; /* Ensure it covers the viewport */
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;
   }
 
+
   section {
-    @apply py-16 md:py-24 lg:py-28;
+    @apply py-12 md:py-16 lg:py-20; /* Slightly reduced padding */
+     /* Removed background-color from here */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -99,16 +124,16 @@
     height: 8px;
   }
   ::-webkit-scrollbar-track {
- background: hsl(var(--muted) / 0.3); /* Lower opacity for track */
+    background: hsl(var(--muted) / 0.3); /* Lower opacity for track */
     border-radius: 10px;
   }
   ::-webkit-scrollbar-thumb {
- background: hsl(var(--primary) / 0.9); /* Higher opacity for thumb */
+    background: hsl(var(--primary) / 0.9); /* Higher opacity for thumb */
     border-radius: 10px;
     border: 2px solid transparent; /* Creates padding around thumb */
     background-clip: content-box; /* Ensures border doesn't overlap thumb color */
   }
- ::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary));
   }
   /* For Firefox */
@@ -116,7 +141,6 @@
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--primary) / 0.7) hsl(var(--muted) / 0.5);
   }
-  
 }
 
 @layer components {
@@ -143,7 +167,7 @@
 
   .project-card {
     @apply bg-card border border-border/50 rounded-lg overflow-hidden shadow-sm transition-all duration-300;
-    @apply hover:shadow-lg hover:border-primary/80 hover:scale-[1.02];
+    @apply hover:shadow-lg hover:scale-[1.02]; /* Removed hover:border-primary/80 */
   }
 
   .project-card-image {
@@ -166,9 +190,82 @@
   .animated-underline.active::after {
     @apply w-full bg-primary;
   }
+
+  /* Custom Video Player Timeline Slider */
+  .custom-video-timeline [data-radix-slider-track] {
+    @apply h-1.5; /* Make track thinner */
+  }
+  .custom-video-timeline [data-radix-slider-thumb] {
+    @apply h-2.5 w-2.5 block bg-primary border-0 ring-offset-0 focus-visible:ring-0 focus-visible:ring-offset-0;
+    /* Make thumb smaller, primary color, no border */
+  }
+  .custom-video-timeline [data-radix-slider-range] {
+     @apply bg-primary/70; /* Progress fill color */
+  }
+
+  /* Custom Video Player Volume Slider */
+  .custom-video-volume-slider [data-radix-slider-track] {
+    @apply h-1;
+  }
+  .custom-video-volume-slider [data-radix-slider-thumb] {
+    @apply h-2 w-2 bg-white; /* Smaller white thumb */
+  }
+   .custom-video-volume-slider [data-radix-slider-range] {
+     @apply bg-white/80;
+   }
 }
 
 @layer utilities {
+  .gradient-blur-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0; /* Behind main content, above absolute page background */
+    pointer-events: none; /* Allow clicks to pass through */
+  }
+
+  .gradient-blur {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px); /* Heavy blur */
+    will-change: transform, opacity;
+  }
+
+  .gradient-blur-1 {
+    width: 400px;
+    height: 400px;
+    background: hsla(var(--primary), 0.6); /* Use primary color with alpha */
+    animation: animateGradientBlur1 20s infinite alternate ease-in-out;
+  }
+
+  .gradient-blur-2 {
+    width: 300px;
+    height: 300px;
+    background: hsla(var(--accent), 0.5); /* Use accent color with alpha */
+    animation: animateGradientBlur2 25s infinite alternate-reverse ease-in-out;
+    animation-delay: -5s; /* Offset animation */
+  }
+
+  @keyframes animateGradientBlur1 {
+    0%   { transform: translate(5vw, 10vh) scale(1); opacity: var(--gb-opacity-start); }
+    25%  { transform: translate(30vw, 70vh) scale(1.3); opacity: var(--gb-opacity-mid); }
+    50%  { transform: translate(65vw, 25vh) scale(0.9); opacity: var(--gb-opacity-end); }
+    75%  { transform: translate(40vw, 60vh) scale(1.2); opacity: var(--gb-opacity-mid); }
+    100% { transform: translate(5vw, 10vh) scale(1); opacity: var(--gb-opacity-start); }
+  }
+
+  @keyframes animateGradientBlur2 {
+    0%   { transform: translate(80vw, 70vh) scale(1); opacity: var(--gb-opacity-start); }
+    25%  { transform: translate(20vw, 30vh) scale(1.2); opacity: var(--gb-opacity-mid); }
+    50%  { transform: translate(50vw, 80vh) scale(0.8); opacity: var(--gb-opacity-end); }
+    75%  { transform: translate(15vw, 50vh) scale(1.1); opacity: var(--gb-opacity-mid); }
+    100% { transform: translate(80vw, 70vh) scale(1); opacity: var(--gb-opacity-start); }
+  }
+
+
   .glowing-border-container {
     @apply relative p-1 rounded-full overflow-hidden;
   }
@@ -177,14 +274,14 @@
     content: '';
     position: absolute;
     top: 0; right: 0; bottom: 0; left: 0;
-    z-index: -1;
-    margin: -5px;
-    border-radius: inherit;
+    z-index: -1; /* Ensure it's behind the image */
+    margin: -5px; /* Control the glow "thickness" */
+    border-radius: inherit; /* Match the parent's border-radius */
     background: conic-gradient(
       from var(--angle, 0deg),
-      hsl(var(--primary) / 0.2),
-      hsl(var(--primary) / 0.9),
-      hsl(var(--primary) / 0.2)
+      hsl(var(--primary) / 0.2), /* Softer start */
+      hsl(var(--primary) / 0.9), /* Brightest point */
+      hsl(var(--primary) / 0.2)  /* Softer end */
     );
     animation: spin 2s linear infinite;
     --angle: 0deg;
@@ -260,7 +357,7 @@
 
   .animate-hammer-hit {
     animation: hammer-hit 2s ease-in-out infinite;
-    transform-origin: bottom center; 
+    transform-origin: bottom center;
   }
 
   @keyframes float-subtle {
@@ -285,6 +382,9 @@
     animation: blink 0.7s step-end infinite;
   }
 
+  .text-shadow {
+    text-shadow: 0px 1px 3px rgba(0,0,0,0.7);
+  }
 }
 
 html {
