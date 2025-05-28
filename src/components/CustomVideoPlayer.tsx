@@ -11,7 +11,7 @@ import {
   Minimize,
   FastForward,
   Rewind,
-  AlertTriangle, // Added for error display
+  AlertTriangle,
 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import { Button } from '@/components/ui/button';
@@ -23,6 +23,15 @@ interface CustomVideoPlayerProps {
   description?: string;
   className?: string;
 }
+
+const isYouTubeEmbedUrl = (url: string): boolean => {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.hostname === 'www.youtube.com' && parsedUrl.pathname.startsWith('/embed/');
+  } catch (e) {
+    return false;
+  }
+};
 
 export function CustomVideoPlayer({
   videoUrl,
@@ -39,7 +48,7 @@ export function CustomVideoPlayer({
   const [duration, setDuration] = useState(0);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const [videoError, setVideoError] = useState<string | null>(null); // State for video errors
+  const [videoError, setVideoError] = useState<string | null>(null);
   let controlsTimeout = useRef<NodeJS.Timeout | null>(null);
 
   if (!videoUrl) {
@@ -50,6 +59,8 @@ export function CustomVideoPlayer({
     );
   }
 
+  const isYouTube = isYouTubeEmbedUrl(videoUrl);
+
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60)
@@ -59,7 +70,7 @@ export function CustomVideoPlayer({
   };
 
   const togglePlayPause = useCallback(() => {
-    if (videoError) return; // Don't allow play/pause if there's an error
+    if (videoError || isYouTube) return;
     if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play().catch(err => {
@@ -72,10 +83,10 @@ export function CustomVideoPlayer({
         setIsPlaying(false);
       }
     }
-  }, [videoError]);
+  }, [videoError, isYouTube]);
 
   const handleVolumeChange = (newVolume: number[]) => {
-    if (videoRef.current) {
+    if (videoRef.current && !isYouTube) {
       const vol = newVolume[0];
       videoRef.current.volume = vol;
       setVolume(vol);
@@ -84,19 +95,19 @@ export function CustomVideoPlayer({
   };
 
   const toggleMute = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isYouTube) {
       const newMutedState = !videoRef.current.muted;
       videoRef.current.muted = newMutedState;
       setIsMuted(newMutedState);
       if (!newMutedState && volume === 0) {
-        setVolume(0.5); 
+        setVolume(0.5);
         videoRef.current.volume = 0.5;
       }
     }
   };
 
   const handleProgressChange = (newProgress: number[]) => {
-    if (videoRef.current) {
+    if (videoRef.current && !isYouTube) {
       const time = newProgress[0];
       videoRef.current.currentTime = time;
       setProgress(time);
@@ -104,15 +115,16 @@ export function CustomVideoPlayer({
   };
 
   const handleTimeUpdate = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isYouTube) {
       setProgress(videoRef.current.currentTime);
-      if (videoRef.current.error) { // Check for errors on time update too
+      if (videoRef.current.error) {
         handleVideoError(videoRef.current.error);
       }
     }
   };
-  
+
   const handleVideoError = (errorEvent: MediaError | null) => {
+    if (isYouTube) return; // Don't handle errors for YouTube iframe here
     let errorMsg = "Error loading video.";
     if (errorEvent) {
       switch (errorEvent.code) {
@@ -137,16 +149,23 @@ export function CustomVideoPlayer({
     setIsPlaying(false);
   };
 
-
   const handleLoadedMetadata = () => {
-    if (videoRef.current) {
+    if (videoRef.current && !isYouTube) {
       setDuration(videoRef.current.duration);
-      setVideoError(null); // Clear any previous errors if metadata loads
+      setVideoError(null);
     }
   };
 
   const toggleFullScreen = () => {
     if (!playerRef.current) return;
+    // For YouTube, fullscreen is handled by the iframe's own controls
+    if (isYouTube) {
+        const iframe = playerRef.current.querySelector('iframe');
+        if (iframe && iframe.requestFullscreen) {
+            iframe.requestFullscreen().catch(err => console.error("Error with iframe fullscreen:", err));
+        }
+        return;
+    }
 
     if (!document.fullscreenElement) {
       playerRef.current.requestFullscreen().catch((err) => {
@@ -158,38 +177,34 @@ export function CustomVideoPlayer({
       }
     }
   };
-  
+
   const handleSkip = (seconds: number) => {
-    if (videoRef.current && !videoError) {
+    if (videoRef.current && !videoError && !isYouTube) {
       videoRef.current.currentTime += seconds;
     }
   };
 
   useEffect(() => {
+    if (isYouTube) return; // Skip video event listeners for YouTube
+
     const video = videoRef.current;
     if (!video) return;
 
     const handlePlay = () => setIsPlaying(true);
     const handlePause = () => setIsPlaying(false);
     const handleEnded = () => setIsPlaying(false);
-    const handleFullscreenChange = () => {
-      setIsFullScreen(!!document.fullscreenElement);
-    };
-    // Using a direct event listener for errors on the video element
+    
     const onErrorListener = (e: Event) => {
-        const target = e.target as HTMLVideoElement;
-        console.error("Video Element Error Event:", target.error);
-        handleVideoError(target.error);
+      const target = e.target as HTMLVideoElement;
+      handleVideoError(target.error);
     };
-
 
     video.addEventListener('play', handlePlay);
     video.addEventListener('pause', handlePause);
     video.addEventListener('ended', handleEnded);
     video.addEventListener('timeupdate', handleTimeUpdate);
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('error', onErrorListener); // Add error listener
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    video.addEventListener('error', onErrorListener);
 
     return () => {
       video.removeEventListener('play', handlePlay);
@@ -197,15 +212,29 @@ export function CustomVideoPlayer({
       video.removeEventListener('ended', handleEnded);
       video.removeEventListener('timeupdate', handleTimeUpdate);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('error', onErrorListener); // Clean up error listener
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+      video.removeEventListener('error', onErrorListener);
       if (controlsTimeout.current) {
         clearTimeout(controlsTimeout.current);
       }
     };
-  }, [videoUrl]); // Re-run if videoUrl changes
+  }, [videoUrl, isYouTube]); // Re-run if videoUrl or isYouTube changes
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullScreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
 
   const handleMouseMove = () => {
+    if (isYouTube) { // For YouTube, controls are part of the iframe
+      setShowControls(false);
+      return;
+    }
     setShowControls(true);
     if (controlsTimeout.current) {
       clearTimeout(controlsTimeout.current);
@@ -218,26 +247,47 @@ export function CustomVideoPlayer({
   };
 
   const handleMouseLeave = () => {
+    if (isYouTube) return;
     if (isPlaying && !videoError) {
       setShowControls(false);
     }
   };
-  
+
   useEffect(() => {
+    if (isYouTube) {
+        setShowControls(false); // Always hide custom controls for YouTube
+        if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
+        return;
+    }
     if (!isPlaying || videoError) {
       setShowControls(true);
       if (controlsTimeout.current) {
         clearTimeout(controlsTimeout.current);
       }
     } else {
-      handleMouseMove(); 
+      handleMouseMove();
     }
-  }, [isPlaying, videoError]);
+  }, [isPlaying, videoError, isYouTube]);
 
+
+  if (isYouTube) {
+    return (
+      <div ref={playerRef} className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden group/player", className)}>
+        <iframe
+          src={videoUrl}
+          title={title || "YouTube video player"}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full"
+        ></iframe>
+      </div>
+    );
+  }
 
   return (
-    <div 
-      ref={playerRef} 
+    <div
+      ref={playerRef}
       className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden group/player", className)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -248,8 +298,6 @@ export function CustomVideoPlayer({
         className="w-full h-full object-contain"
         onClick={togglePlayPause}
         onDoubleClick={toggleFullScreen}
-        // onError prop on React's video tag might not capture all media errors
-        // Relying on the event listener added in useEffect for more robust error capture.
       />
       {videoError && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 text-white p-4 z-10">
@@ -259,7 +307,7 @@ export function CustomVideoPlayer({
         </div>
       )}
       {!videoError && (
-        <div 
+        <div
           className={cn(
             "absolute inset-0 flex flex-col justify-between p-3 sm:p-4 transition-opacity duration-300 ease-in-out",
             showControls ? "opacity-100" : "opacity-0 group-hover/player:opacity-100"
@@ -272,7 +320,7 @@ export function CustomVideoPlayer({
               {description && <p className="text-xs sm:text-sm text-gray-300 truncate">{description}</p>}
             </div>
           )}
-          <div className="flex-grow" />
+          <div className="flex-grow" /> {/* Spacer */}
           <div className="space-y-2">
             <div className="flex items-center gap-2">
               <span className="text-white text-xs font-mono select-none">
@@ -318,7 +366,7 @@ export function CustomVideoPlayer({
                     <Play className="w-5 h-5 sm:w-6 sm:h-6" />
                   )}
                 </Button>
-                 <Button
+                <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => handleSkip(10)}
@@ -376,3 +424,5 @@ export function CustomVideoPlayer({
     </div>
   );
 }
+
+    
