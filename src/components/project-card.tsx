@@ -1,4 +1,6 @@
 
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -7,16 +9,12 @@ interface ProjectCardProps {
   id: string;
   title: string;
   description: string;
-  imageUrl?: string | null; // Allow imageUrl to be optional or null
+  imageUrl?: string | null;
   dataAiHint?: string;
 }
 
 export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: ProjectCardProps) {
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // This function can be used if specific actions are needed before navigation,
-    // or to stop propagation if there were interactive elements inside the Link.
-    // For now, it's just a placeholder for a standard Link click.
-  };
+  // Removed handleLinkClick as Link handles navigation by default
 
   return (
     <Link
@@ -24,10 +22,10 @@ export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: Pr
       passHref
       className="block h-full group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       aria-label={`View details for project ${title}`}
-      onClick={handleLinkClick}
+      // Removed onClick prop
     >
       <Card className="overflow-hidden bg-card border border-border/50 transition-all duration-300 flex flex-col h-full shadow-md hover:shadow-lg hover:scale-[1.02] relative">
-        {imageUrl && ( // Conditionally render CardHeader and Image
+        {imageUrl && (
           <CardHeader className="p-0 overflow-hidden">
             <Image
               src={imageUrl}
