@@ -36,8 +36,8 @@ export const projects = [
     githubUrl: "#", 
     longDescription: "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
     technologies: ["8051 Microcontroller", "Embedded C", "IR Sensors", "Servo Motors", "LCD Display", "KEIL", "Proteus"],
-    dataAiHint: "smart car parking system 8051 project",
-    videoUrl: "https://drive.google.com/uc?id=1Ye1F6rvkmcXyYnLElvZshQH8VeqsdL7P", // Google Drive video link
+    dataAiHint: "parking system microcontroller",
+    videoUrl: "https://drive.google.com/uc?id=1Ye1F6rvkmcXyYnLElvZshQH8VeqsdL7P", // Google Drive video link changed to uc?id format
     videoTitle: "Smart Car Parking System Demo",
     videoDescription: "Demonstration of the automated smart car parking system.",
     displayVideoOnly: true, // Flag to display only video
@@ -105,7 +105,7 @@ export function ProjectsSection() {
           </div>
         </div>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 6).map((project) => (
+          {projects.map((project) => (
             <ProjectCard key={project.id} {...project} />
           ))}
         </div>
@@ -113,3 +113,4 @@ export function ProjectsSection() {
     </section>
   );
 }
+
