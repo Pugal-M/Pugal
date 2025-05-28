@@ -1,11 +1,12 @@
 
 import { projects } from '@/components/projects-section';
 import { Footer } from '@/components/footer';
-import { ProjectImageSlider } from '@/components/project-image-slider'; // Import the new slider
+import { ProjectImageSlider } from '@/components/project-image-slider';
+import { CustomVideoPlayer } from '@/components/CustomVideoPlayer'; // Import CustomVideoPlayer
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Download } from 'lucide-react'; // Added Download icon
+import { ArrowLeft, ExternalLink, Github, Download } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
@@ -46,11 +47,10 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
   return (
     <PageTransitionWrapper>
-      <div className="flex flex-col min-h-screen bg-background">
+      <div className="flex flex-col min-h-screen">
         {/* Intentionally not rendering Header here */}
         <main className="flex-grow container mx-auto px-4 py-8 md:py-16">
           <div className="max-w-4xl mx-auto">
-            {/* Back to Projects Button */}
             <Button
               asChild
               variant="outline"
@@ -67,12 +67,24 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 {project.title}
               </h1>
               
-              {/* Replace single Image with ProjectImageSlider */}
-              <ProjectImageSlider 
-                images={project.sliderImages || [project.imageUrl]} // Fallback to imageUrl if sliderImages is undefined
-                altPrefix={project.title}
-                dataAiHint={project.dataAiHint}
-              />
+              {project.displayVideoOnly && project.videoUrl ? (
+                <div className="relative w-full mb-6 shadow-md rounded-lg overflow-hidden">
+                  <CustomVideoPlayer
+                    videoUrl={project.videoUrl}
+                    title={project.videoTitle || project.title}
+                    description={project.videoDescription || project.description}
+                  />
+                </div>
+              ) : (
+                <ProjectImageSlider 
+                  images={project.sliderImages || (project.imageUrl ? [project.imageUrl] : [])}
+                  altPrefix={project.title}
+                  dataAiHint={project.dataAiHint}
+                  videoUrl={project.videoUrl} // Pass videoUrl for combined slider/video
+                  videoTitle={project.videoTitle}
+                  videoDescription={project.videoDescription}
+                />
+              )}
 
               <div className="prose prose-invert prose-lg max-w-none text-muted-foreground mb-6">
                 <p className="lead">{project.description}</p>
@@ -99,17 +111,17 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     </a>
                   </Button>
                 )}
-                {project.id === "v-shuttle-tracker" && (
-                  <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                    <a href="https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <Download className="w-5 h-5" />
-                      Download App
+                 {project.liveUrl && project.liveUrl !== "#" && (
+                  <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
+                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <ExternalLink className="w-5 h-5" />
+                      View Live Demo
                     </a>
                   </Button>
                 )}
-                {project.id === "vvshop-app" && (
+                {project.downloadUrl && (
                   <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                    <a href="https://drive.google.com/file/d/1H-PfwoxkU0tOeHuRjKdVFdWhfD9WeQus/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                    <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Download className="w-5 h-5" />
                       Download App
                     </a>

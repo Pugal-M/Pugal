@@ -1,13 +1,12 @@
 
 import { ProjectCard } from '@/components/project-card';
-import { Hammer } from 'lucide-react'; // Added Hammer icon import
+import { Hammer } from 'lucide-react'; 
 
 // Sample project data (replace with your actual projects)
-// Consider featuring 4-6 key projects
 export const projects = [
   {
     id: "v-shuttle-tracker",
-    title: "VShuttle : Real-Time Shuttle Tracking App",
+    title: "V-Shuttle – Real-Time Shuttle Tracking App",
     description: "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
     imageUrl: "/image/vshuttle/vshuttle-thumb.png",
     sliderImages: [
@@ -19,10 +18,46 @@ export const projects = [
       "/image/vshuttle/6.png",
       "/image/vshuttle/7.png",
     ],
-    githubUrl: "#", // Placeholder
+    githubUrl: "https://github.com/Pugal-M/Vshuttle_App_Track_College_Bus_Live_Location", 
     longDescription: "The V-Shuttle project is a mobile application developed to enable students and faculty to track the live location of campus shuttle buses. Public transportation users often struggle with uncertain arrival times, leading to delays and inefficiencies. Traditional systems may lack real-time updates and user-friendly interfaces, making trip planning difficult. The V-Shuttle app solves this by offering real-time shuttle tracking, estimated arrival times, and clear route visualization. Designed with a simple and accessible interface, it enhances user experience by reducing wait times, improving commute planning, and boosting satisfaction with on-campus transportation services.",
     technologies: ["Flutter","Dart", "Firebase", "Google Maps API"],
     dataAiHint: "shuttle tracking",
+    downloadUrl: "https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link",
+    videoUrl: "https://www.youtube.com/embed/sVZXLAH5H1Q?si=T8J2r8Pkyvz6x3h8", // Example YouTube embed
+    videoTitle: "V-Shuttle App Demo",
+    videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application."
+  },
+  {
+    id: "smart-car-parking-system",
+    title: "Smart Car Parking System",
+    description: "An automated parking system using 8051 microcontroller, IR sensors, and servo motors to monitor and manage vehicle parking in real time.",
+    imageUrl: "", // No image needed, video only
+    sliderImages: [], // No images needed
+    githubUrl: "#", 
+    longDescription: "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
+    technologies: ["8051 Microcontroller", "Embedded C", "IR Sensors", "Servo Motors", "LCD Display", "KEIL", "Proteus"],
+    dataAiHint: "smart car parking system 8051 project",
+    videoUrl: "https://drive.google.com/uc?id=1Ye1F6rvkmcXyYnLElvZshQH8VeqsdL7P", // Google Drive video link
+    videoTitle: "Smart Car Parking System Demo",
+    videoDescription: "Demonstration of the automated smart car parking system.",
+    displayVideoOnly: true, // Flag to display only video
+  },  
+  {
+    id: "portfolio-pro",
+    title: "Portfolio",
+    description: "A personal portfolio website built with Next.js, Tailwind CSS, and Framer Motion to showcase projects and skills.",
+    imageUrl: "/image/portfolio/port-thumb.png",
+    sliderImages: [
+      "/image/portfolio/1.png",
+      "/image/portfolio/2.png",
+      "/image/portfolio/3.png",
+      "/image/portfolio/4.png",
+    ],
+    liveUrl: "https://Pugal-M.github.io/Portfolio/",
+    githubUrl: "https://github.com/Pugal-M/Portfolio",
+    longDescription: "This portfolio website is a dynamic and responsive platform designed to highlight my skills, projects, and professional journey. Built with modern web technologies like Next.js for server-side rendering and static site generation, Tailwind CSS for utility-first styling, and Framer Motion for smooth animations and transitions, it offers an engaging user experience. The site features sections for about me, skills, projects with detailed views, and a contact form. It's fully responsive, ensuring optimal viewing on all devices, and demonstrates proficiency in frontend development and UI/UX principles.",
+    technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "TypeScript"],
+    dataAiHint: "portfolio website developer",
   },
   {
     id: "vvshop-app",
@@ -44,13 +79,14 @@ export const projects = [
     githubUrl: "#", // Placeholder
     longDescription: "VVShop is a modern mobile application tailored to redefine the shopping experience. It addresses common challenges faced by users in online shopping such as poor navigation, delayed updates, and limited product tracking. The app enables users to browse products by category, add items to a cart, check real-time stock availability, and place secure orders. With a visually appealing interface and intuitive design, VVShop ensures a streamlined shopping journey. The app supports order tracking, push notifications for deals, and detailed product information – making shopping faster, smarter, and more enjoyable.",
     technologies: ["Flutter", "Dart", "Firebase", "Provider"],
-    dataAiHint: "shopping ecommerce retail app"
-  },  
+    dataAiHint: "shopping ecommerce retail app",
+    downloadUrl: "https://drive.google.com/file/d/1H-PfwoxkU0tOeHuRjKdVFdWhfD9WeQus/view?usp=sharing",
+  },
 ];
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
+    <section id="projects" className="w-full py-12 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
           <div className="space-y-2">
@@ -77,4 +113,3 @@ export function ProjectsSection() {
     </section>
   );
 }
-
