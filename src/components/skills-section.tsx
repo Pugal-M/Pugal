@@ -3,7 +3,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, Database, Server, Settings, Palette } from "lucide-react";
+import { Code, Database, Server, Settings, Palette, Code2 } from "lucide-react"; // Added Code2
 import {
   Dialog,
   DialogContent,
@@ -42,6 +42,17 @@ const skillsData = [
     ],
   },
   {
+    category: "Programming Languages", // New Category
+    icon: Code2,
+    skills: [
+      { name: "Java", proficiency: 90 },
+      { name: "Python", proficiency: 85 },
+      { name: "Dart", proficiency: 80 },
+      { name: "C++", proficiency: 75 },
+      { name: "C", proficiency: 70 },
+    ],
+  },
+  {
     category: "Database Management",
     icon: Database,
     skills: [
@@ -75,7 +86,7 @@ const skillsData = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="w-full py-12 md:py-20 lg:py-24 bg-background">
+    <section id="skills" className="w-full py-12 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
           <div className="space-y-2">
