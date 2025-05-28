@@ -8,43 +8,19 @@ import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User } from 'lucide-react'; // Added User icon
+import { Loader2, User } from 'lucide-react';
 
 // Define Zod schema for form validation
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }), // Added subject
+  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
-
-// Placeholder for server action
-async function submitContactForm(data: ContactFormValues): Promise<{ success: boolean; message: string }> {
-  // Simulate network delay
-  await new Promise(resolve => setTimeout(resolve, 1500));
-
-  console.log("Form data submitted:", data);
-  // In a real app, you would send this data to your backend (e.g., API route, email service)
-  // Example:
-  // const response = await fetch('/api/contact', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(data),
-  // });
-  // if (response.ok) {
-  //   return { success: true, message: "Message sent successfully!" };
-  // } else {
-  //   return { success: false, message: "Failed to send message. Please try again." };
-  // }
-
-  // Simulate success for now
-  return { success: true, message: "Message sent successfully!" };
-}
-
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -63,17 +39,26 @@ export function ContactSection() {
   async function onSubmit(values: ContactFormValues) {
     setIsSubmitting(true);
     try {
-      const result = await submitContactForm(values);
-      if (result.success) {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
         toast({
           title: "Success!",
-          description: result.message,
+          description: result.message || "Message sent successfully!",
         });
-        form.reset(); // Clear form on success
+        form.reset();
       } else {
         toast({
           title: "Error",
-          description: result.message,
+          description: result.message || "Failed to send message. Please try again.",
           variant: "destructive",
         });
       }
@@ -90,7 +75,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="w-full py-12 md:py-20 lg:py-24 bg-background">
+    <section id="contact" className="w-full py-12 md:py-20 lg:py-24 bg-card"> {/* Changed background for better form visibility */}
       <div className="container px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -107,7 +92,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-background"> {/* Added a card-like container for the form */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -116,8 +101,6 @@ export function ContactSection() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      {/* Removed label for cleaner look like template */}
-                      {/* <FormLabel>Full Name</FormLabel> */}
                       <FormControl>
                         <Input placeholder="Full Name" {...field} className="bg-input border-border/50 focus:border-primary focus:ring-primary/50" />
                       </FormControl>
@@ -130,7 +113,6 @@ export function ContactSection() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      {/* <FormLabel>Email Address</FormLabel> */}
                       <FormControl>
                         <Input type="email" placeholder="Email Address" {...field} className="bg-input border-border/50 focus:border-primary focus:ring-primary/50" />
                       </FormControl>
@@ -139,13 +121,11 @@ export function ContactSection() {
                   )}
                 />
               </div>
-              {/* Added Subject Field */}
                <FormField
                  control={form.control}
                  name="subject"
                  render={({ field }) => (
                    <FormItem>
-                     {/* <FormLabel>Subject</FormLabel> */}
                      <FormControl>
                        <Input placeholder="Subject" {...field} className="bg-input border-border/50 focus:border-primary focus:ring-primary/50" />
                      </FormControl>
@@ -158,7 +138,6 @@ export function ContactSection() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    {/* <FormLabel>Your Message</FormLabel> */}
                     <FormControl>
                       <Textarea placeholder="Your Message" rows={5} {...field} className="bg-input border-border/50 focus:border-primary focus:ring-primary/50" />
                     </FormControl>
@@ -166,11 +145,11 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <div className="flex justify-center"> {/* Center button */}
+              <div className="flex justify-center">
                 <Button
                   type="submit"
                   size="lg"
-                  className="px-8 py-3 w-full max-w-xs" // Make button wider
+                  className="px-8 py-3 w-full max-w-xs glowing-button" // Added glowing-button for consistency
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
@@ -184,7 +163,6 @@ export function ContactSection() {
               </div>
             </form>
           </Form>
-          {/* Keep direct email link as alternative */}
           <p className="text-center text-muted-foreground mt-8 text-sm">
               Or reach out directly at: <a href="mailto:pugalarasu04@gmail.com" className="text-primary hover:underline">pugalarasu04@gmail.com</a>
            </p>
@@ -193,4 +171,3 @@ export function ContactSection() {
     </section>
   );
 }
-

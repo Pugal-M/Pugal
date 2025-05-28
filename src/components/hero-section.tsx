@@ -66,7 +66,9 @@ export function HeroSection() {
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
           <div className="flex justify-center items-center order-1 md:order-2">
-            <div className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl">
+            <div 
+              className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl"
+            >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
                   src="/image/edit.png"
