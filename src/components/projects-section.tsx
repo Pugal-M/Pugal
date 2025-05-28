@@ -31,13 +31,13 @@ export const projects = [
     id: "smart-car-parking-system",
     title: "Smart Car Parking System",
     description: "An automated parking system using 8051 microcontroller, IR sensors, and servo motors to monitor and manage vehicle parking in real time.",
-    imageUrl: "", // No image needed, video only
+    imageUrl: "/image/SmartCar/smartCarThum.jpg", // No image needed, video only
     sliderImages: [], // No images needed
     githubUrl: "#", 
     longDescription: "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
     technologies: ["8051 Microcontroller", "Embedded C", "IR Sensors", "Servo Motors", "LCD Display", "KEIL", "Proteus"],
     dataAiHint: "parking system microcontroller",
-    videoUrl: "https://youtu.be/sntAWzYQtNE", // Google Drive video link changed to uc?id format
+    videoUrl: "https://youtu.be/rF0hP40QoVo", // Google Drive video link changed to uc?id format
     videoTitle: "Smart Car Parking System Demo",
     videoDescription: "Demonstration of the automated smart car parking system.",
     displayVideoOnly: true, // Flag to display only video
@@ -64,10 +64,9 @@ export const projects = [
     technologies: ["Flutter", "Dart", "Firebase", "Provider"],
     dataAiHint: "shopping ecommerce retail app",
     downloadUrl: "https://drive.google.com/file/d/1H-PfwoxkU0tOeHuRjKdVFdWhfD9WeQus/view?usp=sharing",
-    videoUrl: "https://youtu.be/sntAWzYQtNE", // Google Drive video link changed to uc?id format
-    videoTitle: "Smart Car Parking System Demo",
-    videoDescription: "Demonstration of the automated smart car parking system.",
-    displayVideoOnly: true, // Flag to display only video
+    videoUrl: "https://www.youtube.com/embed/sVZXLAH5H1Q?si=T8J2r8Pkyvz6x3h8", // Example YouTube embed
+    videoTitle: "V-Shuttle App Demo",
+    videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application."
   },
 ];
 

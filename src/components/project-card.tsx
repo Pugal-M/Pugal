@@ -3,18 +3,27 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Github, ExternalLink } from 'lucide-react'; // Added ExternalLink for View Project
 
 interface ProjectCardProps {
   id: string;
   title: string;
   description: string;
   imageUrl?: string | null;
+  githubUrl?: string | null;
   dataAiHint?: string;
 }
 
-export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: ProjectCardProps) {
+export function ProjectCard({ id, title, description, imageUrl, githubUrl, dataAiHint }: ProjectCardProps) {
+  const handleGitHubClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Prevent the Link's navigation
+    if (githubUrl) {
+      window.open(githubUrl, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <Link
       href={`/project/${id}`}
@@ -39,10 +48,28 @@ export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: Pr
           <CardTitle className="text-lg md:text-xl mb-2 transition-colors">{title}</CardTitle>
           <CardDescription className="text-sm text-muted-foreground">{description}</CardDescription>
         </CardContent>
-        <CardFooter className="p-4 md:p-6 pt-0">
-          <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
+        <CardFooter className="p-4 md:p-6 pt-0 flex items-center gap-3">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
+            // onClick is handled by the parent Link, but stopPropagation could be added if specific logic needed here
+          >
+            <ExternalLink className="mr-1.5 h-4 w-4" />
             View Project
           </Button>
+          {githubUrl && githubUrl !== "#" && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="flex-1 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
+              onClick={handleGitHubClick}
+              aria-label={`View ${title} on GitHub`}
+            >
+              <Github className="mr-1.5 h-4 w-4" />
+              GitHub
+            </Button>
+          )}
         </CardFooter>
       </Card>
     </Link>

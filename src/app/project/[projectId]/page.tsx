@@ -80,9 +80,6 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   images={project.sliderImages || (project.imageUrl ? [project.imageUrl] : [])}
                   altPrefix={project.title}
                   dataAiHint={project.dataAiHint}
-                  videoUrl={project.videoUrl} // Pass videoUrl for combined slider/video
-                  videoTitle={project.videoTitle}
-                  videoDescription={project.videoDescription}
                 />
               )}
 
