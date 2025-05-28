@@ -111,14 +111,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     </a>
                   </Button>
                 )}
-                 {project.liveUrl && project.liveUrl !== "#" && (
-                  <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
-                    <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <ExternalLink className="w-5 h-5" />
-                      View Live Demo
-                    </a>
-                  </Button>
-                )}
+                
                 {project.downloadUrl && (
                   <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
                     <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">

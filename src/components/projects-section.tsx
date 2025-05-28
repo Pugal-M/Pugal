@@ -37,28 +37,11 @@ export const projects = [
     longDescription: "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
     technologies: ["8051 Microcontroller", "Embedded C", "IR Sensors", "Servo Motors", "LCD Display", "KEIL", "Proteus"],
     dataAiHint: "parking system microcontroller",
-    videoUrl: "https://drive.google.com/uc?id=1Ye1F6rvkmcXyYnLElvZshQH8VeqsdL7P", // Google Drive video link changed to uc?id format
+    videoUrl: "https://youtu.be/sntAWzYQtNE", // Google Drive video link changed to uc?id format
     videoTitle: "Smart Car Parking System Demo",
     videoDescription: "Demonstration of the automated smart car parking system.",
     displayVideoOnly: true, // Flag to display only video
   },  
-  {
-    id: "portfolio-pro",
-    title: "Portfolio",
-    description: "A personal portfolio website built with Next.js, Tailwind CSS, and Framer Motion to showcase projects and skills.",
-    imageUrl: "/image/portfolio/port-thumb.png",
-    sliderImages: [
-      "/image/portfolio/1.png",
-      "/image/portfolio/2.png",
-      "/image/portfolio/3.png",
-      "/image/portfolio/4.png",
-    ],
-    liveUrl: "https://Pugal-M.github.io/Portfolio/",
-    githubUrl: "https://github.com/Pugal-M/Portfolio",
-    longDescription: "This portfolio website is a dynamic and responsive platform designed to highlight my skills, projects, and professional journey. Built with modern web technologies like Next.js for server-side rendering and static site generation, Tailwind CSS for utility-first styling, and Framer Motion for smooth animations and transitions, it offers an engaging user experience. The site features sections for about me, skills, projects with detailed views, and a contact form. It's fully responsive, ensuring optimal viewing on all devices, and demonstrates proficiency in frontend development and UI/UX principles.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "TypeScript"],
-    dataAiHint: "portfolio website developer",
-  },
   {
     id: "vvshop-app",
     title: "VVShop – Seamless Shopping Experience App",
@@ -81,6 +64,10 @@ export const projects = [
     technologies: ["Flutter", "Dart", "Firebase", "Provider"],
     dataAiHint: "shopping ecommerce retail app",
     downloadUrl: "https://drive.google.com/file/d/1H-PfwoxkU0tOeHuRjKdVFdWhfD9WeQus/view?usp=sharing",
+    videoUrl: "https://youtu.be/sntAWzYQtNE", // Google Drive video link changed to uc?id format
+    videoTitle: "Smart Car Parking System Demo",
+    videoDescription: "Demonstration of the automated smart car parking system.",
+    displayVideoOnly: true, // Flag to display only video
   },
 ];
 

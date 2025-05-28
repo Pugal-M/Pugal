@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
@@ -24,35 +23,28 @@ interface CustomVideoPlayerProps {
   className?: string;
 }
 
-// Helper function to extract YouTube Video ID from various URL formats
+// Helper function to extract YouTube Video ID
 function getYouTubeVideoId(url: string): string | null {
-  if (!url) return null;
-  let videoId = null;
   try {
     const parsedUrl = new URL(url);
-    if (parsedUrl.hostname === 'www.youtube.com') {
+    let videoId = null;
+    if (parsedUrl.hostname.includes('youtube.com')) {
       if (parsedUrl.pathname === '/watch') {
         videoId = parsedUrl.searchParams.get('v');
       } else if (parsedUrl.pathname.startsWith('/embed/')) {
         videoId = parsedUrl.pathname.substring('/embed/'.length);
       }
     } else if (parsedUrl.hostname === 'youtu.be') {
-      videoId = parsedUrl.pathname.substring(1); // Remove leading '/'
+      videoId = parsedUrl.pathname.substring(1);
     }
+
+    if (videoId && videoId.includes('?')) videoId = videoId.split('?')[0];
+    if (videoId && videoId.includes('&')) videoId = videoId.split('&')[0];
+    return videoId;
   } catch (e) {
-    // Invalid URL
     return null;
   }
-  // Sanitize videoId: remove extra query parameters like 'si' from shared links
-  if (videoId && videoId.includes('?')) {
-    videoId = videoId.split('?')[0];
-  }
-  if (videoId && videoId.includes('&')) {
-    videoId = videoId.split('&')[0];
-  }
-  return videoId;
 }
-
 
 export function CustomVideoPlayer({
   videoUrl,
@@ -70,7 +62,9 @@ export function CustomVideoPlayer({
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const [videoError, setVideoError] = useState<string | null>(null);
-  let controlsTimeout = useRef<NodeJS.Timeout | null>(null);
+  const controlsTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const youtubeVideoId = getYouTubeVideoId(videoUrl);
 
   if (!videoUrl) {
     return (
@@ -79,18 +73,16 @@ export function CustomVideoPlayer({
       </div>
     );
   }
-  
-  const youtubeVideoId = getYouTubeVideoId(videoUrl);
 
   if (youtubeVideoId) {
     const iframeSrc = `https://www.youtube.com/embed/${youtubeVideoId}`;
     return (
-      <div ref={playerRef} className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden group/player", className)}>
+      <div ref={playerRef} className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden", className)}>
         <iframe
           src={iframeSrc}
           title={title || "YouTube video player"}
           frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
           className="w-full h-full"
         ></iframe>
@@ -98,35 +90,33 @@ export function CustomVideoPlayer({
     );
   }
 
-  // --- HTML5 Video Player Logic (if not YouTube) ---
+  if (videoUrl.includes('youtube') && !youtubeVideoId) {
+    return (
+      <div className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden flex items-center justify-center", className)}>
+        <p className="text-white">Unsupported or invalid YouTube URL format.</p>
+      </div>
+    );
+  }
 
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60)
-      .toString()
-      .padStart(2, '0');
-    return `${minutes}:${seconds}`;
-  };
+  // --- Local/MP4 video playback logic ---
+
+  const formatTime = (time: number) => `${Math.floor(time / 60)}:${Math.floor(time % 60).toString().padStart(2, '0')}`;
 
   const togglePlayPause = useCallback(() => {
-    if (videoError) return;
     if (videoRef.current) {
       if (videoRef.current.paused) {
-        videoRef.current.play().catch(err => {
-          console.error("Error playing video:", err);
-          setVideoError("Could not play the video. Please check the source.");
-        });
+        videoRef.current.play().catch(() => setVideoError("Could not play the video. Please check the source."));
         setIsPlaying(true);
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
       }
     }
-  }, [videoError]);
+  }, []);
 
   const handleVolumeChange = (newVolume: number[]) => {
+    const vol = newVolume[0];
     if (videoRef.current) {
-      const vol = newVolume[0];
       videoRef.current.volume = vol;
       setVolume(vol);
       setIsMuted(vol === 0);
@@ -135,10 +125,10 @@ export function CustomVideoPlayer({
 
   const toggleMute = () => {
     if (videoRef.current) {
-      const newMutedState = !videoRef.current.muted;
-      videoRef.current.muted = newMutedState;
-      setIsMuted(newMutedState);
-      if (!newMutedState && volume === 0) {
+      const muted = !videoRef.current.muted;
+      videoRef.current.muted = muted;
+      setIsMuted(muted);
+      if (!muted && volume === 0) {
         setVolume(0.5);
         videoRef.current.volume = 0.5;
       }
@@ -146,43 +136,17 @@ export function CustomVideoPlayer({
   };
 
   const handleProgressChange = (newProgress: number[]) => {
+    const time = newProgress[0];
     if (videoRef.current) {
-      const time = newProgress[0];
       videoRef.current.currentTime = time;
       setProgress(time);
     }
   };
 
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setProgress(videoRef.current.currentTime);
-      if (videoRef.current.error) {
-        handleVideoError(videoRef.current.error);
-      }
-    }
-  };
-
-  const handleVideoError = (errorEvent: MediaError | null) => {
-    let errorMsg = "Error loading video.";
-    if (errorEvent) {
-      switch (errorEvent.code) {
-        case MediaError.MEDIA_ERR_ABORTED:
-          errorMsg = 'Video playback aborted.';
-          break;
-        case MediaError.MEDIA_ERR_NETWORK:
-          errorMsg = 'A network error caused video download to fail.';
-          break;
-        case MediaError.MEDIA_ERR_DECODE:
-          errorMsg = 'Video playback aborted due to a corruption problem or because the video used features your browser did not support.';
-          break;
-        case MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED:
-          errorMsg = 'The video could not be loaded, either because the server or network failed or because the format is not supported.';
-          break;
-        default:
-          errorMsg = 'An unknown error occurred while loading the video.';
-          break;
-      }
-    }
+  const handleVideoError = (error: MediaError | null) => {
+    const errorMsg = error?.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED
+      ? 'Unsupported video format or URL.'
+      : 'An error occurred while loading the video.';
     setVideoError(errorMsg);
     setIsPlaying(false);
   };
@@ -190,83 +154,37 @@ export function CustomVideoPlayer({
   const handleLoadedMetadata = () => {
     if (videoRef.current) {
       setDuration(videoRef.current.duration);
-      setVideoError(null); // Reset error if metadata loads successfully
+      setVideoError(null);
     }
   };
 
   const toggleFullScreen = () => {
     if (!playerRef.current) return;
     if (!document.fullscreenElement) {
-      playerRef.current.requestFullscreen().catch((err) => {
-        // Consider a more user-friendly way to show this error, e.g., a toast
-        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      });
+      playerRef.current.requestFullscreen().catch(console.error);
     } else {
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      }
+      document.exitFullscreen?.();
     }
   };
 
   const handleSkip = (seconds: number) => {
-    if (videoRef.current && !videoError) {
+    if (videoRef.current) {
       videoRef.current.currentTime += seconds;
     }
   };
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handlePlay = () => setIsPlaying(true);
-    const handlePause = () => setIsPlaying(false);
-    const handleEnded = () => setIsPlaying(false);
-    
-    const onErrorListener = (e: Event) => {
-      const target = e.target as HTMLVideoElement;
-      handleVideoError(target.error);
-    };
-
-    video.addEventListener('play', handlePlay);
-    video.addEventListener('pause', handlePause);
-    video.addEventListener('ended', handleEnded);
-    video.addEventListener('timeupdate', handleTimeUpdate);
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    video.addEventListener('error', onErrorListener);
-
-    return () => {
-      video.removeEventListener('play', handlePlay);
-      video.removeEventListener('pause', handlePause);
-      video.removeEventListener('ended', handleEnded);
-      video.removeEventListener('timeupdate', handleTimeUpdate);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
-      video.removeEventListener('error', onErrorListener);
-      if (controlsTimeout.current) {
-        clearTimeout(controlsTimeout.current);
-      }
-    };
-  }, [videoUrl]); 
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullScreen(!!document.fullscreenElement);
-    };
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    };
-  }, []);
-
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setProgress(videoRef.current.currentTime);
+      if (videoRef.current.error) handleVideoError(videoRef.current.error);
+    }
+  };
 
   const handleMouseMove = () => {
     setShowControls(true);
-    if (controlsTimeout.current) {
-      clearTimeout(controlsTimeout.current);
-    }
+    if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
     if (isPlaying && !videoError) {
-      controlsTimeout.current = setTimeout(() => {
-        setShowControls(false);
-      }, 3000);
+      controlsTimeout.current = setTimeout(() => setShowControls(false), 3000);
     }
   };
 
@@ -279,17 +197,40 @@ export function CustomVideoPlayer({
   useEffect(() => {
     if (!isPlaying || videoError) {
       setShowControls(true);
-      if (controlsTimeout.current) {
-        clearTimeout(controlsTimeout.current);
-      }
+      if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
     } else {
-      // If playing and no error, mouse move will handle showing controls
-      // and then hiding them after a timeout.
-      // Call handleMouseMove to ensure controls are shown initially if needed.
-      handleMouseMove(); 
+      handleMouseMove();
     }
   }, [isPlaying, videoError]);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const onError = () => handleVideoError(video.error);
+
+    video.addEventListener('play', () => setIsPlaying(true));
+    video.addEventListener('pause', () => setIsPlaying(false));
+    video.addEventListener('ended', () => setIsPlaying(false));
+    video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    video.addEventListener('error', onError);
+
+    return () => {
+      video.removeEventListener('play', () => setIsPlaying(true));
+      video.removeEventListener('pause', () => setIsPlaying(false));
+      video.removeEventListener('ended', () => setIsPlaying(false));
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('error', onError);
+    };
+  }, [videoUrl]);
+
+  useEffect(() => {
+    const onFullScreenChange = () => setIsFullScreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onFullScreenChange);
+    return () => document.removeEventListener('fullscreenchange', onFullScreenChange);
+  }, []);
 
   return (
     <div
@@ -304,9 +245,6 @@ export function CustomVideoPlayer({
         className="w-full h-full object-contain"
         onClick={togglePlayPause}
         onDoubleClick={toggleFullScreen}
-        // Ensure metadata is loaded for duration and error handling
-        onLoadedMetadata={handleLoadedMetadata} 
-        onError={(e) => handleVideoError((e.target as HTMLVideoElement).error)}
       />
       {videoError && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 text-white p-4 z-10">
@@ -315,91 +253,46 @@ export function CustomVideoPlayer({
           <p className="text-sm text-center text-gray-300 mt-1">{videoError}</p>
         </div>
       )}
-      {!videoError && (
+      {!videoError && showControls && (
         <div
-          className={cn(
-            "absolute inset-0 flex flex-col justify-between p-3 sm:p-4 transition-opacity duration-300 ease-in-out",
-            showControls ? "opacity-100" : "opacity-0 group-hover/player:opacity-100"
-          )}
-          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.6) 100%)' }}
+          className="absolute inset-0 flex flex-col justify-between p-4"
+          style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%)' }}
         >
           {(title || description) && (
-            <div className="text-white text-shadow select-none">
-              {title && <h3 className="text-base sm:text-lg font-semibold truncate">{title}</h3>}
-              {description && <p className="text-xs sm:text-sm text-gray-300 truncate">{description}</p>}
+            <div className="text-white select-none">
+              {title && <h3 className="text-lg font-semibold">{title}</h3>}
+              {description && <p className="text-sm text-gray-300">{description}</p>}
             </div>
           )}
-          <div className="flex-grow" /> {/* Spacer */}
+          <div className="flex-grow" />
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-white text-xs font-mono select-none">
-                {formatTime(progress)}
-              </span>
+              <span className="text-white text-xs font-mono">{formatTime(progress)}</span>
               <Slider
                 min={0}
-                max={duration || 100} // Fallback max if duration is 0
+                max={duration || 100}
                 step={1}
                 value={[progress]}
                 onValueChange={handleProgressChange}
-                className="w-full custom-video-timeline"
-                aria-label="Video progress"
-                disabled={!!videoError || duration === 0}
+                className="w-full"
               />
-              <span className="text-white text-xs font-mono select-none">
-                {formatTime(duration)}
-              </span>
+              <span className="text-white text-xs font-mono">{formatTime(duration)}</span>
             </div>
-            <div className="flex items-center justify-between gap-2">
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleSkip(-10)}
-                  className="text-white hover:bg-white/10 hover:text-white"
-                  aria-label="Rewind 10 seconds"
-                  disabled={!!videoError || duration === 0}
-                >
-                  <Rewind className="w-4 h-4 sm:w-5 sm:h-5" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon" onClick={() => handleSkip(-10)}>
+                  <Rewind className="text-white w-5 h-5" />
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={togglePlayPause}
-                  className="text-white hover:bg-white/10 hover:text-white"
-                  aria-label={isPlaying ? "Pause" : "Play"}
-                  disabled={!!videoError || duration === 0}
-                >
-                  {isPlaying ? (
-                    <Pause className="w-5 h-5 sm:w-6 sm:h-6" />
-                  ) : (
-                    <Play className="w-5 h-5 sm:w-6 sm:h-6" />
-                  )}
+                <Button variant="ghost" size="icon" onClick={togglePlayPause}>
+                  {isPlaying ? <Pause className="text-white w-6 h-6" /> : <Play className="text-white w-6 h-6" />}
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleSkip(10)}
-                  className="text-white hover:bg-white/10 hover:text-white"
-                  aria-label="Fast-forward 10 seconds"
-                  disabled={!!videoError || duration === 0}
-                >
-                  <FastForward className="w-4 h-4 sm:w-5 sm:h-5" />
+                <Button variant="ghost" size="icon" onClick={() => handleSkip(10)}>
+                  <FastForward className="text-white w-5 h-5" />
                 </Button>
               </div>
-              <div className="flex items-center gap-1 sm:gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleMute}
-                  className="text-white hover:bg-white/10 hover:text-white"
-                  aria-label={isMuted ? "Unmute" : "Mute"}
-                  disabled={!!videoError || duration === 0}
-                >
-                  {isMuted || volume === 0 ? (
-                    <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" />
-                  ) : (
-                    <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
-                  )}
+              <div className="flex items-center gap-2">
+                <Button variant="ghost" size="icon" onClick={toggleMute}>
+                  {isMuted || volume === 0 ? <VolumeX className="text-white" /> : <Volume2 className="text-white" />}
                 </Button>
                 <Slider
                   min={0}
@@ -407,23 +300,10 @@ export function CustomVideoPlayer({
                   step={0.05}
                   value={[isMuted ? 0 : volume]}
                   onValueChange={handleVolumeChange}
-                  className="w-16 sm:w-24 custom-video-volume-slider"
-                  aria-label="Volume"
-                  disabled={!!videoError || duration === 0}
+                  className="w-20"
                 />
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleFullScreen}
-                  className="text-white hover:bg-white/10 hover:text-white"
-                  aria-label={isFullScreen ? "Exit full screen" : "Full screen"}
-                  disabled={!!videoError || duration === 0}
-                >
-                  {isFullScreen ? (
-                    <Minimize className="w-4 h-4 sm:w-5 sm:h-5" />
-                  ) : (
-                    <Maximize className="w-4 h-4 sm:w-5 sm:h-5" />
-                  )}
+                <Button variant="ghost" size="icon" onClick={toggleFullScreen}>
+                  {isFullScreen ? <Minimize className="text-white" /> : <Maximize className="text-white" />}
                 </Button>
               </div>
             </div>

@@ -3,7 +3,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface ProjectCardProps {
   id: string;
@@ -14,15 +15,12 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: ProjectCardProps) {
-  // Removed handleLinkClick as Link handles navigation by default
-
   return (
     <Link
       href={`/project/${id}`}
       passHref
       className="block h-full group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       aria-label={`View details for project ${title}`}
-      // Removed onClick prop
     >
       <Card className="overflow-hidden bg-card border border-border/50 transition-all duration-300 flex flex-col h-full shadow-md hover:shadow-lg hover:scale-[1.02] relative">
         {imageUrl && (
@@ -41,10 +39,11 @@ export function ProjectCard({ id, title, description, imageUrl, dataAiHint }: Pr
           <CardTitle className="text-lg md:text-xl mb-2 transition-colors">{title}</CardTitle>
           <CardDescription className="text-sm text-muted-foreground">{description}</CardDescription>
         </CardContent>
-        {/* Overlay for hover effect (no text) */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-end justify-center p-4 opacity-0 group-hover:opacity-100">
-          {/* Removed the "Click to view project" text */}
-        </div>
+        <CardFooter className="p-4 md:p-6 pt-0">
+          <Button variant="outline" size="sm" className="w-full border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
+            View Project
+          </Button>
+        </CardFooter>
       </Card>
     </Link>
   );
