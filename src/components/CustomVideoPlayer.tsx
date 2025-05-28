@@ -24,14 +24,35 @@ interface CustomVideoPlayerProps {
   className?: string;
 }
 
-const isYouTubeEmbedUrl = (url: string): boolean => {
+// Helper function to extract YouTube Video ID from various URL formats
+function getYouTubeVideoId(url: string): string | null {
+  if (!url) return null;
+  let videoId = null;
   try {
     const parsedUrl = new URL(url);
-    return parsedUrl.hostname === 'www.youtube.com' && parsedUrl.pathname.startsWith('/embed/');
+    if (parsedUrl.hostname === 'www.youtube.com') {
+      if (parsedUrl.pathname === '/watch') {
+        videoId = parsedUrl.searchParams.get('v');
+      } else if (parsedUrl.pathname.startsWith('/embed/')) {
+        videoId = parsedUrl.pathname.substring('/embed/'.length);
+      }
+    } else if (parsedUrl.hostname === 'youtu.be') {
+      videoId = parsedUrl.pathname.substring(1); // Remove leading '/'
+    }
   } catch (e) {
-    return false;
+    // Invalid URL
+    return null;
   }
-};
+  // Sanitize videoId: remove extra query parameters like 'si' from shared links
+  if (videoId && videoId.includes('?')) {
+    videoId = videoId.split('?')[0];
+  }
+  if (videoId && videoId.includes('&')) {
+    videoId = videoId.split('&')[0];
+  }
+  return videoId;
+}
+
 
 export function CustomVideoPlayer({
   videoUrl,
@@ -58,8 +79,26 @@ export function CustomVideoPlayer({
       </div>
     );
   }
+  
+  const youtubeVideoId = getYouTubeVideoId(videoUrl);
 
-  const isYouTube = isYouTubeEmbedUrl(videoUrl);
+  if (youtubeVideoId) {
+    const iframeSrc = `https://www.youtube.com/embed/${youtubeVideoId}`;
+    return (
+      <div ref={playerRef} className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden group/player", className)}>
+        <iframe
+          src={iframeSrc}
+          title={title || "YouTube video player"}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          className="w-full h-full"
+        ></iframe>
+      </div>
+    );
+  }
+
+  // --- HTML5 Video Player Logic (if not YouTube) ---
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
@@ -70,7 +109,7 @@ export function CustomVideoPlayer({
   };
 
   const togglePlayPause = useCallback(() => {
-    if (videoError || isYouTube) return;
+    if (videoError) return;
     if (videoRef.current) {
       if (videoRef.current.paused) {
         videoRef.current.play().catch(err => {
@@ -83,10 +122,10 @@ export function CustomVideoPlayer({
         setIsPlaying(false);
       }
     }
-  }, [videoError, isYouTube]);
+  }, [videoError]);
 
   const handleVolumeChange = (newVolume: number[]) => {
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current) {
       const vol = newVolume[0];
       videoRef.current.volume = vol;
       setVolume(vol);
@@ -95,7 +134,7 @@ export function CustomVideoPlayer({
   };
 
   const toggleMute = () => {
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current) {
       const newMutedState = !videoRef.current.muted;
       videoRef.current.muted = newMutedState;
       setIsMuted(newMutedState);
@@ -107,7 +146,7 @@ export function CustomVideoPlayer({
   };
 
   const handleProgressChange = (newProgress: number[]) => {
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current) {
       const time = newProgress[0];
       videoRef.current.currentTime = time;
       setProgress(time);
@@ -115,7 +154,7 @@ export function CustomVideoPlayer({
   };
 
   const handleTimeUpdate = () => {
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current) {
       setProgress(videoRef.current.currentTime);
       if (videoRef.current.error) {
         handleVideoError(videoRef.current.error);
@@ -124,7 +163,6 @@ export function CustomVideoPlayer({
   };
 
   const handleVideoError = (errorEvent: MediaError | null) => {
-    if (isYouTube) return; // Don't handle errors for YouTube iframe here
     let errorMsg = "Error loading video.";
     if (errorEvent) {
       switch (errorEvent.code) {
@@ -150,26 +188,18 @@ export function CustomVideoPlayer({
   };
 
   const handleLoadedMetadata = () => {
-    if (videoRef.current && !isYouTube) {
+    if (videoRef.current) {
       setDuration(videoRef.current.duration);
-      setVideoError(null);
+      setVideoError(null); // Reset error if metadata loads successfully
     }
   };
 
   const toggleFullScreen = () => {
     if (!playerRef.current) return;
-    // For YouTube, fullscreen is handled by the iframe's own controls
-    if (isYouTube) {
-        const iframe = playerRef.current.querySelector('iframe');
-        if (iframe && iframe.requestFullscreen) {
-            iframe.requestFullscreen().catch(err => console.error("Error with iframe fullscreen:", err));
-        }
-        return;
-    }
-
     if (!document.fullscreenElement) {
       playerRef.current.requestFullscreen().catch((err) => {
-        alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+        // Consider a more user-friendly way to show this error, e.g., a toast
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
       });
     } else {
       if (document.exitFullscreen) {
@@ -179,14 +209,12 @@ export function CustomVideoPlayer({
   };
 
   const handleSkip = (seconds: number) => {
-    if (videoRef.current && !videoError && !isYouTube) {
+    if (videoRef.current && !videoError) {
       videoRef.current.currentTime += seconds;
     }
   };
 
   useEffect(() => {
-    if (isYouTube) return; // Skip video event listeners for YouTube
-
     const video = videoRef.current;
     if (!video) return;
 
@@ -217,7 +245,7 @@ export function CustomVideoPlayer({
         clearTimeout(controlsTimeout.current);
       }
     };
-  }, [videoUrl, isYouTube]); // Re-run if videoUrl or isYouTube changes
+  }, [videoUrl]); 
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -231,10 +259,6 @@ export function CustomVideoPlayer({
 
 
   const handleMouseMove = () => {
-    if (isYouTube) { // For YouTube, controls are part of the iframe
-      setShowControls(false);
-      return;
-    }
     setShowControls(true);
     if (controlsTimeout.current) {
       clearTimeout(controlsTimeout.current);
@@ -247,43 +271,25 @@ export function CustomVideoPlayer({
   };
 
   const handleMouseLeave = () => {
-    if (isYouTube) return;
     if (isPlaying && !videoError) {
       setShowControls(false);
     }
   };
 
   useEffect(() => {
-    if (isYouTube) {
-        setShowControls(false); // Always hide custom controls for YouTube
-        if (controlsTimeout.current) clearTimeout(controlsTimeout.current);
-        return;
-    }
     if (!isPlaying || videoError) {
       setShowControls(true);
       if (controlsTimeout.current) {
         clearTimeout(controlsTimeout.current);
       }
     } else {
-      handleMouseMove();
+      // If playing and no error, mouse move will handle showing controls
+      // and then hiding them after a timeout.
+      // Call handleMouseMove to ensure controls are shown initially if needed.
+      handleMouseMove(); 
     }
-  }, [isPlaying, videoError, isYouTube]);
+  }, [isPlaying, videoError]);
 
-
-  if (isYouTube) {
-    return (
-      <div ref={playerRef} className={cn("relative w-full aspect-video bg-black rounded-lg overflow-hidden group/player", className)}>
-        <iframe
-          src={videoUrl}
-          title={title || "YouTube video player"}
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowFullScreen
-          className="w-full h-full"
-        ></iframe>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -298,6 +304,9 @@ export function CustomVideoPlayer({
         className="w-full h-full object-contain"
         onClick={togglePlayPause}
         onDoubleClick={toggleFullScreen}
+        // Ensure metadata is loaded for duration and error handling
+        onLoadedMetadata={handleLoadedMetadata} 
+        onError={(e) => handleVideoError((e.target as HTMLVideoElement).error)}
       />
       {videoError && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/80 text-white p-4 z-10">
@@ -328,13 +337,13 @@ export function CustomVideoPlayer({
               </span>
               <Slider
                 min={0}
-                max={duration}
+                max={duration || 100} // Fallback max if duration is 0
                 step={1}
                 value={[progress]}
                 onValueChange={handleProgressChange}
                 className="w-full custom-video-timeline"
                 aria-label="Video progress"
-                disabled={!!videoError}
+                disabled={!!videoError || duration === 0}
               />
               <span className="text-white text-xs font-mono select-none">
                 {formatTime(duration)}
@@ -348,7 +357,7 @@ export function CustomVideoPlayer({
                   onClick={() => handleSkip(-10)}
                   className="text-white hover:bg-white/10 hover:text-white"
                   aria-label="Rewind 10 seconds"
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 >
                   <Rewind className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
@@ -358,7 +367,7 @@ export function CustomVideoPlayer({
                   onClick={togglePlayPause}
                   className="text-white hover:bg-white/10 hover:text-white"
                   aria-label={isPlaying ? "Pause" : "Play"}
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 >
                   {isPlaying ? (
                     <Pause className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -372,7 +381,7 @@ export function CustomVideoPlayer({
                   onClick={() => handleSkip(10)}
                   className="text-white hover:bg-white/10 hover:text-white"
                   aria-label="Fast-forward 10 seconds"
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 >
                   <FastForward className="w-4 h-4 sm:w-5 sm:h-5" />
                 </Button>
@@ -384,7 +393,7 @@ export function CustomVideoPlayer({
                   onClick={toggleMute}
                   className="text-white hover:bg-white/10 hover:text-white"
                   aria-label={isMuted ? "Unmute" : "Mute"}
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 >
                   {isMuted || volume === 0 ? (
                     <VolumeX className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -400,7 +409,7 @@ export function CustomVideoPlayer({
                   onValueChange={handleVolumeChange}
                   className="w-16 sm:w-24 custom-video-volume-slider"
                   aria-label="Volume"
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 />
                 <Button
                   variant="ghost"
@@ -408,7 +417,7 @@ export function CustomVideoPlayer({
                   onClick={toggleFullScreen}
                   className="text-white hover:bg-white/10 hover:text-white"
                   aria-label={isFullScreen ? "Exit full screen" : "Full screen"}
-                  disabled={!!videoError}
+                  disabled={!!videoError || duration === 0}
                 >
                   {isFullScreen ? (
                     <Minimize className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -424,5 +433,3 @@ export function CustomVideoPlayer({
     </div>
   );
 }
-
-    
