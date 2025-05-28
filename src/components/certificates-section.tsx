@@ -17,7 +17,7 @@ import {
 const certificates = [
   {
     id: "vshuttle",
-    title: "VShuttle | Live Location Tracking App",
+    title: "VShuttle | Live Location Tracking App | VIT Vellore",
     issuer: "Vellore Institute of Technology, Vellore",
     dateIssued: "December 2024",
     credentialUrl: "https://drive.google.com/file/d/1tJhOZRefQCvrTb5FpNYw0mjumZdjWuYx/view?usp=sharing",

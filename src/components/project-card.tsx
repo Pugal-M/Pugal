@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Github, ExternalLink } from 'lucide-react'; // Added ExternalLink for View Project
+import { ExternalLink, Github } from 'lucide-react';
 
 interface ProjectCardProps {
   id: string;
@@ -45,7 +45,7 @@ export function ProjectCard({ id, title, description, imageUrl, githubUrl, dataA
           </CardHeader>
         )}
         <CardContent className="p-4 md:p-6 flex-grow">
-          <CardTitle className="text-lg md:text-xl mb-2 transition-colors">{title}</CardTitle>
+          <CardTitle className="text-lg md:text-xl mb-2 group-hover:text-primary transition-colors">{title}</CardTitle>
           <CardDescription className="text-sm text-muted-foreground">{description}</CardDescription>
         </CardContent>
         <CardFooter className="p-4 md:p-6 pt-0 flex items-center gap-3">
@@ -53,7 +53,6 @@ export function ProjectCard({ id, title, description, imageUrl, githubUrl, dataA
             variant="outline"
             size="sm"
             className="flex-1 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
-            // onClick is handled by the parent Link, but stopPropagation could be added if specific logic needed here
           >
             <ExternalLink className="mr-1.5 h-4 w-4" />
             View Project
