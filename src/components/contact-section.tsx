@@ -75,7 +75,7 @@ export function ContactSection() {
   }
 
   return (
-    <section id="contact" className="w-full py-12 md:py-20 lg:py-24 bg-card"> {/* Changed background for better form visibility */}
+    <section id="contact" className="w-full py-12 md:py-20 lg:py-24"> {/* Removed bg-card to use transparent background */}
       <div className="container px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -92,7 +92,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-background"> {/* Added a card-like container for the form */}
+        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card"> {/* Added a card-like container for the form */}
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -149,7 +149,7 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="px-8 py-3 w-full max-w-xs glowing-button" // Added glowing-button for consistency
+                  className="px-8 py-3 w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/80" // Removed glowing-button class
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (
