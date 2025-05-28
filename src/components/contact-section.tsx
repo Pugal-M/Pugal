@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User } from 'lucide-react';
+import { Loader2, User, Check, X as ErrorIcon } from 'lucide-react'; // Added Check and ErrorIcon
 
 // Define Zod schema for form validation
 const contactFormSchema = z.object({
@@ -22,9 +22,11 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
+type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export function ContactSection() {
   const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submissionStatus, setSubmissionStatus] = React.useState<SubmissionStatus>('idle');
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -37,7 +39,7 @@ export function ContactSection() {
   });
 
   async function onSubmit(values: ContactFormValues) {
-    setIsSubmitting(true);
+    setSubmissionStatus('submitting');
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
@@ -55,12 +57,14 @@ export function ContactSection() {
           description: result.message || "Message sent successfully!",
         });
         form.reset();
+        setSubmissionStatus('success');
       } else {
         toast({
           title: "Error",
           description: result.message || "Failed to send message. Please try again.",
           variant: "destructive",
         });
+        setSubmissionStatus('error');
       }
     } catch (error) {
       console.error("Form submission error:", error);
@@ -69,13 +73,47 @@ export function ContactSection() {
         description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       });
-    } finally {
-      setIsSubmitting(false);
+      setSubmissionStatus('error');
     }
   }
 
+  React.useEffect(() => {
+    if (submissionStatus === 'success' || submissionStatus === 'error') {
+      const timer = setTimeout(() => {
+        setSubmissionStatus('idle');
+      }, 3000); // Revert to idle after 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [submissionStatus]);
+
+  let buttonContent: React.ReactNode = "Send Message";
+  let buttonClasses = "bg-primary text-primary-foreground hover:bg-primary/80";
+
+  if (submissionStatus === 'submitting') {
+    buttonContent = (
+      <>
+        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
+      </>
+    );
+    buttonClasses = "bg-primary/90 text-primary-foreground cursor-not-allowed";
+  } else if (submissionStatus === 'success') {
+    buttonContent = (
+      <>
+        <Check className="mr-2 h-4 w-4" /> Sent!
+      </>
+    );
+    buttonClasses = "bg-green-500 hover:bg-green-600 text-white cursor-not-allowed";
+  } else if (submissionStatus === 'error') {
+    buttonContent = (
+      <>
+        <ErrorIcon className="mr-2 h-4 w-4" /> Error
+      </>
+    );
+    buttonClasses = "bg-destructive hover:bg-destructive/90 text-destructive-foreground cursor-not-allowed";
+  }
+
   return (
-    <section id="contact" className="w-full py-12 md:py-20 lg:py-24"> {/* Removed bg-card to use transparent background */}
+    <section id="contact" className="w-full py-12 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -92,7 +130,7 @@ export function ContactSection() {
           </p>
         </div>
 
-        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card"> {/* Added a card-like container for the form */}
+        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -149,16 +187,10 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   size="lg"
-                  className="px-8 py-3 w-full max-w-xs bg-primary text-primary-foreground hover:bg-primary/80" // Removed glowing-button class
-                  disabled={isSubmitting}
+                  className={`px-8 py-3 w-full max-w-xs transition-all duration-300 ease-in-out ${buttonClasses}`}
+                  disabled={submissionStatus !== 'idle'}
                 >
-                  {isSubmitting ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-                    </>
-                  ) : (
-                    "Send Message"
-                  )}
+                  {buttonContent}
                 </Button>
               </div>
             </form>
