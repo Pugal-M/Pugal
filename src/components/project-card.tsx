@@ -31,7 +31,7 @@ export function ProjectCard({ id, title, description, imageUrl, githubUrl, dataA
       className="block h-full group rounded-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
       aria-label={`View details for project ${title}`}
     >
-      <Card className="overflow-hidden bg-card border border-border/50 transition-all duration-300 flex flex-col h-full shadow-md hover:shadow-lg hover:scale-[1.02] relative">
+      <Card className="overflow-hidden bg-card border border-border/50 hover:border-primary/80 transition-all duration-300 flex flex-col h-full shadow-md hover:shadow-lg hover:scale-[1.02] relative">
         {imageUrl && (
           <CardHeader className="p-0 overflow-hidden">
             <Image
