@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Github, Linkedin, Twitter, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion'; // Import motion
 
 const socialLinks = {
   github: "https://github.com/Pugal-M",
@@ -60,14 +61,28 @@ export function HeroSection() {
     // CV download logic remains, can be enhanced if needed
   };
 
+  const textVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, scale: 0.5 },
+    visible: { opacity: 1, scale: 1 },
+  };
+
   return (
-    <section id="hero" className="relative w-full py-16 md:py-24 lg:py-28 bg-background">
+    <section id="hero" className="relative w-full py-16 md:py-24 lg:py-28 bg-background overflow-hidden">
       <div className="container px-4 md:px-6">
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
           <div className="flex justify-center items-center order-1 md:order-2">
-            <div 
+            <motion.div 
               className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl"
+              initial="hidden"
+              animate="visible"
+              variants={buttonVariants} // Re-using button variant for a similar pop-in for the image container
+              transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 150 }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
@@ -80,41 +95,70 @@ export function HeroSection() {
                   priority
                 />
               </div>
-            </div>
+            </motion.div>
           </div>
 
           <div className="space-y-6 text-center md:text-left order-2 md:order-1">
-            <h3 className="text-2xl font-semibold tracking-tight text-foreground">Hello, It's Me</h3>
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground">
+            <motion.h3
+              className="text-2xl font-semibold tracking-tight text-foreground"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Hello, It's Me
+            </motion.h3>
+
+            <motion.h1
+              className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
               Pugalarasu M
-            </h1>
+            </motion.h1>
             
-            {/* Grouping "And I'm a" and the animated text */}
-            <div>
+            <motion.div
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
               <h3 className="text-2xl font-semibold tracking-tight text-foreground flex items-center justify-center md:justify-start">
                 And I'm a
               </h3>
-              {/* Animated text on a new line */}
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground h-12 sm:h-14 md:h-16 lg:h-[72px] flex items-center justify-center md:justify-start mt-1">
                 <span className="title-highlight">
                   {displayedText}
-                  {/* Blinking cursor */}
                   <span 
                     className="inline-block w-[3px] bg-primary animate-blink ml-1"
                     style={{ 
-                      height: 'calc(1em * 0.8)', // Adjust cursor height based on current font size
-                      verticalAlign: 'text-bottom' // Align cursor with text baseline
+                      height: 'calc(1em * 0.8)', 
+                      verticalAlign: 'text-bottom' 
                     }}
                   ></span>
                 </span>
               </h2>
-            </div>
+            </motion.div>
 
-            <p className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0">
+            <motion.p
+              className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
             Hard work lays the foundation, smart work builds the future, I strive to do both.
-            </p>
+            </motion.p>
 
-            <div className="flex justify-center md:justify-start space-x-4 pt-4">
+            <motion.div
+              className="flex justify-center md:justify-start space-x-4 pt-4"
+              initial="hidden"
+              animate="visible"
+              variants={textVariants}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
               <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Github className="h-5 w-5" />
               </a>
@@ -124,9 +168,15 @@ export function HeroSection() {
               <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Twitter className="h-5 w-5" />
               </a>
-            </div>
+            </motion.div>
 
-            <div className="pt-6 flex justify-center md:justify-start">
+            <motion.div
+              className="pt-6 flex justify-center md:justify-start"
+              initial="hidden"
+              animate="visible"
+              variants={buttonVariants}
+              transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 150 }}
+            >
               <Button
                 asChild
                 size="lg"
@@ -141,7 +191,7 @@ export function HeroSection() {
                   <FileDown className="w-5 h-5" /> Download CV
                 </a>
               </Button>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

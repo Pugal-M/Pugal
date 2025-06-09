@@ -68,6 +68,30 @@ export const projects = [
     videoTitle: "V-Shuttle App Demo",
     videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application."
   },
+  {
+    id: "myclasstime-app",
+    title: "MyClassTime – Smart Offline Class Schedule Manager",
+    description: "An offline mobile app built using Flutter and Hive to help students organize and manage their weekly class periods efficiently.",
+    imageUrl: "/image/myClassTime/thumbnail.png",
+    sliderImages: [
+      "/image/myClassTime/port_app.png",
+      "/image/myClassTime/port_home.png",
+      "/image/myClassTime/port_menu.png",
+      "/image/myClassTime/port_addclass.png",
+      "/image/myClassTime/port_settime.png",
+      "/image/myClassTime/port_delete.png",
+    ],
+    githubUrl: "#", // Placeholder
+    longDescription: "MyClassTime is a fully offline mobile application developed using Flutter, tailored to help students manage their class schedules with ease. It uses Hive for secure and fast local data storage, allowing users to create weekly timetables, add subjects with time slots, assign faculty names, and set period reminders — all without internet access. With a smooth UI and color-coded subjects, it provides a clear visual overview of your day. Ideal for students who want to stay organized, even without a network connection.",
+    technologies: ["Flutter", "Dart", "Hive (Local DB)"],
+    dataAiHint: "offline timetable app period tracker",
+    downloadUrl: "https://drive.google.com/file/d/1vxCuXIH_8WdJjapWVEkgJdkvXOK8usze/view?usp=sharing",
+    videoUrl: "https://www.youtube.com/embed/your-demo-video-id", // Optional
+    videoTitle: "MyClassTime App Demo",
+    videoDescription: "This video showcases how MyClassTime helps students manage class schedules entirely offline using Hive in Flutter."
+  }
+  
+  
 ];
 
 export function ProjectsSection() {
