@@ -15,27 +15,24 @@ const fadeVariants = {
   exit: { opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
 };
 
-const noAnimationVariants = {
-  initial: { opacity: 1 },
-  animate: { opacity: 1, transition: { duration: 0 } },
-  exit: { opacity: 0, transition: { duration: 0 } }, // Exit quickly for no-animation pages
-};
+// noAnimationVariants is no longer needed if all transitions are smooth
+// const noAnimationVariants = {
+//   initial: { opacity: 1 },
+//   animate: { opacity: 1, transition: { duration: 0 } },
+//   exit: { opacity: 0, transition: { duration: 0 } },
+// };
 
 export function PageTransitionWrapper({ children }: Props) {
   const pathname = usePathname();
 
-  const isHomePage = pathname === '/';
-  const isProjectPage = pathname.startsWith('/project/');
-
-  // Determine which variants to use based on the current page
-  const currentVariants = (isHomePage || isProjectPage) ? noAnimationVariants : fadeVariants;
+  // Always use fadeVariants for a consistent smooth animation
+  const currentVariants = fadeVariants;
 
   return (
     <AnimatePresence
       mode="wait"
       onExitComplete={() => {
         // Scroll restoration is handled by Next.js default behavior
-        // No explicit window.scrollTo(0, 0);
       }}
     >
       <motion.div
