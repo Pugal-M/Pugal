@@ -25,20 +25,15 @@ const skillsData = [
       { name: "HTML", proficiency: 95 },
       { name: "CSS", proficiency: 90 },
       { name: "JavaScript", proficiency: 88 },
-      { name: "TypeScript", proficiency: 85 },
-      { name: "React", proficiency: 92 },
-      { name: "Next.js", proficiency: 88 },
-      { name: "Tailwind CSS", proficiency: 93 },
-      { name: "Framer Motion", proficiency: 75 },
+      { name: "Flutter", proficiency: 70 },
     ],
   },
   {
     category: "Backend Development",
     icon: Server,
     skills: [
-      { name: "Node.js", proficiency: 80 },
-      { name: "Express.js", proficiency: 78 },
       { name: "Firebase", proficiency: 75 },
+      { name: "SQL", proficiency: 80 },
     ],
   },
   {
@@ -48,15 +43,14 @@ const skillsData = [
       { name: "Java", proficiency: 90 },
       { name: "Python", proficiency: 85 },
       { name: "Dart", proficiency: 80 },
-      { name: "C++", proficiency: 75 },
-      { name: "C", proficiency: 70 },
+      { name: "C", proficiency: 80 },
+      { name: "C++", proficiency: 70 },
     ],
   },
   {
     category: "Database Management",
     icon: Database,
     skills: [
-      { name: "MongoDB", proficiency: 75 },
       { name: "Firebase Firestore", proficiency: 72 },
       { name: "SQL (Basic)", proficiency: 60 },
     ],
@@ -65,11 +59,10 @@ const skillsData = [
     category: "Tools & Technologies",
     icon: Settings,
     skills: [
-      { name: "Git", proficiency: 90 },
       { name: "GitHub", proficiency: 88 },
-      { name: "Docker (Basic)", proficiency: 65 },
       { name: "VS Code", proficiency: 95 },
-      { name: "Genkit", proficiency: 70 },
+      { name: "Eclipce", proficiency: 88 },
+      { name: "Firebase Studio", proficiency: 88 },
     ],
   },
   {
@@ -77,9 +70,6 @@ const skillsData = [
     icon: Palette,
     skills: [
       { name: "Figma (Basic)", proficiency: 70 },
-      { name: "Responsive Design", proficiency: 90 },
-      { name: "ShadCN UI", proficiency: 85 },
-      { name: "Material UI", proficiency: 80 },
     ],
   },
 ];
