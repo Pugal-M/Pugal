@@ -51,7 +51,7 @@ export const projects = [
     videoUrl: "https://youtu.be/n6E7y1Zq9js", // Replace if available
     videoTitle: "Flood Route Navigator Demo",
     videoDescription: "Demonstration of how the app helps users find the safest routes during floods using real-time water-level data from sensors.",
-    paperUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" // Added sample paper URL
+    paperUrl: "/image/floodManagement/Flood Management.pdf" // Added sample paper URL
   },  
   {
     id: "smart-car-parking-system",
