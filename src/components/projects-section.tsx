@@ -37,12 +37,11 @@ export const projects = [
       "/image/floodManagement/flood_1.png",
       "/image/floodManagement/flood_2.png",
       "/image/floodManagement/flood_3.png",
-      "/image/floodManagement/1.png",
-      "/image/floodManagement/2.png",
-      "/image/floodManagement/3.png",
-      "/image/floodManagement/7.png",
-      "/image/floodManagement/9.png",
-      "/image/floodManagement/10.png",
+      "/image/floodManagement/1.jpg",
+      "/image/floodManagement/2.jpg",
+      "/image/floodManagement/7.jpg",
+      "/image/floodManagement/9.jpg",
+      "/image/floodManagement/10.jpg",
     ],
     githubUrl: "#", // Add GitHub repo if available
     longDescription: "This project aims to provide a real-time solution to people who face road safety issues during rainy seasons. Built using ESP32 and Firebase, water levels on roads are continuously monitored using ultrasonic sensors. These levels are uploaded to the cloud, and the mobile app visualizes them on a map. The app then recommends safer, flood-free routes—making it an essential tool for daily commuters and emergency services like ambulances. With live updates, push alerts, and route optimization, this system ensures people can travel more safely and reach their destination without delay, even during extreme weather conditions.",
@@ -51,7 +50,8 @@ export const projects = [
     downloadUrl: "https://drive.google.com/file/d/1mjQb8EBHaVpuPLHXXPnE2lyO_9q5Ekuy/view", // Replace if available
     videoUrl: "https://youtu.be/n6E7y1Zq9js", // Replace if available
     videoTitle: "Flood Route Navigator Demo",
-    videoDescription: "Demonstration of how the app helps users find the safest routes during floods using real-time water-level data from sensors."
+    videoDescription: "Demonstration of how the app helps users find the safest routes during floods using real-time water-level data from sensors.",
+    paperUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" // Added sample paper URL
   },  
   {
     id: "smart-car-parking-system",

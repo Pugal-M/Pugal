@@ -6,7 +6,7 @@ import { CustomVideoPlayer } from '@/components/CustomVideoPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Download, Youtube } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Download, Youtube, FileText } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
@@ -17,7 +17,8 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
-  DialogClose
+  DialogClose,
+  DialogDescription
 } from "@/components/ui/dialog";
 
 interface ProjectDetailPageProps {
@@ -141,11 +142,43 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                       <div className="aspect-video relative bg-black">
                         <CustomVideoPlayer
                           videoUrl={project.videoUrl}
-                          title={project.videoTitle || project.title} // Used by CustomVideoPlayer if it's not a YouTube link
+                          title={project.videoTitle || project.title} 
                           className="absolute inset-0 w-full h-full"
                         />
                       </div>
                       <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
+                        <DialogClose asChild>
+                          <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {project.paperUrl && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
+                        <FileText className="w-5 h-5" />
+                        View Paper
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="w-full max-w-4xl h-[90vh] p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden flex flex-col">
+                      <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
+                        <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.title} - Paper</DialogTitle>
+                        <DialogDescription className="text-sm text-muted-foreground">
+                          Viewing research paper for {project.title}.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex-grow p-0 m-0 overflow-hidden">
+                        <iframe
+                          src={project.paperUrl}
+                          title={`${project.title} - Paper`}
+                          className="w-full h-full border-0"
+                          allow="fullscreen"
+                        />
+                      </div>
+                      <DialogFooter className="p-4 sm:p-6 border-t border-border/50 flex-shrink-0">
                         <DialogClose asChild>
                           <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
                         </DialogClose>
@@ -162,3 +195,4 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
     </PageTransitionWrapper>
   );
 }
+
