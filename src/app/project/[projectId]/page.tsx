@@ -2,15 +2,23 @@
 import { projects } from '@/components/projects-section';
 import { Footer } from '@/components/footer';
 import { ProjectImageSlider } from '@/components/project-image-slider';
-import { CustomVideoPlayer } from '@/components/CustomVideoPlayer'; // Import CustomVideoPlayer
+import { CustomVideoPlayer } from '@/components/CustomVideoPlayer';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Download, Youtube } from 'lucide-react'; // Added Youtube
+import { ArrowLeft, ExternalLink, Github, Download, Youtube } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
-
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogFooter,
+  DialogClose
+} from "@/components/ui/dialog";
 
 interface ProjectDetailPageProps {
   params: {
@@ -99,7 +107,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4">
+              <div className="flex flex-wrap gap-4 items-center">
                 {project.githubUrl && project.githubUrl !== "#" && (
                   <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
@@ -118,14 +126,32 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   </Button>
                 )}
 
-                {/* New Video Demo Button for flood-route-app */}
                 {project.id === 'flood-route-app' && project.videoUrl && (
-                  <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
-                    <a href={project.videoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                      <Youtube className="w-5 h-5" />
-                      Watch Demo
-                    </a>
-                  </Button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
+                        <Youtube className="w-5 h-5" />
+                        Watch Demo
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="w-full max-w-3xl p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden">
+                      <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
+                        <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.videoTitle || "Video Demo"}</DialogTitle>
+                      </DialogHeader>
+                      <div className="aspect-video relative bg-black">
+                        <CustomVideoPlayer
+                          videoUrl={project.videoUrl}
+                          title={project.videoTitle || project.title} // Used by CustomVideoPlayer if it's not a YouTube link
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      </div>
+                      <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
+                        <DialogClose asChild>
+                          <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </div>
             </article>
