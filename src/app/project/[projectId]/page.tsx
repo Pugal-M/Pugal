@@ -6,7 +6,7 @@ import { CustomVideoPlayer } from '@/components/CustomVideoPlayer'; // Import Cu
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Download } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Download, Youtube } from 'lucide-react'; // Added Youtube
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
@@ -114,6 +114,16 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
                       <Download className="w-5 h-5" />
                       Download App
+                    </a>
+                  </Button>
+                )}
+
+                {/* New Video Demo Button for flood-route-app */}
+                {project.id === 'flood-route-app' && project.videoUrl && (
+                  <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
+                    <a href={project.videoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Youtube className="w-5 h-5" />
+                      Watch Demo
                     </a>
                   </Button>
                 )}

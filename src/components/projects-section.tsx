@@ -28,6 +28,32 @@ export const projects = [
     videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application."
   },
   {
+    id: "flood-route-app",
+    title: "Smart Flood Route Navigator | Real-time Flood Level Alert System",
+    description: "An innovative app built to guide users through safer routes during heavy rainfall by monitoring and reporting road water levels in real-time.",
+    imageUrl: "/image/floodManagement/floodManage.png",
+    sliderImages: [
+      "/image/floodManagement/home.png",
+      "/image/floodManagement/flood_1.png",
+      "/image/floodManagement/flood_2.png",
+      "/image/floodManagement/flood_3.png",
+      "/image/floodManagement/1.png",
+      "/image/floodManagement/2.png",
+      "/image/floodManagement/3.png",
+      "/image/floodManagement/7.png",
+      "/image/floodManagement/9.png",
+      "/image/floodManagement/10.png",
+    ],
+    githubUrl: "#", // Add GitHub repo if available
+    longDescription: "This project aims to provide a real-time solution to people who face road safety issues during rainy seasons. Built using ESP32 and Firebase, water levels on roads are continuously monitored using ultrasonic sensors. These levels are uploaded to the cloud, and the mobile app visualizes them on a map. The app then recommends safer, flood-free routes—making it an essential tool for daily commuters and emergency services like ambulances. With live updates, push alerts, and route optimization, this system ensures people can travel more safely and reach their destination without delay, even during extreme weather conditions.",
+    technologies: ["ESP32", "Firebase", "Flutter", "Dart", "Ultrasonic Sensor", "Google Maps API"],
+    dataAiHint: "flood monitoring smart traffic safety emergency routing",
+    downloadUrl: "https://drive.google.com/file/d/1mjQb8EBHaVpuPLHXXPnE2lyO_9q5Ekuy/view", // Replace if available
+    videoUrl: "https://youtu.be/n6E7y1Zq9js", // Replace if available
+    videoTitle: "Flood Route Navigator Demo",
+    videoDescription: "Demonstration of how the app helps users find the safest routes during floods using real-time water-level data from sensors."
+  },  
+  {
     id: "smart-car-parking-system",
     title: "Smart Car Parking System",
     description: "An automated parking system using 8051 microcontroller, IR sensors, and servo motors to monitor and manage vehicle parking in real time.",
