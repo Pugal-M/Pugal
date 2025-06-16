@@ -83,10 +83,10 @@ export function HeroSection() {
           <div className="flex justify-center items-center order-1 md:order-2">
             <motion.div 
               className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl"
-              initial={false} // Image always visible on load, no entry animation based on session
+              initial={playEntryAnimations ? "hidden" : false}
               animate="visible"
               variants={buttonVariants} 
-              transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 150 }}
+              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.1 : 0 , type: "spring", stiffness: 150 }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
@@ -202,3 +202,4 @@ export function HeroSection() {
     </section>
   );
 }
+
