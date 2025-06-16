@@ -18,7 +18,7 @@ export const projects = [
       "/image/vshuttle/6.png",
       "/image/vshuttle/7.png",
     ],
-    githubUrl: "https://github.com/Pugal-M/Vshuttle_App_Track_College_Bus_Live_Location", 
+    githubUrl: "https://github.com/Pugal-M/VShuttle", 
     longDescription: "The V-Shuttle project is a mobile application developed to enable students and faculty to track the live location of campus shuttle buses. Public transportation users often struggle with uncertain arrival times, leading to delays and inefficiencies. Traditional systems may lack real-time updates and user-friendly interfaces, making trip planning difficult. The V-Shuttle app solves this by offering real-time shuttle tracking, estimated arrival times, and clear route visualization. Designed with a simple and accessible interface, it enhances user experience by reducing wait times, improving commute planning, and boosting satisfaction with on-campus transportation services.",
     technologies: ["Flutter","Dart", "Firebase", "Google Maps API"],
     dataAiHint: "shuttle tracking",
@@ -43,7 +43,7 @@ export const projects = [
       "/image/floodManagement/9.jpg",
       "/image/floodManagement/10.jpg",
     ],
-    githubUrl: "#", // Add GitHub repo if available
+    githubUrl: "https://github.com/Pugal-M/Flood_Management", // Add GitHub repo if available
     longDescription: "This project aims to provide a real-time solution to people who face road safety issues during rainy seasons. Built using ESP32 and Firebase, water levels on roads are continuously monitored using ultrasonic sensors. These levels are uploaded to the cloud, and the mobile app visualizes them on a map. The app then recommends safer, flood-free routes—making it an essential tool for daily commuters and emergency services like ambulances. With live updates, push alerts, and route optimization, this system ensures people can travel more safely and reach their destination without delay, even during extreme weather conditions.",
     technologies: ["ESP32", "Firebase", "Flutter", "Dart", "Ultrasonic Sensor", "Google Maps API"],
     dataAiHint: "flood monitoring smart traffic safety emergency routing",
