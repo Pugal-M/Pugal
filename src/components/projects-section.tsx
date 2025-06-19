@@ -85,7 +85,7 @@ export const projects = [
       "/image/shopApp/8.png",
       "/image/shopApp/9.png",
     ],
-    githubUrl: "#", // Placeholder
+    githubUrl: "https://github.com/Pugal-M/E-Commerce-Shopping-App", // Placeholder
     longDescription: "VVShop is a modern mobile application tailored to redefine the shopping experience. It addresses common challenges faced by users in online shopping such as poor navigation, delayed updates, and limited product tracking. The app enables users to browse products by category, add items to a cart, check real-time stock availability, and place secure orders. With a visually appealing interface and intuitive design, VVShop ensures a streamlined shopping journey. The app supports order tracking, push notifications for deals, and detailed product information – making shopping faster, smarter, and more enjoyable.",
     technologies: ["Flutter", "Dart", "Firebase", "Provider"],
     dataAiHint: "shopping ecommerce retail app",
