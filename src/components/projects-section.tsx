@@ -25,7 +25,8 @@ export const projects = [
     downloadUrl: "https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link",
     videoUrl: "https://www.youtube.com/embed/sVZXLAH5H1Q?si=T8J2r8Pkyvz6x3h8", // Example YouTube embed
     videoTitle: "V-Shuttle App Demo",
-    videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application."
+    videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application.",
+    paperUrl: "/image/vshuttle/V-Shuttle.pdf" 
   },
   {
     id: "flood-route-app",
@@ -66,6 +67,7 @@ export const projects = [
     videoUrl: "https://youtu.be/rF0hP40QoVo", // Google Drive video link changed to uc?id format
     videoTitle: "Smart Car Parking System Demo",
     videoDescription: "Demonstration of the automated smart car parking system.",
+    paperUrl: "/image/SmartCar/Microprocessors and Microcontrollers Lab Submission 5 (1).pdf",
     displayVideoOnly: true, // Flag to display only video
   },  
   {
