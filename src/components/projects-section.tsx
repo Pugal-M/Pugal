@@ -112,7 +112,7 @@ export const projects = [
     technologies: ["Flutter", "Dart", "Hive (Local DB)"],
     dataAiHint: "offline timetable app period tracker",
     downloadUrl: "https://drive.google.com/file/d/1vxCuXIH_8WdJjapWVEkgJdkvXOK8usze/view?usp=sharing",
-    videoUrl: "https://www.youtube.com/embed/your-demo-video-id", // Optional
+    videoUrl: "https://youtu.be/kyOdoPffLJM", // Optional
     videoTitle: "MyClassTime App Demo",
     videoDescription: "This video showcases how MyClassTime helps students manage class schedules entirely offline using Hive in Flutter."
   }
