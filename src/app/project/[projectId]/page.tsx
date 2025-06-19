@@ -109,168 +109,86 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
               </div>
 
               <div className="flex flex-wrap gap-4 items-center">
-                {project.id === 'flood-route-app' ? (
-                  <>
-                    {/* 1. Download Button (for flood-route-app) */}
-                    {project.downloadUrl && (
-                      <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                        <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <Download className="w-5 h-5" />
-                          Download App
-                        </a>
+                {/* 1. Download Button (Universal) */}
+                {project.downloadUrl && (
+                  <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
+                    <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Download className="w-5 h-5" />
+                      Download App
+                    </a>
+                  </Button>
+                )}
+
+                {/* 2. GitHub Button (Universal) */}
+                {project.githubUrl && project.githubUrl !== "#" && (
+                  <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                      <Github className="w-5 h-5" />
+                      View on GitHub
+                    </a>
+                  </Button>
+                )}
+
+                {/* 3. Watch Demo Dialog (Universal, if not displayVideoOnly) */}
+                {project.videoUrl && !project.displayVideoOnly && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
+                        <Youtube className="w-5 h-5" />
+                        Watch Demo
                       </Button>
-                    )}
-                    {/* 2. GitHub Button (for flood-route-app) */}
-                    {project.githubUrl && project.githubUrl !== "#" && (
-                      <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <Github className="w-5 h-5" />
-                          View on GitHub
-                        </a>
+                    </DialogTrigger>
+                    <DialogContent className="w-full max-w-3xl p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden">
+                      <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
+                        <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.videoTitle || "Video Demo"}</DialogTitle>
+                      </DialogHeader>
+                      <div className="aspect-video relative bg-black">
+                        <CustomVideoPlayer
+                          videoUrl={project.videoUrl} 
+                          title={project.videoTitle || project.title} 
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      </div>
+                      <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
+                        <DialogClose asChild>
+                          <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {/* 4. View Paper Dialog (Universal) */}
+                {project.paperUrl && (
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
+                        <FileText className="w-5 h-5" />
+                        View Paper
                       </Button>
-                    )}
-                    {/* 3. Watch Demo Dialog (specific to flood-route-app) */}
-                    {project.videoUrl && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
-                            <Youtube className="w-5 h-5" />
-                            Watch Demo
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="w-full max-w-3xl p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden">
-                          <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                            <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.videoTitle || "Video Demo"}</DialogTitle>
-                          </DialogHeader>
-                          <div className="aspect-video relative bg-black">
-                            <CustomVideoPlayer
-                              videoUrl={project.videoUrl} 
-                              title={project.videoTitle || project.title} 
-                              className="absolute inset-0 w-full h-full"
-                            />
-                          </div>
-                          <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
-                            <DialogClose asChild>
-                              <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                    )}
-                    {/* 4. View Paper Dialog (for flood-route-app) */}
-                    {project.paperUrl && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
-                            <FileText className="w-5 h-5" />
-                            View Paper
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="w-full max-w-4xl h-[90vh] p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden flex flex-col">
-                          <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                            <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.title} - Paper</DialogTitle>
-                            <DialogDescription className="text-sm text-muted-foreground">
-                              Viewing research paper for {project.title}.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="flex-grow p-0 m-0 overflow-hidden">
-                            <iframe
-                              src={project.paperUrl}
-                              title={`${project.title} - Paper`}
-                              className="w-full h-full border-0"
-                              allow="fullscreen"
-                            />
-                          </div>
-                          <DialogFooter className="p-4 sm:p-6 border-t border-border/50 flex-shrink-0">
-                            <DialogClose asChild>
-                              <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                    )}
-                  </>
-                ) : ( // For other projects (including myclasstime-app)
-                  <>
-                    {/* GitHub Button */}
-                    {project.githubUrl && project.githubUrl !== "#" && (
-                      <Button asChild variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors">
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <Github className="w-5 h-5" />
-                          View on GitHub
-                        </a>
-                      </Button>
-                    )}
-                    {/* Download Button */}
-                    {project.downloadUrl && (
-                      <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/80 transition-colors">
-                        <a href={project.downloadUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                          <Download className="w-5 h-5" />
-                          Download App
-                        </a>
-                      </Button>
-                    )}
-                    {/* Watch Demo Dialog (for projects like myclasstime-app) */}
-                    {project.videoUrl && !project.displayVideoOnly && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
-                            <Youtube className="w-5 h-5" />
-                            Watch Demo
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="w-full max-w-3xl p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden">
-                          <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                            <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.videoTitle || "Video Demo"}</DialogTitle>
-                          </DialogHeader>
-                          <div className="aspect-video relative bg-black">
-                            <CustomVideoPlayer
-                              videoUrl={project.videoUrl} 
-                              title={project.videoTitle || project.title} 
-                              className="absolute inset-0 w-full h-full"
-                            />
-                          </div>
-                          <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
-                            <DialogClose asChild>
-                              <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                    )}
-                    {/* View Paper Dialog */}
-                    {project.paperUrl && (
-                      <Dialog>
-                        <DialogTrigger asChild>
-                          <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
-                            <FileText className="w-5 h-5" />
-                            View Paper
-                          </Button>
-                        </DialogTrigger>
-                        <DialogContent className="w-full max-w-4xl h-[90vh] p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden flex flex-col">
-                          <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                            <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.title} - Paper</DialogTitle>
-                            <DialogDescription className="text-sm text-muted-foreground">
-                              Viewing research paper for {project.title}.
-                            </DialogDescription>
-                          </DialogHeader>
-                          <div className="flex-grow p-0 m-0 overflow-hidden">
-                            <iframe
-                              src={project.paperUrl}
-                              title={`${project.title} - Paper`}
-                              className="w-full h-full border-0"
-                              allow="fullscreen"
-                            />
-                          </div>
-                          <DialogFooter className="p-4 sm:p-6 border-t border-border/50 flex-shrink-0">
-                            <DialogClose asChild>
-                              <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                            </DialogClose>
-                          </DialogFooter>
-                        </DialogContent>
-                      </Dialog>
-                    )}
-                  </>
+                    </DialogTrigger>
+                    <DialogContent className="w-full max-w-4xl h-[90vh] p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden flex flex-col">
+                      <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
+                        <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.title} - Paper</DialogTitle>
+                        <DialogDescription className="text-sm text-muted-foreground">
+                          Viewing research paper for {project.title}.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="flex-grow p-0 m-0 overflow-hidden">
+                        <iframe
+                          src={project.paperUrl}
+                          title={`${project.title} - Paper`}
+                          className="w-full h-full border-0"
+                          allow="fullscreen"
+                        />
+                      </div>
+                      <DialogFooter className="p-4 sm:p-6 border-t border-border/50 flex-shrink-0">
+                        <DialogClose asChild>
+                          <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
+                        </DialogClose>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
                 )}
               </div>
             </article>
@@ -281,4 +199,3 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
     </PageTransitionWrapper>
   );
 }
-
