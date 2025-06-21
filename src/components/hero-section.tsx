@@ -1,16 +1,15 @@
-
 'use client'; 
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Github, Linkedin, Twitter, FileDown } from 'lucide-react';
+import { Github, Linkedin, Code, FileDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion'; 
 
 const socialLinks = {
   github: "https://github.com/Pugal-M",
   linkedin: "https://www.linkedin.com/in/pugalarasu-m-3aa778350/",
-  twitter: "https://twitter.com/your-username", // Replace with actual username if desired
+  leetcode: "https://leetcode.com/u/Pugalarasu/",
 };
 
 const phrasesToCycle = ["Frontend Developer", "App Developer", "Problem Solver"];
@@ -169,8 +168,8 @@ export function HeroSection() {
               <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="hover:translate-y-[-2px] transition-all duration-300">
-                <Twitter className="h-5 w-5" />
+              <a href={socialLinks.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:translate-y-[-2px] transition-all duration-300">
+                <Code className="h-5 w-5" />
               </a>
             </motion.div>
 
@@ -202,4 +201,3 @@ export function HeroSection() {
     </section>
   );
 }
-
