@@ -186,7 +186,7 @@ export function HeroSection() {
                 className="px-8 py-3 bg-primary text-primary-foreground hover:bg-primary/80 hover:text-primary-foreground transition-colors rounded-md shadow-md"
               >
                 <a
-                  href="https://docs.google.com/document/d/1NuugFXrUXb5kUTr6hfHqOn38njNVaUQDBcte_f8Vmbk/edit?usp=drive_link"
+                  href="https://drive.google.com/file/d/1WOxKZCDw2WLBzt5D36LDsOnqt8q6CMb2/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
