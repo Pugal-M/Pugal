@@ -1,5 +1,5 @@
 
-import { projects } from '@/components/projects-section';
+import { projects } from '@/lib/projects-data';
 import { Footer } from '@/components/footer';
 import { ProjectImageSlider } from '@/components/project-image-slider';
 import { CustomVideoPlayer } from '@/components/CustomVideoPlayer';
