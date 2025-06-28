@@ -1,3 +1,4 @@
+
 'use client'; 
 
 import { useState, useEffect } from 'react';
@@ -191,7 +192,7 @@ export function HeroSection() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2"
                 >
-                  <FileDown className="w-5 h-5" /> Download CV
+                  <FileDown className="w-5 h-5" /> My Resume
                 </a>
               </Button>
             </motion.div>
