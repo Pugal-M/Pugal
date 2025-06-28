@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Github, Linkedin, Code, FileDown } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa'; // Added WhatsApp icon
 import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion'; 
 
@@ -165,6 +166,9 @@ export function HeroSection() {
               </a>
               <a href={socialLinks.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Code className="h-5 w-5" />
+              </a>
+              <a href="https://wa.me/9345255048" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:translate-y-[-2px] transition-all duration-300">
+                <FaWhatsapp className="h-5 w-5" />
               </a>
             </motion.div>
 

@@ -1,3 +1,4 @@
+
 'use client'; // Required for form handling
 
 import * as React from 'react';
@@ -10,6 +11,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User, Check, X as ErrorIcon } from 'lucide-react'; // Added Check and ErrorIcon
+import { FaWhatsapp } from 'react-icons/fa'; // Added WhatsApp icon
 import { motion } from 'framer-motion';
 
 // Define Zod schema for form validation
@@ -214,8 +216,15 @@ export function ContactSection() {
             </form>
           </Form>
           <p className="text-center text-muted-foreground mt-8 text-sm">
-              Or reach out directly at: <a href="mailto:pugalarasu04@gmail.com" className="text-primary hover:underline">pugalarasu04@gmail.com</a>
-           </p>
+            Or reach out directly via{' '}
+            <a href="mailto:pugalarasu04@gmail.com" className="text-primary hover:underline">
+              Email
+            </a>{' '}
+            or on{' '}
+            <a href="https://wa.me/9345255048" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
+              <FaWhatsapp className="w-4 h-4" /> WhatsApp
+            </a>
+          </p>
         </motion.div>
       </div>
     </section>
