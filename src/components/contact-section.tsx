@@ -1,4 +1,3 @@
-
 'use client'; // Required for form handling
 
 import * as React from 'react';
@@ -11,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, User, Check, X as ErrorIcon } from 'lucide-react'; // Added Check and ErrorIcon
+import { motion } from 'framer-motion';
 
 // Define Zod schema for form validation
 const contactFormSchema = z.object({
@@ -23,6 +23,11 @@ const contactFormSchema = z.object({
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
 type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
 
 export function ContactSection() {
   const { toast } = useToast();
@@ -115,7 +120,13 @@ export function ContactSection() {
   return (
     <section id="contact" className="w-full py-12 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <motion.div
+          className="max-w-3xl mx-auto text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={sectionVariants}
+        >
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
               Contact <span className="title-highlight">Me!</span>
@@ -128,9 +139,16 @@ export function ContactSection() {
           <p className="mt-4 text-muted-foreground md:text-xl">
             Have a question or want to work together? Fill out the form below.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card">
+        <motion.div
+          className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={sectionVariants}
+          transition={{ delay: 0.2 } as any}
+        >
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -198,7 +216,7 @@ export function ContactSection() {
           <p className="text-center text-muted-foreground mt-8 text-sm">
               Or reach out directly at: <a href="mailto:pugalarasu04@gmail.com" className="text-primary hover:underline">pugalarasu04@gmail.com</a>
            </p>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

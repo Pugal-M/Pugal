@@ -1,8 +1,10 @@
+'use client';
 
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Award, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
 import {
   Dialog,
   DialogContent,
@@ -101,11 +103,36 @@ function CertificateCard({ title, issuer, dateIssued, imageUrl, credentialUrl, d
   );
 }
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
 export function CertificatesSection() {
   return (
     <section id="certificates" className="w-full py-12 md:py-20 lg:py-24 bg-background">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <motion.div
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={sectionVariants}
+        >
           <div className="space-y-2">
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
@@ -117,41 +144,49 @@ export function CertificatesSection() {
               Showcasing my qualifications and continuous learning. Click on a certificate to view it.
             </p>
           </div>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {certificates.map((certificate) => ( // Display all certificates
-            <Dialog key={certificate.id}>
-              <DialogTrigger asChild>
-                <div role="button" tabIndex={0} className="cursor-pointer h-full">
-                  <CertificateCard {...certificate} imageUrl={certificate.imageUrl} />
-                </div>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[90vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw] 2xl:max-w-[700px] p-0 bg-card border-border shadow-2xl rounded-lg">
-                <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                  <DialogTitle className="text-xl sm:text-2xl text-foreground">{certificate.title}</DialogTitle>
-                  <DialogDesc className="text-sm text-muted-foreground">
-                    {certificate.issuer} - Issued: {certificate.dateIssued}
-                  </DialogDesc>
-                </DialogHeader>
-                <div className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto flex justify-center items-center">
-                  <Image
-                    src={certificate.modalImageUrl || certificate.imageUrl}
-                    alt={`${certificate.title} - Full Certificate`}
-                    width={1200}
-                    height={800}
-                    className="object-contain w-auto h-auto max-w-full max-h-full rounded-md shadow-md"
-                    data-ai-hint={certificate.dataAiHint || certificate.title.toLowerCase().split(" ").slice(0, 2).join(" ")}
-                  />
-                </div>
-                <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
-                  <DialogClose asChild>
-                    <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                  </DialogClose>
-                </DialogFooter>
-              </DialogContent>
-            </Dialog>
+        </motion.div>
+        <motion.div
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={gridVariants}
+        >
+          {certificates.map((certificate) => (
+            <motion.div key={certificate.id} variants={cardVariants} className="h-full">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <div role="button" tabIndex={0} className="cursor-pointer h-full">
+                    <CertificateCard {...certificate} imageUrl={certificate.imageUrl} />
+                  </div>
+                </DialogTrigger>
+                <DialogContent className="sm:max-w-[90vw] md:max-w-[60vw] lg:max-w-[50vw] xl:max-w-[40vw] 2xl:max-w-[700px] p-0 bg-card border-border shadow-2xl rounded-lg">
+                  <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
+                    <DialogTitle className="text-xl sm:text-2xl text-foreground">{certificate.title}</DialogTitle>
+                    <DialogDesc className="text-sm text-muted-foreground">
+                      {certificate.issuer} - Issued: {certificate.dateIssued}
+                    </DialogDesc>
+                  </DialogHeader>
+                  <div className="p-4 sm:p-6 max-h-[60vh] overflow-y-auto flex justify-center items-center">
+                    <Image
+                      src={certificate.modalImageUrl || certificate.imageUrl}
+                      alt={`${certificate.title} - Full Certificate`}
+                      width={1200}
+                      height={800}
+                      className="object-contain w-auto h-auto max-w-full max-h-full rounded-md shadow-md"
+                      data-ai-hint={certificate.dataAiHint || certificate.title.toLowerCase().split(" ").slice(0, 2).join(" ")}
+                    />
+                  </div>
+                  <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
+                    <DialogClose asChild>
+                      <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
+                    </DialogClose>
+                  </DialogFooter>
+                </DialogContent>
+              </Dialog>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

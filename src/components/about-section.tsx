@@ -23,12 +23,35 @@ export function AboutSection() {
     return () => clearInterval(interval);
   }, [phrases]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  };
+
   return (
-    <section id="about" className="w-full py-12 md:py-20 lg:py-24 bg-secondary">
+    <motion.section
+      id="about"
+      className="w-full py-12 md:py-20 lg:py-24 bg-secondary"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.25 }}
+      variants={containerVariants}
+    >
       <div className="container px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-center">
           {/* Text Content */}
-          <div className="space-y-6 text-center md:text-left flex-grow order-2 md:order-1">
+          <motion.div
+            className="space-y-6 text-center md:text-left flex-grow order-2 md:order-1"
+            variants={itemVariants}
+          >
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl text-foreground">
               About <span className="title-highlight">Me</span>
             </h2>
@@ -49,14 +72,17 @@ export function AboutSection() {
             <p className="max-w-[600px] text-muted-foreground md:text-lg mx-auto md:mx-0 text-center md:text-left">
             I’m a tech enthusiast passionate about building scalable, efficient, and elegant digital solutions. Whether it's web development, mobile interfaces, or backend systems, I enjoy crafting clean, maintainable code that solves real-world problems. I’m also deeply interested in UI/UX design and love creating visually appealing, user-friendly experiences. Outside of tech, I enjoy video editing, playing online games, and exploring new technologies and trends. Always eager to learn, I thrive on experimenting with new frameworks and solving complex challenges, constantly motivated by the endless possibilities in the tech world. I’m driven to innovate and grow continuously.
             </p>
-          </div>
+          </motion.div>
 
           {/* Icon */}
-          <div className="animate-bounce flex items-center justify-center order-1 md:order-2">
+          <motion.div
+            className="flex items-center justify-center order-1 md:order-2"
+            variants={itemVariants}
+          >
             <Smile className="w-12 h-12 md:w-24 md:h-24 text-primary animate-pulse" />
-          </div>
+          </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

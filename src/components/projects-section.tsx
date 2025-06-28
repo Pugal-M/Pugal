@@ -1,6 +1,8 @@
+'use client';
 
 import { ProjectCard } from '@/components/project-card';
 import { Hammer } from 'lucide-react'; 
+import { motion } from 'framer-motion';
 
 // Sample project data (replace with your actual projects)
 export const projects = [
@@ -122,11 +124,37 @@ export const projects = [
   
 ];
 
+const sectionVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+const gridVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+};
+
+
 export function ProjectsSection() {
   return (
     <section id="projects" className="w-full py-12 md:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
+        <motion.div
+          className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={sectionVariants}
+        >
           <div className="space-y-2">
             <div className="flex items-center justify-center gap-4 flex-wrap">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-foreground">
@@ -141,14 +169,21 @@ export function ProjectsSection() {
               Check out some of the recent work I'm proud of.
             </p>
           </div>
-        </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        </motion.div>
+        <motion.div
+          className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={gridVariants}
+        >
           {projects.map((project) => (
-            <ProjectCard key={project.id} {...project} />
+            <motion.div key={project.id} variants={cardVariants}>
+              <ProjectCard {...project} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 }
-
