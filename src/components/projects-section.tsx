@@ -60,7 +60,7 @@ export const projects = [
     description: "An automated parking system using 8051 microcontroller, IR sensors, and servo motors to monitor and manage vehicle parking in real time.",
     imageUrl: "/image/SmartCar/smartCarThum.jpg", // No image needed, video only
     sliderImages: [], // No images needed
-    githubUrl: "#", 
+    githubUrl: "https://github.com/ms-sanjay/CarParkingSystem", 
     longDescription: "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
     technologies: ["8051 Microcontroller", "Embedded C", "IR Sensors", "Servo Motors", "LCD Display", "KEIL", "Proteus"],
     dataAiHint: "parking system microcontroller",
