@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { User } from 'lucide-react';
+import { User, Mail, Loader2 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
@@ -30,6 +30,7 @@ const sectionVariants = {
 
 export function ContactSection() {
   const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -41,29 +42,57 @@ export function ContactSection() {
     },
   });
 
-  function onSubmit(values: ContactFormValues) {
+  // Handler for WhatsApp submission
+  function onWhatsAppSubmit(values: ContactFormValues) {
     const { name, email, subject, message } = values;
     const whatsAppNumber = "9345255948"; // Your WhatsApp number
 
-    // Format the message with newlines for readability in code.
-    // This will be properly encoded by encodeURIComponent.
     const plainMessage = `*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n\n*Message:*\n${message}`;
-
-    // Encode the entire message for the URL. `\n` will become `%0A`.
     const encodedMessage = encodeURIComponent(plainMessage);
-
-    // Create the full WhatsApp URL
     const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
     
-    // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-    // Give feedback to the user and reset the form
     toast({
       title: "Opening WhatsApp",
       description: "Your message is ready to be sent!",
     });
     form.reset();
+  }
+
+  // Handler for Email submission
+  async function onEmailSubmit(values: ContactFormValues) {
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(values),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        // Use server error message if available, otherwise a generic one
+        throw new Error(result.message || 'An unexpected error occurred.');
+      }
+
+      toast({
+        title: "Email Sent!",
+        description: "Your message has been submitted successfully.",
+      });
+      form.reset();
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: error instanceof Error ? error.message : "Could not send email. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -99,7 +128,8 @@ export function ContactSection() {
           transition={{ delay: 0.2 } as any}
         >
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            {/* Prevent default form submission on Enter key, as we have two actions */}
+            <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <FormField
                   control={form.control}
@@ -150,14 +180,31 @@ export function ContactSection() {
                   </FormItem>
                 )}
               />
-              <div className="flex justify-center">
+              <div className="flex flex-col sm:flex-row justify-center gap-4 pt-2">
                 <Button
-                  type="submit"
+                  type="button"
+                  onClick={form.handleSubmit(onWhatsAppSubmit)}
+                  disabled={isSubmitting}
                   size="lg"
-                  className="px-8 py-3 w-full max-w-xs transition-colors duration-300 bg-primary text-primary-foreground hover:bg-primary/80"
+                  className="w-full sm:w-auto flex-1 transition-colors duration-300 bg-primary text-primary-foreground hover:bg-primary/80"
                 >
                   <FaWhatsapp className="mr-2 h-5 w-5" />
                   Send via WhatsApp
+                </Button>
+                <Button
+                  type="button"
+                  onClick={form.handleSubmit(onEmailSubmit)}
+                  disabled={isSubmitting}
+                  size="lg"
+                  variant="outline"
+                  className="w-full sm:w-auto flex-1 border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
+                >
+                  {isSubmitting ? (
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  ) : (
+                    <Mail className="mr-2 h-5 w-5" />
+                  )}
+                  {isSubmitting ? "Sending..." : "Send via Email"}
                 </Button>
               </div>
             </form>
