@@ -1,4 +1,3 @@
-
 'use client'; // Required for form handling
 
 import * as React from 'react';
@@ -46,11 +45,12 @@ export function ContactSection() {
     const { name, email, subject, message } = values;
     const whatsAppNumber = "9345255948"; // Your WhatsApp number
 
-    // Format the message for WhatsApp
-    const whatsappMessage = `*New Portfolio Contact*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Subject:* ${subject}%0A%0A*Message:*%0A${message}`;
-    
-    // Encode the message for the URL
-    const encodedMessage = encodeURIComponent(whatsappMessage);
+    // Format the message with newlines for readability in code.
+    // This will be properly encoded by encodeURIComponent.
+    const plainMessage = `*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n\n*Message:*\n${message}`;
+
+    // Encode the entire message for the URL. `\n` will become `%0A`.
+    const encodedMessage = encodeURIComponent(plainMessage);
 
     // Create the full WhatsApp URL
     const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
