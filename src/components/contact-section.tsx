@@ -1,4 +1,3 @@
-
 'use client'; // Required for form handling
 
 import * as React from 'react';
@@ -221,7 +220,7 @@ export function ContactSection() {
               Email
             </a>{' '}
             or on{' '}
-            <a href="https://wa.me/9345255048" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
+            <a href="https://wa.me/9345255948" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline inline-flex items-center gap-1">
               <FaWhatsapp className="w-4 h-4" /> WhatsApp
             </a>
           </p>

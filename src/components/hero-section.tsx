@@ -1,4 +1,3 @@
-
 'use client'; 
 
 import { useState, useEffect } from 'react';
@@ -167,7 +166,7 @@ export function HeroSection() {
               <a href={socialLinks.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Code className="h-5 w-5" />
               </a>
-              <a href="https://wa.me/9345255048" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:translate-y-[-2px] transition-all duration-300">
+              <a href="https://wa.me/9345255948" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="hover:translate-y-[-2px] transition-all duration-300">
                 <FaWhatsapp className="h-5 w-5" />
               </a>
             </motion.div>
