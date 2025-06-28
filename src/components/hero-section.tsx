@@ -18,8 +18,6 @@ const TYPING_SPEED = 120;
 const ERASING_SPEED = 80; 
 const DELAY_BETWEEN_PHRASES = 2000; 
 
-const HERO_ANIMATION_PLAYED_KEY = 'heroEntryAnimationPlayed_v4'; // Key for session storage
-
 export function HeroSection() {
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -29,12 +27,8 @@ export function HeroSection() {
   const [playEntryAnimations, setPlayEntryAnimations] = useState<boolean>(false);
 
   useEffect(() => {
-    // Client-side check for session storage after mount
-    const animationPlayedInSession = sessionStorage.getItem(HERO_ANIMATION_PLAYED_KEY);
-    if (!animationPlayedInSession) {
-      setPlayEntryAnimations(true); // Enable animations for this session
-      sessionStorage.setItem(HERO_ANIMATION_PLAYED_KEY, 'true'); // Mark as played
-    }
+    // This now runs every time the component mounts, ensuring animations play on each visit to the page.
+    setPlayEntryAnimations(true);
   }, []);
 
   useEffect(() => {
