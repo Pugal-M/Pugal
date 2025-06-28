@@ -1,3 +1,4 @@
+
 'use client'; // Required for form handling
 
 import * as React from 'react';
@@ -9,8 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, User, Check, X as ErrorIcon } from 'lucide-react'; // Added Check and ErrorIcon
-import { FaWhatsapp } from 'react-icons/fa'; // Added WhatsApp icon
+import { User } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 // Define Zod schema for form validation
@@ -23,8 +24,6 @@ const contactFormSchema = z.object({
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
 
-type SubmissionStatus = 'idle' | 'submitting' | 'success' | 'error';
-
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -32,7 +31,6 @@ const sectionVariants = {
 
 export function ContactSection() {
   const { toast } = useToast();
-  const [submissionStatus, setSubmissionStatus] = React.useState<SubmissionStatus>('idle');
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
@@ -44,78 +42,28 @@ export function ContactSection() {
     },
   });
 
-  async function onSubmit(values: ContactFormValues) {
-    setSubmissionStatus('submitting');
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(values),
-      });
+  function onSubmit(values: ContactFormValues) {
+    const { name, email, subject, message } = values;
+    const whatsAppNumber = "9345255948"; // Your WhatsApp number
 
-      const result = await response.json();
+    // Format the message for WhatsApp
+    const whatsappMessage = `*New Portfolio Contact*%0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Subject:* ${subject}%0A%0A*Message:*%0A${message}`;
+    
+    // Encode the message for the URL
+    const encodedMessage = encodeURIComponent(whatsappMessage);
 
-      if (response.ok) {
-        toast({
-          title: "Success!",
-          description: result.message || "Message sent successfully!",
-        });
-        form.reset();
-        setSubmissionStatus('success');
-      } else {
-        toast({
-          title: "Error",
-          description: result.message || "Failed to send message. Please try again.",
-          variant: "destructive",
-        });
-        setSubmissionStatus('error');
-      }
-    } catch (error) {
-      console.error("Form submission error:", error);
-      toast({
-        title: "Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-      setSubmissionStatus('error');
-    }
-  }
+    // Create the full WhatsApp URL
+    const whatsappUrl = `https://wa.me/${whatsAppNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
 
-  React.useEffect(() => {
-    if (submissionStatus === 'success' || submissionStatus === 'error') {
-      const timer = setTimeout(() => {
-        setSubmissionStatus('idle');
-      }, 3000); // Revert to idle after 3 seconds
-      return () => clearTimeout(timer);
-    }
-  }, [submissionStatus]);
-
-  let buttonContent: React.ReactNode = "Send Message";
-  let buttonClasses = "bg-primary text-primary-foreground hover:bg-primary/80";
-
-  if (submissionStatus === 'submitting') {
-    buttonContent = (
-      <>
-        <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
-      </>
-    );
-    buttonClasses = "bg-primary/90 text-primary-foreground cursor-not-allowed";
-  } else if (submissionStatus === 'success') {
-    buttonContent = (
-      <>
-        <Check className="mr-2 h-4 w-4" /> Sent!
-      </>
-    );
-    buttonClasses = "bg-green-500 hover:bg-green-600 text-white cursor-not-allowed";
-  } else if (submissionStatus === 'error') {
-    buttonContent = (
-      <>
-        <ErrorIcon className="mr-2 h-4 w-4" /> Error
-      </>
-    );
-    buttonClasses = "bg-destructive hover:bg-destructive/90 text-destructive-foreground cursor-not-allowed";
+    // Give feedback to the user and reset the form
+    toast({
+      title: "Opening WhatsApp",
+      description: "Your message is ready to be sent!",
+    });
+    form.reset();
   }
 
   return (
@@ -206,10 +154,10 @@ export function ContactSection() {
                 <Button
                   type="submit"
                   size="lg"
-                  className={`px-8 py-3 w-full max-w-xs transition-all duration-300 ease-in-out ${buttonClasses}`}
-                  disabled={submissionStatus !== 'idle'}
+                  className="px-8 py-3 w-full max-w-xs transition-colors duration-300 bg-primary text-primary-foreground hover:bg-primary/80"
                 >
-                  {buttonContent}
+                  <FaWhatsapp className="mr-2 h-5 w-5" />
+                  Send via WhatsApp
                 </Button>
               </div>
             </form>
