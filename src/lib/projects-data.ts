@@ -19,7 +19,7 @@ export const projects = [
     technologies: ["Flutter","Dart", "Firebase", "Google Maps API"],
     dataAiHint: "shuttle tracking",
     downloadUrl: "https://drive.google.com/file/d/1oePIC9iQvUBVG7fjtH3mvSzwb55jwls2/view?usp=drive_link",
-    videoUrl: "https://www.youtube.com/embed/sVZXLAH5H1Q?si=T8J2r8Pkyvz6x3h8", // Example YouTube embed
+    videoUrl: "https://youtu.be/TkM1U0VUIjc", // Example YouTube embed
     videoTitle: "V-Shuttle App Demo",
     videoDescription: "A quick demonstration of the V-Shuttle real-time tracking application.",
     paperUrl: "/image/vshuttle/V-Shuttle.pdf" 
