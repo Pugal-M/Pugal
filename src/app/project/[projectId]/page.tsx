@@ -10,6 +10,7 @@ import { ArrowLeft, ExternalLink, Github, Download, Youtube, FileText } from 'lu
 import { notFound } from 'next/navigation';
 import { Header } from '@/components/header';
 import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
+import { ShareButton } from '@/components/share-button';
 import {
   Dialog,
   DialogContent,
@@ -179,6 +180,9 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     </DialogContent>
                   </Dialog>
                 )}
+
+                {/* 5. Share Button */}
+                <ShareButton title={project.title} description={project.description} />
               </div>
             </article>
 
