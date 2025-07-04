@@ -60,17 +60,6 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
         {/* Intentionally not rendering Header here */}
         <main className="flex-grow container mx-auto px-4 py-8 md:py-16">
           <div className="max-w-4xl mx-auto">
-            <Button
-              asChild
-              variant="outline"
-              className="mb-8 group border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
-            >
-              <Link href="/#projects">
-                <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                Back to Projects
-              </Link>
-            </Button>
-
             <article className="bg-card p-6 md:p-8 rounded-lg shadow-xl border border-border/50">
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
                 {project.title}
@@ -192,6 +181,20 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 )}
               </div>
             </article>
+
+            <div className="mt-12 flex justify-center">
+              <Button
+                asChild
+                variant="outline"
+                className="group border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors"
+              >
+                <Link href="/#projects">
+                  <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                  Back to Projects
+                </Link>
+              </Button>
+            </div>
+            
           </div>
         </main>
         <Footer isProjectPage={true} />
