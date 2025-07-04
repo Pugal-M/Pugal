@@ -182,7 +182,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
               </div>
             </article>
 
-            <div className="mt-12 flex justify-center">
+            <div className="mt-12 flex justify-start">
               <Button
                 asChild
                 variant="outline"
