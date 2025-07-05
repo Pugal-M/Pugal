@@ -6,14 +6,22 @@ export const projects = [
     "description": "A classic 2D endless runner game set in a jungle-themed parallax environment, where you control a dinosaur, jump over obstacles, and aim for the highest score.",
     "imageUrl": "/image/DinoRun/dinorun_thumb.png",
     "sliderImages": [
-      '/image/DinoRun/dino1.jpg'
+      '/image/DinoRun/dinorun_thumb.png',
+      '/image/DinoRun/home.jpg',
+      '/image/DinoRun/setting.jpg',
+      '/image/DinoRun/run1.jpg',
+      '/image/DinoRun/dino1.jpg',
+      '/image/DinoRun/ene1.jpg',
+      '/image/DinoRun/ene2.jpg',
+      '/image/DinoRun/ene3.jpg',
+      '/image/DinoRun/gameover.jpg'
     ],
     "githubUrl": "https://github.com/Pugal-M/Dino-Game",
     "longDescription": "Dino Run is a fun and addictive 2D endless runner game built using Flutter and the Flame Engine. Set in a vibrant jungle-themed parallax environment, players control a dinosaur that sprints forward automatically. The objective is to jump over obstacles like rocks and tree stumps while surviving as long as possible to increase the score. The game features smooth animations, gravity-based jumping, collision detection, and progressively challenging gameplay. It includes sound effects and background music using Flame Audio, a scoring system with persistent local high score tracking via SharedPreferences, and responsive full-screen landscape support. Dino Run offers an immersive and polished mobile gaming experience.",
     "technologies": ["Flutter", "Dart", "Flame Engine", "Flame Audio", "SharedPreferences"],
     "dataAiHint": "jungle dino runner game",
     "downloadUrl": "#",
-    "videoUrl": "#",
+    "videoUrl": "https://youtu.be/O18KKUk-71M",
     "videoTitle": "Dino Run Game Demo",
     "videoDescription": "Gameplay footage of the Dino Run endless runner game set in a jungle environment."
   },  
