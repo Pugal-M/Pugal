@@ -1,6 +1,25 @@
 // Sample project data (replace with your actual projects)
 export const projects = [
   {
+    id: "dino-run-game",
+    title: "Dino Run - 2D Mobile Game",
+    description: "A classic 2D endless runner game where you control a dinosaur, jump over obstacles, and try to achieve the highest score.",
+    imageUrl: "/image/dino-run/thumbnail.png",
+    sliderImages: [
+      "/image/dino-run/1.png",
+      "/image/dino-run/2.png",
+      "/image/dino-run/3.png",
+    ],
+    githubUrl: "#", 
+    longDescription: "Dino Run is a fun and addictive 2D endless runner game built with Flutter and the Flame Engine. The game challenges players to navigate a running dinosaur through a desert landscape, jumping over cacti and other obstacles to survive as long as possible. The goal is to achieve the highest score, which increases the longer you run. The game features simple one-tap controls, pixel-art graphics, and progressively increasing difficulty, making it an engaging experience for players of all ages.",
+    technologies: ["Flutter", "Dart", "Flame Engine"],
+    dataAiHint: "dinosaur game runner",
+    downloadUrl: "#",
+    videoUrl: "https://www.youtube.com/embed/qrA2_y2lWfA",
+    videoTitle: "Dino Run Game Demo",
+    videoDescription: "Gameplay footage of the Dino Run endless runner game."
+  },
+  {
     id: "v-shuttle-tracker",
     title: "V-Shuttle – Real-Time Shuttle Tracking App",
     description: "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
