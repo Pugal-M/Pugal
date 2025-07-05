@@ -1,24 +1,24 @@
 // Sample project data (replace with your actual projects)
 export const projects = [
   {
-    id: "dino-run-game",
-    title: "Dino Run - 2D Mobile Game",
-    description: "A classic 2D endless runner game where you control a dinosaur, jump over obstacles, and try to achieve the highest score.",
-    imageUrl: "/image/dino-run/thumbnail.png",
-    sliderImages: [
+    "id": "dino-run-game",
+    "title": "Dino Run - 2D Mobile Game",
+    "description": "A classic 2D endless runner game where you control a dinosaur, jump over obstacles, and try to achieve the highest score.",
+    "imageUrl": "/image/DinoRun/dinorun_thumb.png",
+    "sliderImages": [
       "/image/dino-run/1.png",
       "/image/dino-run/2.png",
-      "/image/dino-run/3.png",
+      "/image/dino-run/3.png"
     ],
-    githubUrl: "https://github.com/Pugal-M/Dino-Game", 
-    longDescription: "Dino Run is a fun and addictive 2D endless runner game built with Flutter and the Flame Engine. The game challenges players to navigate a running dinosaur through a desert landscape, jumping over cacti and other obstacles to survive as long as possible. The goal is to achieve the highest score, which increases the longer you run. The game features simple one-tap controls, pixel-art graphics, and progressively increasing difficulty, making it an engaging experience for players of all ages.",
-    technologies: ["Flutter", "Dart", "Flame Engine"],
-    dataAiHint: "dinosaur game runner",
-    downloadUrl: "#",
-    videoUrl: "#",
-    videoTitle: "Dino Run Game Demo",
-    videoDescription: "Gameplay footage of the Dino Run endless runner game."
-  },
+    "githubUrl": "https://github.com/Pugal-M/Dino-Game",
+    "longDescription": "Dino Run is a fun and addictive 2D endless runner game built using Flutter and the Flame Engine. Inspired by the classic Chrome dino game, players guide a running dinosaur through a parallax desert environment, avoiding obstacles like cacti by jumping with simple one-tap controls. The game features smooth animations, realistic gravity-based movement, collision detection, and increasing difficulty to keep players challenged. It also includes background music and sound effects using Flame Audio, a scoring system with local high score tracking via SharedPreferences, and full-screen landscape support. Dino Run delivers a polished, responsive gameplay experience optimized for mobile devices.",
+    "technologies": ["Flutter", "Dart", "Flame Engine", "Flame Audio", "SharedPreferences"],
+    "dataAiHint": "dinosaur game runner",
+    "downloadUrl": "#",
+    "videoUrl": "#",
+    "videoTitle": "Dino Run Game Demo",
+    "videoDescription": "Gameplay footage of the Dino Run endless runner game."
+  },  
   {
     id: "v-shuttle-tracker",
     title: "V-Shuttle – Real-Time Shuttle Tracking App",
