@@ -15,7 +15,7 @@ export const projects = [
     technologies: ["Flutter", "Dart", "Flame Engine"],
     dataAiHint: "dinosaur game runner",
     downloadUrl: "#",
-    videoUrl: "https://www.youtube.com/embed/qrA2_y2lWfA",
+    videoUrl: "#",
     videoTitle: "Dino Run Game Demo",
     videoDescription: "Gameplay footage of the Dino Run endless runner game."
   },
