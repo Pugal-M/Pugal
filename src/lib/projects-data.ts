@@ -10,7 +10,7 @@ export const projects = [
       "/image/dino-run/2.png",
       "/image/dino-run/3.png",
     ],
-    githubUrl: "#", 
+    githubUrl: "https://github.com/Pugal-M/Dino-Game", 
     longDescription: "Dino Run is a fun and addictive 2D endless runner game built with Flutter and the Flame Engine. The game challenges players to navigate a running dinosaur through a desert landscape, jumping over cacti and other obstacles to survive as long as possible. The goal is to achieve the highest score, which increases the longer you run. The game features simple one-tap controls, pixel-art graphics, and progressively increasing difficulty, making it an engaging experience for players of all ages.",
     technologies: ["Flutter", "Dart", "Flame Engine"],
     dataAiHint: "dinosaur game runner",
