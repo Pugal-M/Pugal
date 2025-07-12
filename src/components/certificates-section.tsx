@@ -28,6 +28,16 @@ const certificates = [
     dataAiHint: "project certificate vshuttle",
   },
   {
+    id: "java-fullstack-sixphrase",
+    title: "Java Full Stack Certification Training Course",
+    issuer: "Six Phrase",
+    dateIssued: "March 2025", // Update if you have exact date
+    credentialUrl: "https://drive.google.com/file/d/1t_LAlvKKUE8Ix5m6mOQ32cI2awV8KfRI/view?usp=sharing", // Add if there's a URL for verification
+    imageUrl: "/image/certificates/java-thumb.png", // use appropriate thumbnail path
+    modalImageUrl: "/image/certificates/JAVA.png", // use full-size certificate image path
+    dataAiHint: "java full stack certification training course by six phrase",
+  },  
+  {
     id: "flutter-ui-bootcamp",
     title: "Flutter UI Bootcamp | Build Beautiful Apps using Flutter",
     issuer: "Udemy - Hussain Mustafa",
