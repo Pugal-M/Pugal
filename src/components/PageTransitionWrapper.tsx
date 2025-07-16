@@ -9,35 +9,28 @@ interface Props {
   children: React.ReactNode;
 }
 
-const fadeVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.3, ease: 'easeInOut' } },
-  exit: { opacity: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
+// Enhanced variants for a smoother fade and slide transition
+const pageTransitionVariants = {
+  initial: { opacity: 0, y: 15 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+  exit: { opacity: 0, y: -15, transition: { duration: 0.4, ease: 'easeIn' } },
 };
 
-// noAnimationVariants is no longer needed if all transitions are smooth
-// const noAnimationVariants = {
-//   initial: { opacity: 1 },
-//   animate: { opacity: 1, transition: { duration: 0 } },
-//   exit: { opacity: 0, transition: { duration: 0 } },
-// };
 
 export function PageTransitionWrapper({ children }: Props) {
   const pathname = usePathname();
-
-  // Always use fadeVariants for a consistent smooth animation
-  const currentVariants = fadeVariants;
 
   return (
     <AnimatePresence
       mode="wait"
       onExitComplete={() => {
         // Scroll restoration is handled by Next.js default behavior
+        window.scrollTo(0, 0);
       }}
     >
       <motion.div
         key={pathname}
-        variants={currentVariants}
+        variants={pageTransitionVariants}
         initial="initial"
         animate="animate"
         exit="exit"
