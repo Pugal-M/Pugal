@@ -41,7 +41,7 @@ export function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="w-full py-20 md:py-28 lg:py-32"
+      className="w-full py-24 md:py-32 lg:py-40"
       initial="hidden"
       whileInView="visible"
       exit="exit"
