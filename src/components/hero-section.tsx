@@ -32,6 +32,8 @@ export function HeroSection() {
   }, []);
 
   useEffect(() => {
+    if (!playEntryAnimations) return;
+    
     let timeoutId: NodeJS.Timeout;
 
     const handleType = () => {
@@ -57,7 +59,7 @@ export function HeroSection() {
     timeoutId = setTimeout(handleType, isDeleting ? ERASING_SPEED : TYPING_SPEED);
 
     return () => clearTimeout(timeoutId); 
-  }, [displayedText, isDeleting, currentPhraseIndex]);
+  }, [displayedText, isDeleting, currentPhraseIndex, playEntryAnimations]);
 
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -77,10 +79,10 @@ export function HeroSection() {
           <div className="flex justify-center items-center order-1 md:order-2">
             <motion.div 
               className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={buttonVariants} 
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.1 : 0 , type: "spring", stiffness: 150 }}
+              transition={{ duration: 0.5, delay: 0.1 , type: "spring", stiffness: 150 }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
@@ -99,29 +101,29 @@ export function HeroSection() {
           <div className="space-y-6 text-center md:text-left order-2 md:order-1">
             <motion.h3
               className="text-2xl font-semibold tracking-tight text-foreground"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={textVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.2 : 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
             >
               Hello, It's Me
             </motion.h3>
 
             <motion.h1
               className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={textVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.3 : 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               Pugalarasu M
             </motion.h1>
             
             <motion.div
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={textVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.4 : 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
             >
               <h3 className="text-2xl font-semibold tracking-tight text-foreground flex items-center justify-center md:justify-start">
                 And I'm a
@@ -142,20 +144,20 @@ export function HeroSection() {
 
             <motion.p
               className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={textVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.5 : 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
             Hard work lays the foundation, smart work builds the future, I strive to do both.
             </motion.p>
 
             <motion.div
               className="flex justify-center md:justify-start space-x-4 pt-4"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={textVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.6 : 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
             >
               <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:translate-y-[-2px] transition-all duration-300">
                 <Github className="h-5 w-5" />
@@ -173,10 +175,10 @@ export function HeroSection() {
 
             <motion.div
               className="pt-6 flex justify-center md:justify-start"
-              initial={playEntryAnimations ? "hidden" : false}
-              animate="visible"
+              initial={"hidden"}
+              animate={playEntryAnimations ? "visible" : "hidden"}
               variants={buttonVariants}
-              transition={{ duration: 0.5, delay: playEntryAnimations ? 0.7 : 0, type: "spring", stiffness: 150 }}
+              transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 150 }}
             >
               <Button
                 asChild

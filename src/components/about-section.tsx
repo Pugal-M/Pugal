@@ -21,7 +21,7 @@ export function AboutSection() {
       setIndex((prev) => (prev + 1) % phrases.length);
     }, 2500); // Adjust delay as needed
     return () => clearInterval(interval);
-  }, [phrases]);
+  }, [phrases.length]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
