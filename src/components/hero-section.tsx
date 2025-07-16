@@ -74,11 +74,19 @@ export function HeroSection() {
   const textVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
+    exit: { opacity: 0, transition: { duration: 0.2 } }
   };
 
   const buttonVariants = {
     hidden: { opacity: 0, scale: 0.5 },
     visible: { opacity: 1, scale: 1 },
+    exit: { opacity: 0, scale: 0.5, transition: { duration: 0.2 } }
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, type: "spring", stiffness: 150 } },
+    exit: { opacity: 0, scale: 0.5, transition: { duration: 0.3, ease: 'easeIn' } }
   };
 
   return (
@@ -91,8 +99,8 @@ export function HeroSection() {
               className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] rounded-full shadow-2xl"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
-              variants={buttonVariants} 
-              transition={{ duration: 0.5, delay: 0.1 , type: "spring", stiffness: 150 }}
+              exit="exit"
+              variants={imageVariants} 
               style={{ y: imageY }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
@@ -114,6 +122,7 @@ export function HeroSection() {
               className="text-2xl font-semibold tracking-tight text-foreground"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
@@ -124,6 +133,7 @@ export function HeroSection() {
               className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl text-foreground"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
@@ -133,6 +143,7 @@ export function HeroSection() {
             <motion.div
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
@@ -157,6 +168,7 @@ export function HeroSection() {
               className="max-w-[600px] text-muted-foreground md:text-xl mx-auto lg:mx-0"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
@@ -167,6 +179,7 @@ export function HeroSection() {
               className="flex justify-center md:justify-start space-x-4 pt-4"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={textVariants}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
@@ -188,6 +201,7 @@ export function HeroSection() {
               className="pt-6 flex justify-center md:justify-start"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
+              exit="exit"
               variants={buttonVariants}
               transition={{ duration: 0.5, delay: 0.7, type: "spring", stiffness: 150 }}
             >

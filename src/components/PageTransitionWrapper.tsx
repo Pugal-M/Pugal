@@ -9,11 +9,11 @@ interface Props {
   children: React.ReactNode;
 }
 
-// Enhanced variants for a smoother fade and slide transition
-const pageTransitionVariants = {
-  initial: { opacity: 0, y: 15 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
-  exit: { opacity: 0, x: -50, transition: { duration: 0.4, ease: 'easeIn' } },
+// Simplified variants for the main page container
+const pageContainerVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: 0.4, ease: 'easeOut', delay: 0.2 } },
+  exit: { opacity: 0, transition: { duration: 0.2, ease: 'easeIn' } },
 };
 
 
@@ -30,7 +30,7 @@ export function PageTransitionWrapper({ children }: Props) {
     >
       <motion.div
         key={pathname}
-        variants={pageTransitionVariants}
+        variants={pageContainerVariants}
         initial="initial"
         animate="animate"
         exit="exit"
