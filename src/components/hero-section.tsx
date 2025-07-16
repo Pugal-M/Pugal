@@ -1,11 +1,12 @@
+
 'use client'; 
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Github, Linkedin, Code, FileDown } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa'; // Added WhatsApp icon
 import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion'; 
+import { motion, useScroll, useTransform } from 'framer-motion'; 
 
 const socialLinks = {
   github: "https://github.com/Pugal-M",
@@ -25,6 +26,15 @@ export function HeroSection() {
   
   // Initialize playEntryAnimations to false to match server render
   const [playEntryAnimations, setPlayEntryAnimations] = useState<boolean>(false);
+
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
+
 
   useEffect(() => {
     // This now runs every time the component mounts, ensuring animations play on each visit to the page.
@@ -72,7 +82,7 @@ export function HeroSection() {
   };
 
   return (
-    <section id="hero" className="relative w-full py-16 md:py-24 lg:py-28 bg-background overflow-hidden">
+    <section id="hero" ref={sectionRef} className="relative w-full py-16 md:py-24 lg:py-28 bg-background overflow-hidden">
       <div className="container px-4 md:px-6">
         <div className="grid gap-10 md:grid-cols-2 md:gap-16 items-center">
 
@@ -83,6 +93,7 @@ export function HeroSection() {
               animate={playEntryAnimations ? "visible" : "hidden"}
               variants={buttonVariants} 
               transition={{ duration: 0.5, delay: 0.1 , type: "spring", stiffness: 150 }}
+              style={{ y: imageY }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
