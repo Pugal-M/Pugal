@@ -78,7 +78,7 @@ export function HeroSection() {
 
           <div className="flex justify-center items-center order-1 md:order-2">
             <motion.div 
-              className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] glowing-border-container rounded-full shadow-2xl"
+              className="relative w-[300px] h-[300px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px] rounded-full shadow-2xl"
               initial={"hidden"}
               animate={playEntryAnimations ? "visible" : "hidden"}
               variants={buttonVariants} 
