@@ -11,7 +11,7 @@ import { PageTransitionWrapper } from '@/components/PageTransitionWrapper';
 export default function Home() {
   return (
     <PageTransitionWrapper>
-      <div className="flex flex-col min-h-screen bg-background">
+      <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
           <HeroSection />
@@ -26,3 +26,5 @@ export default function Home() {
     </PageTransitionWrapper>
   );
 }
+
+    

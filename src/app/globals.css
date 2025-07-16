@@ -86,7 +86,7 @@
   .main-content-area {
     position: relative;
     z-index: 10;
-    /* background-color: hsl(var(--background)); */ /* Removed to allow full transparency */
+    background-color: hsl(var(--background));
     color: hsl(var(--foreground)); /* Apply body foreground here */
     min-height: 100vh; /* Ensure it covers the viewport */
     opacity: 0;
@@ -96,7 +96,7 @@
 
   section {
     @apply py-12 md:py-16 lg:py-20; /* Slightly reduced padding */
-     /* Removed background-color from here */
+     background-color: transparent; /* Make sections transparent */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -390,3 +390,5 @@
 html {
   scroll-behavior: smooth;
 }
+
+    

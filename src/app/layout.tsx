@@ -21,17 +21,25 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased bg-background text-foreground">
-        <LoadingProvider>
-          <ThemeProvider
-            defaultTheme="dark"
-            storageKey="portfolio-theme"
-          >
-            {children}
-            <Toaster />
-            <GlobalLoadingIndicator />
-          </ThemeProvider>
-        </LoadingProvider>
+        <div className="gradient-blur-container">
+          <div className="gradient-blur gradient-blur-1"></div>
+          <div className="gradient-blur gradient-blur-2"></div>
+        </div>
+        <div className="main-content-area">
+          <LoadingProvider>
+            <ThemeProvider
+              defaultTheme="dark"
+              storageKey="portfolio-theme"
+            >
+              {children}
+              <Toaster />
+              <GlobalLoadingIndicator />
+            </ThemeProvider>
+          </LoadingProvider>
+        </div>
       </body>
     </html>
   );
 }
+
+    
