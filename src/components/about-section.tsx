@@ -29,6 +29,7 @@ export function AboutSection() {
       opacity: 1,
       transition: { staggerChildren: 0.3, delayChildren: 0.2 },
     },
+    exit: { opacity: 0 }
   };
 
   const itemVariants = {
@@ -42,7 +43,8 @@ export function AboutSection() {
       className="w-full py-12 md:py-20 lg:py-24 bg-secondary"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.25 }}
+      exit="hidden"
+      viewport={{ amount: 0.25 }}
       variants={containerVariants}
     >
       <div className="container px-4 md:px-6">

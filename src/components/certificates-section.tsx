@@ -116,6 +116,7 @@ function CertificateCard({ title, issuer, dateIssued, imageUrl, credentialUrl, d
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  exit: { opacity: 0, y: 50 }
 };
 
 const gridVariants = {
@@ -140,7 +141,8 @@ export function CertificatesSection() {
           className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          exit="hidden"
+          viewport={{ amount: 0.3 }}
           variants={sectionVariants}
         >
           <div className="space-y-2">
@@ -159,7 +161,8 @@ export function CertificatesSection() {
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.1 }}
+          exit="hidden"
+          viewport={{ amount: 0.1 }}
           variants={gridVariants}
         >
           {certificates.map((certificate) => (

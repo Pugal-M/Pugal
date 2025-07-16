@@ -26,6 +26,7 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 const sectionVariants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+  exit: { opacity: 0, y: 50 }
 };
 
 export function ContactSection() {
@@ -102,7 +103,8 @@ export function ContactSection() {
           className="max-w-3xl mx-auto text-center mb-12"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          exit="hidden"
+          viewport={{ amount: 0.3 }}
           variants={sectionVariants}
         >
           <div className="flex items-center justify-center gap-4 flex-wrap">
@@ -123,7 +125,8 @@ export function ContactSection() {
           className="max-w-xl mx-auto p-6 md:p-8 rounded-lg shadow-xl border border-border/50 bg-card"
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          exit="hidden"
+          viewport={{ amount: 0.2 }}
           variants={sectionVariants}
           transition={{ delay: 0.2 } as any}
         >
