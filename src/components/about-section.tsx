@@ -24,12 +24,13 @@ export function AboutSection() {
   }, [phrases.length]);
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.3, delayChildren: 0.2 },
+      y: 0,
+      transition: { staggerChildren: 0.3, delayChildren: 0.2, duration: 0.6, ease: 'easeOut' },
     },
-    exit: { opacity: 0 }
+    exit: { opacity: 0, y: 50, transition: { duration: 0.3 } }
   };
 
   const itemVariants = {
@@ -40,10 +41,10 @@ export function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="w-full py-12 md:py-20 lg:py-24 bg-secondary"
+      className="w-full py-12 md:py-20 lg:py-24"
       initial="hidden"
       whileInView="visible"
-      exit="hidden"
+      exit="exit"
       viewport={{ amount: 0.25 }}
       variants={containerVariants}
     >
