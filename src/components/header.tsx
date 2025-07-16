@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+
 const ThemeToggle = dynamic(() => import('./theme-toggle').then((mod) => mod.ThemeToggle), { ssr: false });
 
 const navItems = [
@@ -17,6 +19,29 @@ const navItems = [
 ];
 
 export function Header() {
+  const [activeSection, setActiveSection] = useState('hero');
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => document.getElementById(item.href.substring(1)));
+      const scrollPosition = window.scrollY + 100; // Offset to trigger a bit earlier
+
+      for (const section of sections) {
+        if (section && scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+          setActiveSection(section.id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center">
@@ -28,7 +53,7 @@ export function Header() {
             <Link
               key={item.label}
               href={item.href}
-              className="animated-underline" // Updated class for animated underline
+              className={`animated-underline ${activeSection === item.href.substring(1) ? 'active' : ''}`}
             >
               {item.label}
             </Link>
