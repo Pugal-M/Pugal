@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Github, Linkedin, Code, FileDown } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa'; // Added WhatsApp icon
 import { Button } from '@/components/ui/button';
-import { motion, useScroll, useTransform } from 'framer-motion'; 
+import { motion } from 'framer-motion'; 
 
 const socialLinks = {
   github: "https://github.com/Pugal-M",
@@ -28,13 +28,6 @@ export function HeroSection() {
   const [playEntryAnimations, setPlayEntryAnimations] = useState<boolean>(false);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-
 
   useEffect(() => {
     // This now runs every time the component mounts, ensuring animations play on each visit to the page.
@@ -101,7 +94,6 @@ export function HeroSection() {
               animate={playEntryAnimations ? "visible" : "hidden"}
               exit="exit"
               variants={imageVariants} 
-              style={{ y: imageY }}
             >
               <div className="relative w-full h-full border-4 border-background rounded-full overflow-hidden shadow-inner">
                 <Image
