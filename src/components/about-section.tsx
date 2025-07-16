@@ -41,11 +41,11 @@ export function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="w-full py-12 md:py-20 lg:py-24"
+      className="w-full py-20 md:py-28 lg:py-32"
       initial="hidden"
       whileInView="visible"
       exit="exit"
-      viewport={{ amount: 0.25 }}
+      viewport={{ amount: 0.25, once: false }}
       variants={containerVariants}
     >
       <div className="container px-4 md:px-6">
