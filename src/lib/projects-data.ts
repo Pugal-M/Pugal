@@ -138,5 +138,22 @@ export const projects = [
     videoUrl: "https://youtu.be/vvIeYACrJWg", // Optional
     videoTitle: "MyClassTime App Demo",
     videoDescription: "This video showcases how MyClassTime helps students manage class schedules entirely offline using Hive in Flutter."
-  }
+  },
+  {
+    "id": "todo-list-app",
+    "title": "To-Do List - Task Manager App",
+    "description": "A clean and intuitive task management app to help you organize your day, track to-dos, and boost productivity.",
+    "imageUrl": "/image/ToDo/todo_thumb.png",
+    "sliderImages": [
+      "/image/ToDo/todo_thumb.png",
+    ],
+    "githubUrl": "https://github.com/Pugal-M/To-Do-App/",
+    "longDescription": "To-Do List is a simple yet powerful task management app built using Flutter and Hive for local storage. It allows users to add, edit, delete, and mark tasks as completed with ease. The app features a clean user interface, persistent storage using Hive for offline functionality, category-based task organization, and light/dark mode support. Designed for maximum productivity, it helps users stay on top of their daily goals and schedules.",
+    "technologies": ["Flutter", "Dart", "Hive", "Provider", "SharedPreferences"],
+    "dataAiHint": "todo list task manager productivity app",
+    "downloadUrl": "https://drive.google.com/file/d/1VZy0IFe03RiC2WUh7R5eH_zqmEgjm9QT/view?usp=sharing",
+    "videoUrl": "https://youtu.be/your-todo-demo-video-id",
+    "videoTitle": "To-Do List App Demo",
+    "videoDescription": "Walkthrough of the To-Do List mobile app showcasing features like task creation, editing, and theme switching."
+  }  
 ];
