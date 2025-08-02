@@ -87,6 +87,20 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 <p>{project.longDescription}</p>
               </div>
 
+              {/* Embedded Video Player */}
+              {project.videoUrl && !project.displayVideoOnly && (
+                <div className="mb-8">
+                   <h2 className="text-2xl font-semibold text-foreground mb-4">Demo Video</h2>
+                   <div className="relative w-full shadow-md rounded-lg overflow-hidden aspect-video">
+                     <CustomVideoPlayer
+                       videoUrl={project.videoUrl}
+                       title={project.videoTitle || project.title}
+                       className="w-full h-full"
+                     />
+                   </div>
+                </div>
+              )}
+
               <div className="mb-8">
                 <h2 className="text-2xl font-semibold text-foreground mb-3">Technologies Used</h2>
                 <div className="flex flex-wrap gap-2">
@@ -119,36 +133,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   </Button>
                 )}
 
-                {/* 3. Watch Demo Dialog (Universal, if not displayVideoOnly) */}
-                {project.videoUrl && !project.displayVideoOnly && (
-                  <Dialog>
-                    <DialogTrigger asChild>
-                      <Button variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary transition-colors flex items-center gap-2">
-                        <Youtube className="w-5 h-5" />
-                        Watch Demo
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="w-full max-w-3xl p-0 bg-card border-border shadow-xl rounded-lg overflow-hidden">
-                      <DialogHeader className="p-4 sm:p-6 border-b border-border/50 flex-shrink-0">
-                        <DialogTitle className="text-xl sm:text-2xl text-foreground">{project.videoTitle || "Video Demo"}</DialogTitle>
-                      </DialogHeader>
-                      <div className="aspect-video relative bg-black">
-                        <CustomVideoPlayer
-                          videoUrl={project.videoUrl} 
-                          title={project.videoTitle || project.title} 
-                          className="absolute inset-0 w-full h-full"
-                        />
-                      </div>
-                      <DialogFooter className="p-4 sm:p-6 border-t border-border/50">
-                        <DialogClose asChild>
-                          <Button type="button" variant="outline" className="border-primary/50 text-primary hover:bg-primary/10 hover:text-primary">Close</Button>
-                        </DialogClose>
-                      </DialogFooter>
-                    </DialogContent>
-                  </Dialog>
-                )}
-
-                {/* 4. View Paper Dialog (Universal) */}
+                {/* 3. View Paper Dialog (Universal) */}
                 {project.paperUrl && (
                   <Dialog>
                     <DialogTrigger asChild>
@@ -181,7 +166,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   </Dialog>
                 )}
 
-                {/* 5. Share Button */}
+                {/* 4. Share Button */}
                 <ShareButton title={project.title} description={project.description} />
               </div>
             </article>
