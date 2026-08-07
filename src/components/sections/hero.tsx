@@ -164,7 +164,7 @@ export function HeroSection() {
                     <div className="pt-4 border-t border-white/30 flex justify-between items-center">
                       <div>
                         <p className="text-sm text-white/80">CGPA</p>
-                        <p className="text-xl font-bold text-white drop-shadow-md">8.78</p>
+                        <p className="text-xl font-bold text-white drop-shadow-md">8.84</p>
                       </div>
                       <div className="text-right">
                         <p className="text-sm text-white/80">Scholarship</p>
