@@ -120,7 +120,7 @@ export function AboutSection() {
                       <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex flex-col justify-center">
                         <span className="text-xs uppercase font-medium text-muted-foreground">Cumulative CGPA</span>
                         <div className="text-3xl font-extrabold text-foreground mt-1">
-                          <Counter value={8.78} decimals={2} duration={2} />
+                          <Counter value={8.84} decimals={2} duration={2} />
                           <span className="text-sm font-normal text-muted-foreground ml-1">/ 10.0</span>
                         </div>
                       </div>

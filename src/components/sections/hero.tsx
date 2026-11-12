@@ -276,7 +276,7 @@ export function HeroSection() {
                     <div className="pt-3 border-t border-white/25 flex justify-between items-center text-white">
                       <div>
                         <p className="text-xs uppercase tracking-wider text-white/70">CGPA</p>
-                        <p className="text-xl font-extrabold tabular-nums">8.78</p>
+                        <p className="text-xl font-extrabold tabular-nums">8.84</p>
                       </div>
                       <div className="text-right">
                         <p className="text-xs uppercase tracking-wider text-white/70">Scholarship</p>
