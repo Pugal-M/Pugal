@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Marquee } from "@/components/primitives/marquee";
 import { Reveal } from "@/components/primitives/reveal";
 import { StaggerChildren, StaggerItem } from "@/components/primitives/stagger-children";
-import { Cpu } from "lucide-react";
 
 interface SkillItem {
   name: string;

@@ -18,7 +18,7 @@ const roles = [
 const SCRAMBLE_CHARS = "!<>-_\\/[]{}—=+*^?#________";
 
 function ScrambleTitle() {
-  const [roleIndex, setRoleIndex] = useState(0);
+  const [, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState(roles[0]);
   const shouldReduceMotion = useReducedMotion();
   const frameRef = useRef<number | null>(null);

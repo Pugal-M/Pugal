@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Code, Calendar, Download, Sparkles, CheckCircle2, Layers, Cpu, Database, Smartphone } from "lucide-react";
+import { ArrowLeft, Code, Calendar, Download, Sparkles, Layers, Cpu, Database, Smartphone } from "lucide-react";
 import { Reveal } from "@/components/primitives/reveal";
 
 interface ProjectType {

@@ -1,9 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Rocket, Heart } from "lucide-react";
+import { Rocket } from "lucide-react";
 import { Magnetic } from "@/components/primitives/magnetic";
-import { Reveal } from "@/components/primitives/reveal";
 
 export function Footer() {
   const scrollToTop = () => {
