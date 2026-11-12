@@ -1,165 +1,200 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import { GraduationCap, Award, MapPin } from "lucide-react";
-
-const skills = [
-  // Languages
-  { name: "Java", category: "Languages", color: "text-google-red" },
-  { name: "Python", category: "Languages", color: "text-google-blue" },
-  { name: "C / C++", category: "Languages", color: "text-google-green" },
-  { name: "Dart", category: "Languages", color: "text-google-yellow" },
-  { name: "JavaScript", category: "Languages", color: "text-google-blue" },
-  { name: "Embedded C", category: "Languages", color: "text-foreground" },
-  { name: "Assembly", category: "Languages", color: "text-google-red" },
-  
-  // Frontend
-  { name: "Flutter", category: "Frontend", color: "text-google-blue" },
-  { name: "HTML / CSS", category: "Frontend", color: "text-google-green" },
-  
-  // Backend
-  { name: "SQL", category: "Backend", color: "text-google-blue" },
-  { name: "Firebase", category: "Backend", color: "text-google-yellow" },
-  { name: "Supabase", category: "Backend", color: "text-google-green" },
-  
-  // Frameworks
-  { name: "React", category: "Frameworks", color: "text-google-blue" },
-  { name: "Node.js", category: "Frameworks", color: "text-google-green" },
-  { name: "Flame Engine", category: "Frameworks", color: "text-google-red" },
-  
-  // Tools
-  { name: "VS Code", category: "Tools", color: "text-google-blue" },
-  { name: "GitHub", category: "Tools", color: "text-foreground" },
-  { name: "Linux", category: "Tools", color: "text-google-yellow" },
-  { name: "APIs", category: "Tools", color: "text-google-green" },
-  { name: "Antigravity", category: "Tools", color: "text-google-blue" },
-  { name: "MCPs", category: "Tools", color: "text-google-red" },
-  
-  // Computer Science & Core
-  { name: "DSA", category: "CS Core", color: "text-google-yellow" },
-  { name: "OOP", category: "CS Core", color: "text-google-blue" },
-  { name: "DBMS", category: "CS Core", color: "text-google-green" },
-  { name: "Networks", category: "CS Core", color: "text-google-red" },
-  { name: "System Design", category: "CS Core", color: "text-foreground" },
-  { name: "Digital Electronics", category: "Core", color: "text-google-yellow" },
-  { name: "Microcontrollers", category: "Core", color: "text-google-green" },
-];
+import { Reveal } from "@/components/primitives/reveal";
+import { Counter } from "@/components/primitives/counter";
+import { TiltCard } from "@/components/primitives/tilt-card";
 
 export function AboutSection() {
+  const timelineRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start 80%", "end 50%"],
+  });
+
+  const lineHeight = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
-    <section id="about" className="relative py-32 overflow-hidden">
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="about" className="relative py-28 md:py-36 overflow-hidden">
+      <div className="container mx-auto px-6 max-w-6xl relative z-10">
         
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
-        >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
-            About <span className="text-google-blue">Me</span>
-          </h2>
-          <div className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto space-y-4">
-            <p>
-              I’m a tech enthusiast passionate about building scalable, efficient, and elegant digital solutions. Whether it's web development, mobile interfaces, or backend systems, I enjoy crafting clean, maintainable code that solves real-world problems.
-            </p>
-            <p>
-              Always eager to learn, I thrive on experimenting with new frameworks and solving complex challenges, constantly motivated by the endless possibilities in the tech world. I’m driven to innovate and grow continuously.
-            </p>
+        <div className="text-center mb-20">
+          <Reveal direction="down">
+            <span className="text-xs uppercase font-bold tracking-widest text-google-blue px-3 py-1 rounded-full bg-google-blue/10 border border-google-blue/20">
+              Get To Know Me
+            </span>
+          </Reveal>
+
+          <Reveal direction="up" delay={0.1}>
+            <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mt-4 mb-6">
+              About <span className="text-google-blue">Me</span>
+            </h2>
+          </Reveal>
+
+          <div className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto space-y-4 leading-relaxed">
+            <Reveal direction="up" delay={0.25}>
+              <p>
+                I&apos;m a software and app developer passionate about building scalable, efficient,
+                and elegant digital solutions. Whether it&apos;s mobile apps, responsive web interfaces,
+                or embedded IoT hardware, I thrive on crafting clean, maintainable systems that solve
+                real-world challenges.
+              </p>
+            </Reveal>
+
+            <Reveal direction="up" delay={0.35}>
+              <p>
+                Always eager to explore, I experiment with modern frameworks, cloud architectures,
+                and cutting-edge AI agent workflows, motivated by the endless possibilities of software
+                craftsmanship.
+              </p>
+            </Reveal>
           </div>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Education Timeline */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="hidden lg:block lg:w-full h-full"
-          >
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <GraduationCap className="text-google-green" size={32} />
-              Education Journey
-            </h3>
-            
-            <div className="relative pl-8 border-l-2 border-black/10 dark:border-white/10 space-y-12">
-              <div className="relative">
-                <span className="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-google-blue border-4 border-background" />
-                <div className="glass-card p-6">
-                  <h4 className="text-2xl font-bold">B.Tech Electronics & Communication Engineering</h4>
-                  <div className="flex items-center gap-2 text-muted-foreground mt-2 mb-4">
-                    <MapPin size={16} />
-                    <span>VIT Vellore</span>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-4 mt-6">
-                    <div className="bg-black/5 dark:bg-white/5 rounded-lg px-4 py-2 border border-black/10 dark:border-white/10">
-                      <p className="text-sm text-muted-foreground">CGPA</p>
-                      <p className="text-2xl font-bold text-foreground">8.78</p>
-                    </div>
-                    <div className="bg-google-yellow/10 rounded-lg px-4 py-2 border border-google-yellow/20">
-                      <p className="text-sm text-google-yellow">Scholarship</p>
-                      <p className="text-xl font-bold text-foreground">STARS Scholar</p>
-                      <p className="text-xs text-google-yellow/70">100% Scholarship</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative">
-                <span className="absolute -left-[41px] top-1 w-6 h-6 rounded-full bg-google-red border-4 border-background" />
-                <div className="glass-card p-6">
-                  <h4 className="text-xl font-bold">Pre-University Education</h4>
-                  <div className="flex items-center gap-2 text-muted-foreground mt-2 mb-4">
-                    <Award size={16} />
-                    <span>Government School</span>
-                  </div>
-                  <div className="bg-google-red/10 rounded-lg px-4 py-3 border border-google-red/20 inline-block">
-                    <p className="font-semibold text-foreground">District Topper</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="w-full"
-          >
-            <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
-              <span className="text-google-yellow">✦</span>
-              Technical Arsenal
-            </h3>
-            
-            <div className="flex flex-wrap gap-4 justify-center">
-              {skills.map((skill, index) => {
-                return (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, delay: index * 0.05 }}
-                    className="relative"
-                  >
-                    <div
-                      className="bg-black/5 dark:bg-white/10 px-6 py-3 rounded-full border border-black/10 dark:border-white/10 hover:border-black/30 dark:hover:border-white/30 hover:scale-110 transition-all duration-300 shadow-sm flex items-center gap-2 cursor-none"
-                    >
-                      <span className={`w-2 h-2 rounded-full ${skill.color} shadow-[0_0_10px_currentColor]`} />
-                      <span className="font-medium">{skill.name}</span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
         </div>
+
+        {/* Education Journey Section */}
+        <div className="mt-20">
+          <Reveal direction="up">
+            <div className="flex items-center justify-center gap-3 mb-16">
+              <div className="p-3 rounded-2xl bg-google-green/10 border border-google-green/20 text-google-green">
+                <GraduationCap size={28} />
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold tracking-tight">
+                Education <span className="text-google-green">Journey</span>
+              </h3>
+            </div>
+          </Reveal>
+
+          {/* Timeline Container */}
+          <div ref={timelineRef} className="relative max-w-3xl mx-auto pl-8 md:pl-12">
+            
+            {/* Scroll-Drawn Timeline Stem */}
+            <div className="absolute left-3.5 md:left-5 top-4 bottom-4 w-[3px] bg-black/10 dark:bg-white/10 rounded-full" />
+            
+            {/* Active Drawing Line */}
+            <motion.div
+              style={{ scaleY: lineHeight }}
+              className="absolute left-3.5 md:left-5 top-4 bottom-4 w-[3px] bg-gradient-to-b from-google-blue via-google-green to-google-red rounded-full origin-top pointer-events-none"
+            />
+
+            <div className="space-y-12">
+              
+              {/* Timeline Item 1: VIT Vellore */}
+              <div className="relative group">
+                {/* Node indicator */}
+                <span className="absolute -left-[27px] md:-left-[35px] top-4 w-5 h-5 rounded-full bg-google-blue border-4 border-background shadow-md transition-transform duration-300 group-hover:scale-125" />
+
+                <Reveal direction="left" delay={0.15}>
+                  <TiltCard
+                    maxAngle={5}
+                    className="glass-card p-6 md:p-8 rounded-3xl border border-black/10 dark:border-white/10 hover:border-google-blue/40 transition-all duration-300 shadow-lg"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                      <span className="text-xs uppercase tracking-wider font-semibold text-google-blue px-3 py-1 rounded-full bg-google-blue/10 border border-google-blue/20 w-fit">
+                        Undergraduate
+                      </span>
+                      <span className="text-xs text-muted-foreground font-medium">
+                        2021 – 2025
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl font-bold tracking-tight mb-2">
+                      B.Tech Electronics &amp; Communication Engineering
+                    </h4>
+
+                    <div className="flex items-center gap-2 text-muted-foreground text-sm mb-6">
+                      <MapPin size={16} className="text-google-red" />
+                      <span>Vellore Institute of Technology (VIT), Vellore</span>
+                    </div>
+
+                    {/* Stats & Badges Grid */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                      {/* CGPA Counter Card */}
+                      <div className="p-4 rounded-2xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 flex flex-col justify-center">
+                        <span className="text-xs uppercase font-medium text-muted-foreground">Cumulative CGPA</span>
+                        <div className="text-3xl font-extrabold text-foreground mt-1">
+                          <Counter value={8.78} decimals={2} duration={2} />
+                          <span className="text-sm font-normal text-muted-foreground ml-1">/ 10.0</span>
+                        </div>
+                      </div>
+
+                      {/* STARS Scholarship Badge with Shimmer */}
+                      <div className="relative overflow-hidden p-4 rounded-2xl bg-google-yellow/10 border border-google-yellow/30 flex flex-col justify-center group/shimmer">
+                        {/* Shimmer sweep animation */}
+                        <div className="absolute inset-0 -translate-x-full group-hover/shimmer:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs uppercase font-semibold text-google-yellow">Merit Scholarship</span>
+                          <span className="text-[11px] px-2 py-0.5 rounded-full bg-google-yellow/20 text-foreground font-semibold">100% Grant</span>
+                        </div>
+                        <div className="text-xl font-bold text-foreground mt-1 flex items-center gap-1.5">
+                          <span>STARS Scholar</span>
+                          <span className="text-google-yellow">✦</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-0.5">Support The Advancement of Rural Students</p>
+                      </div>
+                    </div>
+                  </TiltCard>
+                </Reveal>
+              </div>
+
+              {/* Timeline Item 2: Pre-University */}
+              <div className="relative group">
+                {/* Node indicator */}
+                <span className="absolute -left-[27px] md:-left-[35px] top-4 w-5 h-5 rounded-full bg-google-red border-4 border-background shadow-md transition-transform duration-300 group-hover:scale-125" />
+
+                <Reveal direction="left" delay={0.3}>
+                  <TiltCard
+                    maxAngle={5}
+                    className="glass-card p-6 md:p-8 rounded-3xl border border-black/10 dark:border-white/10 hover:border-google-red/40 transition-all duration-300 shadow-lg"
+                  >
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+                      <span className="text-xs uppercase tracking-wider font-semibold text-google-red px-3 py-1 rounded-full bg-google-red/10 border border-google-red/20 w-fit">
+                        Higher Secondary
+                      </span>
+                      <span className="text-xs text-muted-foreground font-medium">
+                        Pre-University
+                      </span>
+                    </div>
+
+                    <h4 className="text-xl font-bold tracking-tight mb-2">
+                      Pre-University &amp; Higher Secondary Education
+                    </h4>
+
+                    <div className="flex items-center gap-2 text-muted-foreground text-sm mb-6">
+                      <Award size={16} className="text-google-yellow" />
+                      <span>Government Higher Secondary School</span>
+                    </div>
+
+                    {/* District Topper Badge with Shimmer */}
+                    <div className="relative overflow-hidden p-4 rounded-2xl bg-google-red/10 border border-google-red/30 flex items-center justify-between group/shimmer">
+                      <div className="absolute inset-0 -translate-x-full group-hover/shimmer:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+                      <div>
+                        <span className="text-xs uppercase font-semibold text-google-red">Academic Distinction</span>
+                        <h5 className="text-xl font-bold text-foreground mt-0.5">District Topper</h5>
+                        <p className="text-xs text-muted-foreground">Ranked 1st in the district for academic excellence</p>
+                      </div>
+
+                      <div className="w-10 h-10 rounded-full bg-google-red/20 flex items-center justify-center text-google-red shrink-0 ml-4">
+                        <Award size={22} />
+                      </div>
+                    </div>
+                  </TiltCard>
+                </Reveal>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );
