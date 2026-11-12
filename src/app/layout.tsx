@@ -5,7 +5,7 @@ import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provi
 import { ThemeProvider } from "@/components/theme-provider";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { Background } from "@/components/ui/background";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Navbar } from "@/components/ui/navbar";
 const outfit = Outfit({
   variable: "--font-outfit",
   subsets: ["latin"],
@@ -36,7 +36,7 @@ export default function RootLayout({
           <SmoothScrollProvider>
             <CustomCursor />
             <Background />
-            <ThemeToggle />
+            <Navbar />
             {children}
           </SmoothScrollProvider>
         </ThemeProvider>
