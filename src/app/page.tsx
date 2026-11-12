@@ -7,6 +7,7 @@ import { AboutSection } from "@/components/sections/about";
 import { TechArsenalSection } from "@/components/sections/tech-arsenal";
 import { ProjectsSection } from "@/components/sections/projects";
 import { CertificationsSection } from "@/components/sections/certifications";
+import { AchievementsSection } from "@/components/sections/achievements";
 import { ContactSection } from "@/components/sections/contact";
 import { Footer } from "@/components/ui/footer";
 
@@ -23,6 +24,7 @@ export default function Home() {
         <TechArsenalSection />
         <ProjectsSection />
         <CertificationsSection />
+        <AchievementsSection />
         <ContactSection />
       </main>
       
