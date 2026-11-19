@@ -101,7 +101,7 @@ export function AboutSection() {
                         Undergraduate
                       </span>
                       <span className="text-xs text-muted-foreground font-medium">
-                        2021 – 2025
+                        2022 – 2026
                       </span>
                     </div>
 
