@@ -4,7 +4,7 @@ export const projects = [
     "id": "vvshop-app",
     "title": "VVShop – Seamless Shopping Experience App",
     "description": "A mobile app designed to provide users with a smooth and efficient online shopping experience with real-time inventory tracking and order management.",
-    "imageUrl": "/image/shopApp/shopapp2.png",
+    "imageUrl": "/image/shopApp/vvshop_showcase.png",
     "sliderImages": [
       "/image/shopApp/1.png",
       "/image/shopApp/2.png",
@@ -31,7 +31,7 @@ export const projects = [
     "id": "sign-language-recognition",
     "title": "Sign Language Recognition System using ESP32-CAM and Cloud Integration",
     "description": "A real-time sign-to-text conversion system built with ESP32-CAM, CNN-based image recognition, and Supabase cloud integration to assist Deaf individuals with accessible communication.",
-    "imageUrl": "/image/ImageClassification/imag.png",
+    "imageUrl": "/image/ImageClassification/sign_lang_showcase.png",
     "sliderImages": [
       "/image/ImageClassification/demo image 2.jpg",
       "/image/ImageClassification/img 1.jpg",
@@ -52,7 +52,7 @@ export const projects = [
     "id": "dino-run-game",
     "title": "Dino Run - 2D Mobile Game (Under Development)",
     "description": "A classic 2D endless runner game set in a jungle-themed parallax environment, where you control a dinosaur, jump over obstacles, and aim for the highest score.",
-    "imageUrl": "/image/DinoRun/dinorun_thumb.png",
+    "imageUrl": "/image/DinoRun/dinorun_showcase.png",
     "sliderImages": [
       '/image/DinoRun/dinorun_thumb.png',
       '/image/DinoRun/home.jpg',
@@ -78,7 +78,7 @@ export const projects = [
     "id": "todo-list-app",
     "title": "To-Do List - Task Manager App",
     "description": "A clean and intuitive task management app to help you organize your day, track to-dos, and boost productivity.",
-    "imageUrl": "/image/ToDo/todo_thumb.png",
+    "imageUrl": "/image/ToDo/todo_showcase.png",
     "sliderImages": [
       "/image/ToDo/todo_thumb.png",
     ],
@@ -96,7 +96,7 @@ export const projects = [
     "id": "myclasstime-app",
     "title": "MyClassTime – Smart Offline Class Schedule Manager",
     "description": "An offline mobile app built using Flutter and Hive to help students organize and manage their weekly class periods efficiently.",
-    "imageUrl": "/image/myClassTime/thumbnail.png",
+    "imageUrl": "/image/myClassTime/myclasstime_showcase.png",
     "sliderImages": [
       "/image/myClassTime/port_app.png",
       "/image/myClassTime/port_home.png",
@@ -119,7 +119,7 @@ export const projects = [
     "id": "v-shuttle-tracker",
     "title": "V-Shuttle – Real-Time Shuttle Tracking App",
     "description": "A mobile app that helps students and faculty track the live location of campus shuttles in real time.",
-    "imageUrl": "/image/vshuttle/vshuttle-thumb.png",
+    "imageUrl": "/image/vshuttle/vshuttle_showcase.png",
     "sliderImages": [
       "/image/vshuttle/1.png",
       "/image/vshuttle/2.png",
@@ -144,7 +144,7 @@ export const projects = [
     "id": "flood-route-app",
     "title": "Smart Flood Route Navigator | Real-time Flood Level Alert System",
     "description": "An innovative app built to guide users through safer routes during heavy rainfall by monitoring and reporting road water levels in real-time.",
-    "imageUrl": "/image/floodManagement/floodManage.png",
+    "imageUrl": "/image/floodManagement/flood_showcase.png",
     "sliderImages": [
       "/image/floodManagement/home.png",
       "/image/floodManagement/flood_1.png",
@@ -171,7 +171,7 @@ export const projects = [
     "id": "smart-car-parking-system",
     "title": "Smart Car Parking System",
     "description": "An automated parking system using 8051 microcontroller, IR sensors, and servo motors to monitor and manage vehicle parking in real time.",
-    "imageUrl": "/image/SmartCar/smartCarThum.jpg", 
+    "imageUrl": "/image/SmartCar/parking_showcase.png",
     "sliderImages": [], 
     "githubUrl": "https://github.com/ms-sanjay/CarParkingSystem", 
     "longDescription": "This Smart Car Parking System project, developed using the 8051 microcontroller, IR sensors, servo motors, and LCD display, automates the detection and control of parking slots. Vehicles are detected at entry and exit gates using IR sensors, which trigger servo motors to operate gates accordingly. Real-time slot availability is displayed on an LCD. If all slots are full, the system prevents further entry, enhancing both safety and efficiency. The solution is user-friendly, scalable, cost-effective, and environmentally conscious by reducing idle time and emissions.",
