@@ -238,14 +238,16 @@ export function HeroSection() {
                 {/* Background Photo */}
                 <div className="absolute inset-0 w-full h-full">
                   <Image
-                    src="/image/image.png"
+                    src="/image/image-8k.webp"
                     alt="Pugalarasu M - Profile Photo"
                     fill
-                    sizes="(max-width: 768px) 100vw, 420px"
+                    unoptimized
                     priority
-                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-95 contrast-105"
+                    quality={100}
+                    className="object-cover transition-transform duration-700 group-hover:scale-105 brightness-100 contrast-[1.03] saturate-[1.04]"
+                    style={{ imageRendering: "-webkit-optimize-contrast" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/15 to-transparent pointer-events-none" />
                 </div>
 
                 <div className="relative h-full flex flex-col justify-between z-10 pointer-events-none">
