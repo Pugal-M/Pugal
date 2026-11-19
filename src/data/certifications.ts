@@ -45,7 +45,7 @@ export const certificates = [
     issuer: "Udemy - Hussain Mustafa",
     dateIssued: "March 5, 2025",
     credentialUrl: "https://ude.my/UC-8454a278-21b9-4bb1-965f-54e5f037c4bf",
-    imageUrl: "/image/flutter_chat_showcase.png",
+    imageUrl: "/image/certificates/flutter_firebase_chat_showcase.png",
     modalImageUrl: "/image/flutter-chat-cert.png",
     dataAiHint: "flutter firebase chat app",
   },    
