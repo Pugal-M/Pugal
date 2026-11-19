@@ -1,0 +1,1418 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R 5 0 R 7 0 R 9 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 4 0 R >>
+endobj
+4 0 obj
+<< /Length 7752 >>
+stream
+0.941 0.992 0.961 rg
+0.655 0.953 0.816 RG
+1.2 w
+36.00 738.00 523.28 62.00 re
+B
+BT
+/F2 19 Tf
+0.024 0.306 0.231 rg
+50.00 778.00 Td
+(VAgri \(V-Agri\)) Tj
+ET
+BT
+/F2 9.5 Tf
+0.020 0.588 0.412 rg
+50.00 763.00 Td
+(AI Farming Assistant & Operating System for Tamil Nadu Paddy Farmers) Tj
+ET
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+50.00 749.00 Td
+(Target Audience: Paddy Cultivators | Architecture: Offline-First Flutter + Riverpod) Tj
+ET
+1.000 1.000 1.000 rg
+0.020 0.588 0.412 RG
+0.8 w
+431.28 772.00 116.00 16.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+437.28 778.00 Td
+(Claude Knowledge Brief) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+36.00 668.00 523.28 56.00 re
+B
+BT
+/F2 8.5 Tf
+0.024 0.306 0.231 rg
+46.00 711.00 Td
+(EXECUTIVE OVERVIEW) Tj
+ET
+BT
+/F1 8.2 Tf
+0.278 0.333 0.412 rg
+46.00 698.00 Td
+(VAgri is a production-grade, offline-first agricultural mobile application tailored specifically for paddy \(rice\) farmers) Tj
+ET
+BT
+/F1 8.2 Tf
+0.278 0.333 0.412 rg
+46.00 687.50 Td
+(across the Cauvery Delta and Tamil Nadu agro-climatic zones. Grounded in the Tamil Nadu Agricultural University \(TNAU\) Crop) Tj
+ET
+BT
+/F1 8.2 Tf
+0.278 0.333 0.412 rg
+46.00 677.00 Td
+(Production Guide and ICAR-NRRI protocols, it unifies daily task planning, biological stage modeling, leaf diagnostic support,) Tj
+ET
+BT
+/F1 8.2 Tf
+0.278 0.333 0.412 rg
+46.00 666.50 Td
+(farm budgeting, and live mandi intelligence into an accessible, senior-friendly interface.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+36.00 574.00 256.64 82.00 re
+B
+BT
+/F2 8.5 Tf
+0.024 0.306 0.231 rg
+44.00 643.00 Td
+(1. Senior-Friendly & Bilingual Design) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+44.00 630.00 Td
+(* 100% Tamil \(Tamil script\) & English parity via Riverpod) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+44.00 619.50 Td
+(trProvider.
+* Large touch targets \(min 48x48 dp\) preventing) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+44.00 609.00 Td
+(mis-taps on field devices.
+* High contrast sunlight-readable) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+44.00 598.50 Td
+(palette and 18-20sp body type scale.
+* Accessibility toggles:) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+44.00 588.00 Td
+(Large Text Mode, High Contrast, and Reduced Motion.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+302.64 574.00 256.64 82.00 re
+B
+BT
+/F2 8.5 Tf
+0.024 0.306 0.231 rg
+310.64 643.00 Td
+(2. Technical Stack & State Architecture) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+310.64 630.00 Td
+(* Framework: Flutter 3.x / Dart SDK ^3.12 \(Material 3) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+310.64 619.50 Td
+(components\).
+* State Management: flutter_riverpod ^2.5 with) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+310.64 609.00 Td
+(clean reactive controllers.
+* Offline Persistence:) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+310.64 598.50 Td
+(SharedPreferences JSON schema with seed fallback.
+* Visual) Tj
+ET
+BT
+/F1 7.8 Tf
+0.278 0.333 0.412 rg
+310.64 588.00 Td
+(Engine: CustomPainter vector canvas with animated wind sway.) Tj
+ET
+BT
+/F2 10.5 Tf
+0.024 0.306 0.231 rg
+36.00 562.00 Td
+(3. Biological Paddy Growth Engine \(8 Stages & Agronomic Timeline\)) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 558.00 m 559.28 558.00 l S
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+36.00 548.00 Td
+(The engine models rice phenology deterministically by distinguishing between Days Since Sowing \(DSS\) and Days Since Transplanting \(DAT\)) Tj
+ET
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+36.00 538.00 Td
+(across variety maturities \(Short: 105-120d, Medium: 125-140d, Long: 145-160d\):) Tj
+ET
+0.024 0.306 0.231 rg
+36.00 514.00 523.28 14.00 re
+f
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+40.00 518.00 Td
+(Stage #) Tj
+ET
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+82.00 518.00 Td
+(Stage Name \(English\)) Tj
+ET
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+207.00 518.00 Td
+(Tamil Name \(Transliterated\)) Tj
+ET
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+332.00 518.00 Td
+(Agronomic Window & TNAU Critical Actions) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 500.50 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 504.00 Td
+(1) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 504.00 Td
+(Seedling Establishment) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 504.00 Td
+(Nattru Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 504.00 Td
+(Nursery nursery beds, wet-bed protection, seed biopriming.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 487.00 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 490.50 Td
+(2) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 490.50 Td
+(Early Vegetative) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 490.50 Td
+(Ilai Valarum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 490.50 Td
+(Transplanting spacing \(15x10 / 20x15 cm\), basal fertilizers.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 473.50 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 477.00 Td
+(3) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 477.00 Td
+(Active Tillering) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 477.00 Td
+(Thoorkattum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 477.00 Td
+(Top dressing \(Urea+MOP\), cono-weeder pass, 2-3 cm shallow water.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 460.00 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 463.50 Td
+(4) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 463.50 Td
+(Stem Elongation) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 463.50 Td
+(Thandu Neelum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 463.50 Td
+(Internode expansion, 2nd split nitrogen, moisture upkeep.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 446.50 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 450.00 Td
+(5) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 450.00 Td
+(Panicle Initiation) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 450.00 Td
+(Kathir Uruvaagum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 450.00 Td
+(Peak water sensitivity window; sheath blight & blast scouting.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 433.00 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 436.50 Td
+(6) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 436.50 Td
+(Flowering & Anthesis) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 436.50 Td
+(Pookkum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 436.50 Td
+(Strict avoidance of midday spraying during active pollination.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 419.50 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 423.00 Td
+(7) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 423.00 Td
+(Grain Filling \(Dough\)) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 423.00 Td
+(Manigal Muttrum Paruvam) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 423.00 Td
+(Terminal irrigation; alternate wetting & drying \(AWD\) cycle.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 406.00 523.28 13.50 re
+B
+BT
+/F2 7.2 Tf
+0.024 0.306 0.231 rg
+42.00 409.50 Td
+(8) Tj
+ET
+BT
+/F2 7.2 Tf
+0.067 0.133 0.216 rg
+82.00 409.50 Td
+(Maturity & Harvest) Tj
+ET
+BT
+/F3 7.2 Tf
+0.020 0.588 0.412 rg
+207.00 409.50 Td
+(Muthirchi & Pon Aruvadai) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+332.00 409.50 Td
+(Drain field 10d prior; harvest when 80-85% grains turn straw gold.) Tj
+ET
+0.024 0.306 0.231 RG 1 w 36 816.89 m 559.28 816.89 l S
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 36 821.89 Td (VAgri \(V-Agri\) - Architecture & System Summary for Claude) Tj ET
+BT /F1 7.5 Tf 0.4 0.45 0.5 rg 449.28 821.89 Td (Flutter - Riverpod - TNAU) Tj ET
+0.886 0.910 0.941 RG 0.75 w 36 25 m 559.28 25 l S
+BT /F1 7.5 Tf 0.5 0.55 0.6 rg 36 15 Td (VAgri Core Specification - Confidential Farm OS Architecture) Tj ET
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 514.28 15 Td (Page 1 of 4) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 5347 >>
+stream
+BT
+/F2 11 Tf
+0.024 0.306 0.231 rg
+36.00 800.00 Td
+(4. Core Mathematical & Agronomic Calculations) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 796.00 m 559.28 796.00 l S
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+36.00 726.00 523.28 56.00 re
+B
+BT
+/F2 8.5 Tf
+0.024 0.306 0.231 rg
+46.00 769.00 Td
+(A. Smart Purchase Shortage Calculator \(Inventory Engine\)) Tj
+ET
+BT
+/F5 7.6 Tf
+0.020 0.588 0.412 rg
+48.00 756.00 Td
+(Formula: Quantity_To_Purchase = max\( 0, \(Verified_Requirement_Per_Area * Farm_Area\) - Usable_Stock \)) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 744.00 Td
+(Supports dynamic conversion across Acre, Cent \(1/100 Acre\), and Hectare. Calculates precise split dosages for Urea, DAP, MOP, Zinc) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 734.50 Td
+(Sulphate, Pseudomonas fluorescens, and certified seed requirements.) Tj
+ET
+0.996 0.980 0.878 rg
+0.992 0.878 0.553 RG
+0.8 w
+36.00 652.00 523.28 62.00 re
+B
+BT
+/F2 8.5 Tf
+0.573 0.251 0.055 rg
+46.00 701.00 Td
+(B. Mandi Market Intelligence & 7-Day Rolling Median Anomaly Detector) Tj
+ET
+BT
+/F5 7.6 Tf
+0.573 0.251 0.055 rg
+48.00 688.00 Td
+(Condition: Today_Mandi_Price > \(1.085 * Rolling_7_Day_Median\)   [Surge > 8.5% Threshold]) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 676.00 Td
+(Aggregates regulated wholesale market feeds \(Thanjavur, Madurai, Tiruchirappalli, Thiruvarur, Tindivanam\). When a >8.5% spike occurs) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 666.50 Td
+(relative to the 7-day median, the engine flags it as a high-opportunity selling window with contextual drivers \(e.g., tight mandi) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 657.00 Td
+(arrivals, mill procurement rush\).) Tj
+ET
+BT
+/F2 10.5 Tf
+0.024 0.306 0.231 rg
+36.00 640.00 Td
+(5. Crop Health & Leaf Doctor Diagnostics) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 636.00 m 559.28 636.00 l S
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+36.00 626.00 Td
+(On-device visual diagnostic triage for major regional paddy pathogens and physiological conditions:) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 587.00 523.28 23.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+44.00 602.00 Td
+(Rice Blast \(Pyricularia oryzae\)) Tj
+ET
+BT
+/F1 6.8 Tf
+0.067 0.133 0.216 rg
+44.00 595.00 Td
+(Symptoms: Spindle-shaped eye spots with ash-grey centers and brownish margins.) Tj
+ET
+BT
+/F3 6.6 Tf
+0.020 0.588 0.412 rg
+44.00 589.00 Td
+(TNAU Remedy: Pseudomonas fluorescens 10g/kg seed; Tricyclazole 75WP 1g/L if severe.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 561.00 523.28 23.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+44.00 576.00 Td
+(Brown Spot \(Bipolaris oryzae\)) Tj
+ET
+BT
+/F1 6.8 Tf
+0.067 0.133 0.216 rg
+44.00 569.00 Td
+(Symptoms: Oval, dark brown lesions on leaf blade; typical in potash-deficient soil.) Tj
+ET
+BT
+/F3 6.6 Tf
+0.020 0.588 0.412 rg
+44.00 563.00 Td
+(TNAU Remedy: Balanced NPK application; foliar spray of Mancozeb 2g/L; soil amendment.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 535.00 523.28 23.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+44.00 550.00 Td
+(Bacterial Leaf Blight \(Xanthomonas\)) Tj
+ET
+BT
+/F1 6.8 Tf
+0.067 0.133 0.216 rg
+44.00 543.00 Td
+(Symptoms: Water-soaked wavy marginal lesions turning straw-yellow with milky ooze.) Tj
+ET
+BT
+/F3 6.6 Tf
+0.020 0.588 0.412 rg
+44.00 537.00 Td
+(TNAU Remedy: Drain excess water; spray fresh cow dung extract 20% or Streptomycin+Copper.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 509.00 523.28 23.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+44.00 524.00 Td
+(Sheath Blight \(Rhizoctonia solani\)) Tj
+ET
+BT
+/F1 6.8 Tf
+0.067 0.133 0.216 rg
+44.00 517.00 Td
+(Symptoms: Serpentine greenish-grey lesions near waterline crawling up leaf sheaths.) Tj
+ET
+BT
+/F3 6.6 Tf
+0.020 0.588 0.412 rg
+44.00 511.00 Td
+(TNAU Remedy: Avoid excessive nitrogen; apply Azoxystrobin or Hexaconazole 2ml/L.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 483.00 523.28 23.00 re
+B
+BT
+/F2 7.5 Tf
+0.024 0.306 0.231 rg
+44.00 498.00 Td
+(Zinc Deficiency \(Khaira Disease\)) Tj
+ET
+BT
+/F1 6.8 Tf
+0.067 0.133 0.216 rg
+44.00 491.00 Td
+(Symptoms: Rusty-brown pigmentation on younger leaves, stunted tillering.) Tj
+ET
+BT
+/F3 6.6 Tf
+0.020 0.588 0.412 rg
+44.00 485.00 Td
+(TNAU Remedy: Foliar spray of 0.5% Zinc Sulphate + 1% Urea; soil application of ZnSO4 25kg/ha.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+36.00 432.00 523.28 42.00 re
+B
+BT
+/F2 8.5 Tf
+0.024 0.306 0.231 rg
+46.00 463.00 Td
+(6. Weather Integration & Spray Window Feasibility) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 452.00 Td
+(Integrates Open-Meteo with local offline caching. Evaluates hourly wind speed \(<15 km/h required\), precipitation probability \(<30% over 6) Tj
+ET
+BT
+/F1 7.6 Tf
+0.278 0.333 0.412 rg
+46.00 442.50 Td
+(hours\), and temperature to provide a green/amber/red 'Spray Feasibility Index' preventing wasted fertilizer and chemical wash-off.) Tj
+ET
+0.024 0.306 0.231 RG 1 w 36 816.89 m 559.28 816.89 l S
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 36 821.89 Td (VAgri \(V-Agri\) - Architecture & System Summary for Claude) Tj ET
+BT /F1 7.5 Tf 0.4 0.45 0.5 rg 449.28 821.89 Td (Flutter - Riverpod - TNAU) Tj ET
+0.886 0.910 0.941 RG 0.75 w 36 25 m 559.28 25 l S
+BT /F1 7.5 Tf 0.5 0.55 0.6 rg 36 15 Td (VAgri Core Specification - Confidential Farm OS Architecture) Tj ET
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 514.28 15 Td (Page 2 of 4) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 7541 >>
+stream
+BT
+/F2 11 Tf
+0.024 0.306 0.231 rg
+36.00 800.00 Td
+(7. Complete Feature Roster \(lib/features/ Directory\)) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 796.00 m 559.28 796.00 l S
+0.024 0.306 0.231 rg
+36.00 770.00 523.28 14.00 re
+f
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+40.00 774.00 Td
+(Directory) Tj
+ET
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+115.00 774.00 Td
+(Key Models & Providers) Tj
+ET
+BT
+/F2 7.5 Tf
+1.000 1.000 1.000 rg
+260.00 774.00 Td
+(Functional Role & Core Capabilities) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 756.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 760.00 Td
+(crops/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 760.00 Td
+(CropVariety, CropCatalogue) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 760.00 Td
+(Regional database of certified TNAU varieties \(CO 51, ADT 43, CR 1009 Sub 1, ASD 16\).) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 742.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 746.00 Td
+(expenses/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 746.00 Td
+(FarmExpense, YieldRecord) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 746.00 Td
+(Farm operational ledger: labor wages, tractor rent, inputs, and yield ROI calculation.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 728.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 732.00 Td
+(farms/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 732.00 Td
+(Farm, GrowthEngine, CropCanvas) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 732.00 Td
+(Farm CRUD, animated custom-painted paddy canvas with wind sway, stage scrubber.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 714.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 718.00 Td
+(health/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 718.00 Td
+(HealthDiagnosis, CropVision) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 718.00 Td
+(On-device leaf diagnostic triage, symptom inspector, TNAU cultural & bio treatments.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 700.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 704.00 Td
+(home/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 704.00 Td
+(HomeScreen, QuickActions) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 704.00 Td
+(Central cockpit: today's urgent tasks, weather ticker, market price anomalies, farm stats.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 686.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 690.00 Td
+(inventory/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 690.00 Td
+(InventoryItem, PurchaseCalc) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 690.00 Td
+(Tracks seeds, fertilizers, bio-inputs; executes automatic shortage calculations.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 672.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 676.00 Td
+(market/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 676.00 Td
+(MarketObservation, PriceAnomaly) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 676.00 Td
+(Mandi commodity feeds, 7-day rolling median anomaly detector, price alerts.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 658.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 662.00 Td
+(notifications/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 662.00 Td
+(AppNotification, Notifier) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 662.00 Td
+(In-app notification center categorized by task, market, weather, farm, advisory.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 644.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 648.00 Td
+(onboarding/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 648.00 Td
+(OnboardingProvider, Wizard) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 648.00 Td
+(First-time wizard setting up farmer's district, initial field acreage, soil & variety.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 630.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 634.00 Td
+(profile/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 634.00 Td
+(FarmerProfile, ProfileScreen) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 634.00 Td
+(Farmer identity, language switch \(ta/en\), large-text, contrast, and reduced-motion toggles.) Tj
+ET
+1.000 1.000 1.000 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 616.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 620.00 Td
+(tasks/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 620.00 Td
+(FarmTask, TnauTaskGenerator) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 620.00 Td
+(Generates daily task plans based on variety maturity, soil, and crop age \(DSS/DAT\).) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 602.00 523.28 14.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+40.00 606.00 Td
+(weather/) Tj
+ET
+BT
+/F2 7 Tf
+0.067 0.133 0.216 rg
+115.00 606.00 Td
+(WeatherData, WeatherService) Tj
+ET
+BT
+/F1 6.8 Tf
+0.278 0.333 0.412 rg
+260.00 606.00 Td
+(Open-Meteo forecasts, hourly rain probability, agricultural spray feasibility index.) Tj
+ET
+BT
+/F2 10 Tf
+0.024 0.306 0.231 rg
+36.00 588.00 Td
+(8. Core Project Architecture Tree) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 584.00 m 559.28 584.00 l S
+0.059 0.090 0.165 rg
+36.00 446.00 523.28 128.00 re
+f
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 562.00 Td
+(lib/) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 552.90 Td
+(|-- core/) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 543.80 Td
+(|   |-- accessibility/         # Large-text, high-contrast, & reduced-motion state management) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 534.70 Td
+(|   |-- constants/             # AppColors \(forest greens, earth tones\), AppTypography tokens) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 525.60 Td
+(|   |-- localization/          # Bilingual AppLocale dictionary & Riverpod trProvider \(ta/en\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 516.50 Td
+(|   |-- theme/                 # Material 3 agricultural custom theme configuration) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 507.40 Td
+(|   |-- utils/                 # UnitConverter \(Acre/Cent/Ha/Quintal\), DateFormatter) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 498.30 Td
+(|   `-- widgets/               # VagriButton, VagriCard, VagriBadge, SmoothAnimatedIndexedStack) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 489.20 Td
+(|-- features/                  # 12 domain-driven functional feature directories \(listed above\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 480.10 Td
+(|-- data/) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 471.00 Td
+(|   |-- local_storage_service.dart # SharedPreferences JSON persistence layer) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 461.90 Td
+(|   `-- seed_data.dart             # Default Tamil Nadu farms, crops, tasks, and market data) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 452.80 Td
+(|-- app.dart                   # VAgriApp & MainNavigationShell \(Auto-hiding bottom bar on scroll\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.886 0.910 0.941 rg
+46.00 443.70 Td
+(`-- main.dart                  # Application bootstrap inside ProviderScope) Tj
+ET
+0.024 0.306 0.231 RG 1 w 36 816.89 m 559.28 816.89 l S
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 36 821.89 Td (VAgri \(V-Agri\) - Architecture & System Summary for Claude) Tj ET
+BT /F1 7.5 Tf 0.4 0.45 0.5 rg 449.28 821.89 Td (Flutter - Riverpod - TNAU) Tj ET
+0.886 0.910 0.941 RG 0.75 w 36 25 m 559.28 25 l S
+BT /F1 7.5 Tf 0.5 0.55 0.6 rg 36 15 Td (VAgri Core Specification - Confidential Farm OS Architecture) Tj ET
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 514.28 15 Td (Page 3 of 4) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >> /F2 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >> /F3 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >> /F4 << /Type /Font /Subtype /Type1 /BaseFont /Courier >> /F5 << /Type /Font /Subtype /Type1 /BaseFont /Courier-Bold >> >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 6076 >>
+stream
+BT
+/F2 11 Tf
+0.024 0.306 0.231 rg
+36.00 800.00 Td
+(9. Instant Prompt-Ready Context Block for Claude) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 796.00 m 559.28 796.00 l S
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+36.00 784.00 Td
+(Copy and paste the exact text block below into any new Claude or LLM session to give it immediate, complete architectural understanding) Tj
+ET
+BT
+/F1 8 Tf
+0.278 0.333 0.412 rg
+36.00 774.00 Td
+(of VAgri:) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.8 w
+36.00 578.00 523.28 190.00 re
+B
+BT
+/F5 7.1 Tf
+0.024 0.306 0.231 rg
+46.00 754.00 Td
+(Context for VAgri \(V-Agri / Tamil: Va-Agri\):) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 744.50 Td
+(VAgri is an offline-first Flutter application \(using Riverpod 2.5, Material 3, SharedPreferences\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 735.00 Td
+(built for paddy \(rice\) farmers in Tamil Nadu, India.) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 725.50 Td
+() Tj
+ET
+BT
+/F5 7.1 Tf
+0.024 0.306 0.231 rg
+46.00 716.00 Td
+(Key Systems & Architectural Rules:) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 706.50 Td
+(1. GrowthEngine: Computes paddy growth across 8 biological stages based on Days Since Sowing \(DSS\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 697.00 Td
+(   vs Days Since Transplanting \(DAT\) for specific TNAU varieties \(e.g., CO 51, ADT 45, CR 1009 Sub 1\).) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 687.50 Td
+(2. TNAU Task Generator: Automates daily farming actions \(fertilizer split doses, weeding, irrigation\)) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 678.00 Td
+(   based strictly on the Tamil Nadu Agricultural University Crop Production Guide.) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 668.50 Td
+(3. Bilingual Accessibility: Fully localized in Tamil \('ta'\) and English \('en'\) with large touch targets) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 659.00 Td
+(   \(>=48dp\), high contrast, and reduced-motion modes for senior farmers.) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 649.50 Td
+(4. Leaf Health Diagnostic: On-device diagnostic triage for paddy diseases \(Blast, Brown Spot, BLB,) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 640.00 Td
+(   Sheath Blight, Khaira Zinc deficiency\) with cultural/bio treatments.) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 630.50 Td
+(5. Inventory & Shortage Calculator: max\(0, Verified Requirement - Usable Stock\) scaled by farm area) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 621.00 Td
+(   \(Acre, Cent, Hectare\).) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 611.50 Td
+(6. Mandi Market Intelligence: 7-day rolling median anomaly detector \(>8.5% surge threshold\) for Tamil) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 602.00 Td
+(   Nadu regulated markets \(Thanjavur, Madurai, Tiruchirappalli, Thiruvarur, Tindivanam\).) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 592.50 Td
+(7. Notification Center: Filterable alerts across Task, Market, Weather, Farm, and Advisory.) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 583.00 Td
+() Tj
+ET
+BT
+/F5 7.1 Tf
+0.024 0.306 0.231 rg
+46.00 573.50 Td
+(When writing or modifying code for VAgri, ensure strict Riverpod compliance, bilingual string safety via) Tj
+ET
+BT
+/F4 7.1 Tf
+0.067 0.133 0.216 rg
+46.00 564.00 Td
+(trProvider, senior-friendly styling via AppColors and AppTypography, and strict adherence to TNAU guidelines.) Tj
+ET
+BT
+/F2 10 Tf
+0.024 0.306 0.231 rg
+36.00 558.00 Td
+(10. Automated Test Suite & Code Quality) Tj
+ET
+0.020 0.588 0.412 RG
+1.2 w
+36.00 554.00 m 559.28 554.00 l S
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 528.00 523.28 16.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+44.00 533.00 Td
+(test/growth_engine_test.dart) Tj
+ET
+BT
+/F1 7 Tf
+0.278 0.333 0.412 rg
+216.00 533.00 Td
+(Verifies DSS vs DAT age transitions, stage identification, and harvest windows.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 509.00 523.28 16.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+44.00 514.00 Td
+(test/purchase_calculator_test.dart) Tj
+ET
+BT
+/F1 7 Tf
+0.278 0.333 0.412 rg
+216.00 514.00 Td
+(Validates shortage formula max\(0, Requirement - Stock\) and zero-surplus handling.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 490.00 523.28 16.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+44.00 495.00 Td
+(test/market_intelligence_test.dart) Tj
+ET
+BT
+/F1 7 Tf
+0.278 0.333 0.412 rg
+216.00 495.00 Td
+(Tests 7-day rolling median calculation and >8.5% surge flag triggering.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 471.00 523.28 16.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+44.00 476.00 Td
+(test/unit_converter_test.dart) Tj
+ET
+BT
+/F1 7 Tf
+0.278 0.333 0.412 rg
+216.00 476.00 Td
+(Ensures Acre <-> Cent <-> Hectare and Bag <-> Quintal unit conversion accuracy.) Tj
+ET
+0.973 0.980 0.988 rg
+0.886 0.910 0.941 RG
+0.5 w
+36.00 452.00 523.28 16.00 re
+B
+BT
+/F5 7.2 Tf
+0.024 0.306 0.231 rg
+44.00 457.00 Td
+(test/widget_test.dart) Tj
+ET
+BT
+/F1 7 Tf
+0.278 0.333 0.412 rg
+216.00 457.00 Td
+(Smoke tests root navigation shell, bottom bar transitions, and Riverpod scope.) Tj
+ET
+0.941 0.992 0.961 rg
+0.655 0.953 0.816 RG
+0.8 w
+36.00 401.00 523.28 42.00 re
+B
+BT
+/F2 8.2 Tf
+0.024 0.306 0.231 rg
+46.00 432.00 Td
+(Official Agronomic Standards & References) Tj
+ET
+BT
+/F1 7.2 Tf
+0.020 0.588 0.412 rg
+46.00 421.00 Td
+(1. TNAU Agritech Portal & Crop Production Guide \(Paddy\), Tamil Nadu Agricultural University, Coimbatore.
+2. ICAR - National Rice Research) Tj
+ET
+BT
+/F1 7.2 Tf
+0.020 0.588 0.412 rg
+46.00 411.50 Td
+(Institute \(NRRI\), Cuttack.
+3. Directorate of Agricultural Marketing & AGMARKNET Daily Commodity Bulletins.) Tj
+ET
+0.024 0.306 0.231 RG 1 w 36 816.89 m 559.28 816.89 l S
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 36 821.89 Td (VAgri \(V-Agri\) - Architecture & System Summary for Claude) Tj ET
+BT /F1 7.5 Tf 0.4 0.45 0.5 rg 449.28 821.89 Td (Flutter - Riverpod - TNAU) Tj ET
+0.886 0.910 0.941 RG 0.75 w 36 25 m 559.28 25 l S
+BT /F1 7.5 Tf 0.5 0.55 0.6 rg 36 15 Td (VAgri Core Specification - Confidential Farm OS Architecture) Tj ET
+BT /F2 7.5 Tf 0.024 0.306 0.231 rg 514.28 15 Td (Page 4 of 4) Tj ET
+endstream
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000019 00000 n 
+0000000068 00000 n 
+0000000143 00000 n 
+0000000574 00000 n 
+0000008378 00000 n 
+0000008809 00000 n 
+0000014208 00000 n 
+0000014639 00000 n 
+0000022232 00000 n 
+0000022664 00000 n 
+trailer
+<< /Size 11 /Root 1 0 R >>
+startxref
+28793
+%%EOF

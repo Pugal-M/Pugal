@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Code, Calendar, Download, Sparkles, Layers, Cpu, Database, Smartphone } from "lucide-react";
+import { ArrowLeft, Code, Calendar, Download, Sparkles, Layers, Cpu, Database, Smartphone, FileText } from "lucide-react";
 import { Reveal } from "@/components/primitives/reveal";
 
 interface ProjectType {
@@ -350,7 +350,24 @@ export function ProjectDetailView({ project }: { project: ProjectType }) {
                   </a>
                 )}
 
-                {!hasValidGithub && !project.downloadUrl && (
+                {project.paperUrl && (
+                  <a
+                    href={project.paperUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 p-4 rounded-2xl hover:bg-black/5 dark:hover:bg-white/5 border border-black/10 dark:border-white/10 transition-all cursor-none group"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-google-green/15 text-google-green flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <FileText size={20} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-sm">Documentation / Paper</p>
+                      <p className="text-xs text-muted-foreground">View official summary PDF</p>
+                    </div>
+                  </a>
+                )}
+
+                {!hasValidGithub && !project.downloadUrl && !project.paperUrl && (
                   <p className="text-muted-foreground text-sm p-2">
                     Source code or download links are restricted for this build.
                   </p>
